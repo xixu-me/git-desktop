@@ -137,7 +137,7 @@
     "draft-release:format": "prettier --check --write changelog.json app/package.json && yarn validate-changelog",
     "draft-release:pr": "ts-node -P script/tsconfig.json script/draft-release/draft-pull-request.ts",
     "eslint": "eslint --cache --rulesdir ./eslint-rules \"./eslint-rules/**/*.js\" \"./script/**/*.ts{,x}\" \"./app/{src,typings,test}/**/*.{j,t}s{,x}\" \"./changelog.json\"",
-    "eslint-check": "eslint --print-config .eslintrc.* | npx eslint-config-prettier",
+    "eslint-check": "npx eslint-config-prettier app/src/ui/app.tsx script/build.ts",
     "generate-octicons": "ts-node -P script/tsconfig.json script/generate-octicons.ts",
     "lint": "yarn prettier && yarn lint:src",
     "lint:fix": "yarn prettier --write && yarn lint:src:fix",
