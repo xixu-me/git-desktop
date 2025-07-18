@@ -20,22 +20,22 @@ uses [React](https://reactjs.org/).
 
 Download the official installer for your operating system:
 
-- [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin)
-- [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64)
-- [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32)
-- [Windows machine-wide install](https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi)
+- [macOS](https://central.github.com/deployments/xixu-me/git-desktop/latest/darwin)
+- [macOS (Apple silicon)](https://central.github.com/deployments/xixu-me/git-desktop/latest/darwin-arm64)
+- [Windows](https://central.github.com/deployments/xixu-me/git-desktop/latest/win32)
+- [Windows machine-wide install](https://central.github.com/deployments/xixu-me/git-desktop/latest/win32?format=msi)
 
-Linux is not officially supported; however, you can find installers created for Linux from a fork of Git Desktop in the [Community Releases](https://github.com/desktop/desktop#community-releases) section.
+Linux is not officially supported; however, you can find installers created for Linux from a fork of Git Desktop in the [Community Releases](https://github.com/xixu-me/git-desktop#community-releases) section.
 
 ### Beta Channel
 
 Want to test out new features and get fixes before everyone else? Install the
 beta channel to get access to early builds of Desktop:
 
-- [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin?env=beta)
-- [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64?env=beta)
-- [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32?env=beta)
-- [Windows (ARM64)](https://central.github.com/deployments/desktop/desktop/latest/win32-arm64?env=beta)
+- [macOS](https://central.github.com/deployments/xixu-me/git-desktop/latest/darwin?env=beta)
+- [macOS (Apple silicon)](https://central.github.com/deployments/xixu-me/git-desktop/latest/darwin-arm64?env=beta)
+- [Windows](https://central.github.com/deployments/xixu-me/git-desktop/latest/win32?env=beta)
+- [Windows (ARM64)](https://central.github.com/deployments/xixu-me/git-desktop/latest/win32-arm64?env=beta)
 
 The release notes for the latest beta versions are available [here](https://desktop.github.com/release-notes/?env=beta).
 
@@ -57,20 +57,20 @@ Installers for various Linux distributions can be found on the
 
 ## Is Git Desktop right for me? What are the primary areas of focus?
 
-[This document](https://github.com/desktop/desktop/blob/development/docs/process/what-is-desktop.md) describes the focus of Git Desktop and who the product is most useful for.
+[This document](https://github.com/xixu-me/git-desktop/blob/development/docs/process/what-is-desktop.md) describes the focus of Git Desktop and who the product is most useful for.
 
 ## I have a problem with Git Desktop
 
-Note: The [Git Desktop Code of Conduct](https://github.com/desktop/desktop/blob/development/CODE_OF_CONDUCT.md) applies in all interactions relating to the Git Desktop project.
+Note: The [Git Desktop Code of Conduct](https://github.com/xixu-me/git-desktop/blob/development/CODE_OF_CONDUCT.md) applies in all interactions relating to the Git Desktop project.
 
-First, please search the [open issues](https://github.com/desktop/desktop/issues?q=is%3Aopen)
-and [closed issues](https://github.com/desktop/desktop/issues?q=is%3Aclosed)
+First, please search the [open issues](https://github.com/xixu-me/git-desktop/issues?q=is%3Aopen)
+and [closed issues](https://github.com/xixu-me/git-desktop/issues?q=is%3Aclosed)
 to see if your issue hasn't already been reported (it may also be fixed).
 
-There is also a list of [known issues](https://github.com/desktop/desktop/blob/development/docs/known-issues.md)
+There is also a list of [known issues](https://github.com/xixu-me/git-desktop/blob/development/docs/known-issues.md)
 that are being tracked against Desktop, and some of these issues have workarounds.
 
-If you can't find an issue that matches what you're seeing, open a [new issue](https://github.com/desktop/desktop/issues/new/choose),
+If you can't find an issue that matches what you're seeing, open a [new issue](https://github.com/xixu-me/git-desktop/issues/new/choose),
 choose the right template and provide us with enough information to investigate
 further.
 
@@ -84,7 +84,7 @@ The [CONTRIBUTING.md](./.github/CONTRIBUTING.md) document will help you get setu
 familiar with the source. The [documentation](docs/) folder also contains more
 resources relevant to the project.
 
-If you're looking for something to work on, check out the [help wanted](https://github.com/desktop/desktop/issues?q=is%3Aissue+is%3Aopen+label%3A%22help%20wanted%22) label.
+If you're looking for something to work on, check out the [help wanted](https://github.com/xixu-me/git-desktop/issues?q=is%3Aissue+is%3Aopen+label%3A%22help%20wanted%22) label.
 
 ## Building Desktop
 

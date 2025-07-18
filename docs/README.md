@@ -1,6 +1,6 @@
 # Git Desktop Documentation
 
-This is the [Git Desktop](https://github.com/desktop/desktop) development
+This is the [Git Desktop](https://github.com/xixu-me/git-desktop) development
 documentation.
 
 ## Contributing
