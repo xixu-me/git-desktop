@@ -2,8 +2,8 @@ import { SemVer, sort as semverSort } from 'semver'
 
 import { getLogLines } from '../changelog/git'
 import {
-    convertToChangelogFormat,
-    getChangelogEntriesSince,
+  convertToChangelogFormat,
+  getChangelogEntriesSince,
 } from '../changelog/parser'
 
 import { execSync } from 'child_process'

@@ -23,29 +23,29 @@ export interface ILicense {
 }
 
 import {
-    getBundleID,
-    getCompanyName,
-    getProductName,
+  getBundleID,
+  getCompanyName,
+  getProductName,
 } from '../app/package-info'
 
 import { isGitHubActions } from './build-platforms'
 import {
-    getChannel,
-    getDistArchitecture,
-    getDistRoot,
-    getExecutableName,
-    getIconFileName,
-    isPublishable,
+  getChannel,
+  getDistArchitecture,
+  getDistRoot,
+  getExecutableName,
+  getIconFileName,
+  isPublishable,
 } from './dist-info'
 
 import {
-    existsSync,
-    mkdirSync,
-    readdirSync,
-    readFileSync,
-    rmSync,
-    unlinkSync,
-    writeFileSync,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  unlinkSync,
+  writeFileSync,
 } from 'fs'
 import { copySync } from 'fs-extra'
 import { updateLicenseDump } from './licenses/update-license-dump'
