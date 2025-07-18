@@ -20,8 +20,7 @@ body:
     attributes:
       label: Release version
       description:
-        Open the 'About Git Desktop' menu item to see the Git Desktop
-        version.
+        Open the 'About Git Desktop' menu item to see the Git Desktop version.
     validations:
       required: true
   - type: input

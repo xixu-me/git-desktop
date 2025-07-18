@@ -2,10 +2,10 @@ import * as React from 'react'
 
 import { Disposable } from 'event-kit'
 import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    OkCancelButtonGroup,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  OkCancelButtonGroup,
 } from '../dialog'
 import { Dispatcher } from '../dispatcher'
 import { Row } from '../lib/row'

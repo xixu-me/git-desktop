@@ -5,8 +5,8 @@ import * as Path from 'path'
 import { GitError, getDescriptionForError } from '../git/core'
 import { getSSHEnvironment } from '../ssh/ssh'
 import {
-    deleteMostRecentSSHCredential,
-    removeMostRecentSSHCredential,
+  deleteMostRecentSSHCredential,
+  removeMostRecentSSHCredential,
 } from '../ssh/ssh-credential-storage'
 import { trampolineServer } from './trampoline-server'
 import { withTrampolineToken } from './trampoline-tokens'

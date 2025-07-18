@@ -1,9 +1,9 @@
 import { GitError } from 'dugite'
 import {
-    Branch,
-    BranchType,
-    IBranchTip,
-    ITrackingBranch,
+  Branch,
+  BranchType,
+  IBranchTip,
+  ITrackingBranch,
 } from '../../models/branch'
 import { Repository } from '../../models/repository'
 import { git } from './core'

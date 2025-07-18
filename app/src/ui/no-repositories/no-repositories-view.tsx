@@ -10,8 +10,8 @@ import { Octicon, OcticonSymbol } from '../octicons'
 import * as octicons from '../octicons/octicons.generated'
 import { UiView } from '../ui-view'
 import {
-    WelcomeLeftBottomImageUri,
-    WelcomeLeftTopImageUri,
+  WelcomeLeftBottomImageUri,
+  WelcomeLeftTopImageUri,
 } from '../welcome/welcome'
 
 interface INoRepositoriesProps {

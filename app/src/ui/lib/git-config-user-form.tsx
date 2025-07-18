@@ -2,9 +2,9 @@ import memoizeOne from 'memoize-one'
 import * as React from 'react'
 import { getStealthEmailForAccount } from '../../lib/email'
 import {
-    Account,
-    isDotComAccount,
-    isEnterpriseAccount,
+  Account,
+  isDotComAccount,
+  isEnterpriseAccount,
 } from '../../models/account'
 import { GitEmailNotFoundWarning } from './git-email-not-found-warning'
 import { Row } from './row'

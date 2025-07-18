@@ -3,13 +3,13 @@ import { Commit } from '../../models/commit'
 import { CommitIdentity } from '../../models/commit-identity'
 import { Repository } from '../../models/repository'
 import {
-    AppFileStatus,
-    AppFileStatusKind,
-    CommittedFileChange,
-    CopiedOrRenamedFileStatus,
-    PlainFileStatus,
-    SubmoduleStatus,
-    UntrackedFileStatus,
+  AppFileStatus,
+  AppFileStatusKind,
+  CommittedFileChange,
+  CopiedOrRenamedFileStatus,
+  PlainFileStatus,
+  SubmoduleStatus,
+  UntrackedFileStatus,
 } from '../../models/status'
 import { forceUnwrap } from '../fatal-error'
 import { git } from './core'

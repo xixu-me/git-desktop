@@ -4,8 +4,8 @@ import * as Path from 'path'
 import * as React from 'react'
 import { Emoji } from '../../lib/emoji'
 import {
-    MarkdownEmitter,
-    parseMarkdown,
+  MarkdownEmitter,
+  parseMarkdown,
 } from '../../lib/markdown-filters/markdown-filter'
 import { MarkdownContext } from '../../lib/markdown-filters/node-filter'
 import { GitHubRepository } from '../../models/github-repository'

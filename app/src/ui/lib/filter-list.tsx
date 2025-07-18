@@ -2,11 +2,11 @@ import classnames from 'classnames'
 import * as React from 'react'
 
 import {
-    ClickSource,
-    List,
-    SelectionSource as ListSelectionSource,
-    SelectionDirection,
-    findNextSelectableRow,
+  ClickSource,
+  List,
+  SelectionSource as ListSelectionSource,
+  SelectionDirection,
+  findNextSelectableRow,
 } from '../lib/list'
 import { Row } from '../lib/row'
 import { TextBox } from '../lib/text-box'

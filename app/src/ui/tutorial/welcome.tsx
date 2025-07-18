@@ -43,8 +43,7 @@ export class TutorialWelcome extends React.Component {
           <li>
             <img src={CloudServerImage} alt="Server stack with cloud" />
             <p>
-              <strong>Git Desktop</strong> helps you work with GitHub
-              locally.
+              <strong>Git Desktop</strong> helps you work with GitHub locally.
             </p>
           </li>
         </ul>

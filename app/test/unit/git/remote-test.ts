@@ -3,17 +3,17 @@ import assert from 'node:assert'
 import { describe, it } from 'node:test'
 import { setConfigValue } from '../../../src/lib/git'
 import {
-    addRemote,
-    getRemotes,
-    removeRemote,
-    setRemoteURL,
+  addRemote,
+  getRemotes,
+  removeRemote,
+  setRemoteURL,
 } from '../../../src/lib/git/remote'
 import { findDefaultRemote } from '../../../src/lib/stores/helpers/find-default-remote'
 import { Repository } from '../../../src/models/repository'
 import {
-    setupEmptyDirectory,
-    setupEmptyRepository,
-    setupFixtureRepository,
+  setupEmptyDirectory,
+  setupEmptyRepository,
+  setupFixtureRepository,
 } from '../../helpers/repositories'
 
 describe('git/remote', () => {

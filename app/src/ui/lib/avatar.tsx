@@ -3,9 +3,9 @@ import * as React from 'react'
 import { API, getDotComAPIEndpoint, getHTMLURL } from '../../lib/api'
 import { parseStealthEmail } from '../../lib/email'
 import {
-    isGHE,
-    isGHES,
-    supportsAvatarsAPI,
+  isGHE,
+  isGHES,
+  supportsAvatarsAPI,
 } from '../../lib/endpoint-capabilities'
 import { forceUnwrap } from '../../lib/fatal-error'
 import { offsetFrom } from '../../lib/offset-from'

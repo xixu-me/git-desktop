@@ -4,26 +4,26 @@ import * as React from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { shell } from '../lib/app-shell'
 import {
-    FoldoutType,
-    HistoryTabMode,
-    IAppState,
-    RepositorySectionTab,
-    SelectionType,
+  FoldoutType,
+  HistoryTabMode,
+  IAppState,
+  RepositorySectionTab,
+  SelectionType,
 } from '../lib/app-state'
 import { assertNever } from '../lib/fatal-error'
 import {
-    getOS,
-    isMacOSAndNoLongerSupportedByElectron,
-    isOSNoLongerSupportedByElectron,
-    isWindowsAndNoLongerSupportedByElectron,
+  getOS,
+  isMacOSAndNoLongerSupportedByElectron,
+  isOSNoLongerSupportedByElectron,
+  isWindowsAndNoLongerSupportedByElectron,
 } from '../lib/get-os'
 import { matchExistingRepository } from '../lib/repository-matching'
 import { AppStore, GitHubUserStore, IssuesStore } from '../lib/stores'
 import { MenuEvent, isTestMenuEvent } from '../main-process/menu'
 import {
-    Account,
-    isDotComAccount,
-    isEnterpriseAccount,
+  Account,
+  isDotComAccount,
+  isEnterpriseAccount,
 } from '../models/account'
 import { findItemByAccessKey, itemIsSelectable } from '../models/app-menu'
 import { Branch } from '../models/branch'
@@ -32,10 +32,10 @@ import { CloningRepository } from '../models/cloning-repository'
 import { FetchType } from '../models/fetch'
 import { PreferencesTab } from '../models/preferences'
 import {
-    Repository,
-    getGitHubHtmlUrl,
-    getNonForkGitHubRepository,
-    isRepositoryWithGitHubRepository,
+  Repository,
+  getGitHubHtmlUrl,
+  getNonForkGitHubRepository,
+  isRepositoryWithGitHubRepository,
 } from '../models/repository'
 import { RetryAction } from '../models/retry-actions'
 import { TipState } from '../models/tip'
@@ -69,16 +69,16 @@ import { NotificationsDebugStore } from '../lib/stores/notifications-debug-store
 import { RepositoryStateCache } from '../lib/stores/repository-state-cache'
 import { isCertificateErrorSuppressedFor } from '../lib/suppress-certificate-error'
 import {
-    getUserContributions,
-    hasUserAlreadyBeenCheckedOrThanked,
-    updateLastThankYou,
+  getUserContributions,
+  hasUserAlreadyBeenCheckedOrThanked,
+  updateLastThankYou,
 } from '../lib/thank-you'
 import { Banner, BannerType } from '../models/banner'
 import { CommitOneLine } from '../models/commit'
 import { DragType, DropTargetSelector } from '../models/drag-drop'
 import {
-    GitHubRepository,
-    hasWritePermission,
+  GitHubRepository,
+  hasWritePermission,
 } from '../models/github-repository'
 import { MultiCommitOperationKind } from '../models/multi-commit-operation'
 import { Popup, PopupType } from '../models/popup'
@@ -129,12 +129,12 @@ import { ApplicationTheme } from './lib/application-theme'
 import { showTestUI } from './lib/test-ui-components/test-ui-components'
 import { LocalChangesOverwrittenDialog } from './local-changes-overwritten/local-changes-overwritten-dialog'
 import {
-    installWindowsCLI,
-    isInApplicationFolder,
-    selectAllWindowContents,
-    sendReady,
-    showCertificateTrustDialog,
-    uninstallWindowsCLI,
+  installWindowsCLI,
+  isInApplicationFolder,
+  selectAllWindowContents,
+  sendReady,
+  showCertificateTrustDialog,
+  uninstallWindowsCLI,
 } from './main-process-proxy'
 import { CommitConflictsWarning } from './merge-conflicts'
 import { MissingRepository } from './missing-repository'
@@ -164,13 +164,13 @@ import { RepositorySettings } from './repository-settings'
 import { WarningBeforeReset } from './reset/warning-before-reset'
 import { SAMLReauthRequiredDialog } from './saml-reauth-required/saml-reauth-required'
 import {
-    BypassPushProtectionDialog,
-    BypassReason,
-    BypassReasonType,
+  BypassPushProtectionDialog,
+  BypassReason,
+  BypassReasonType,
 } from './secret-scanning/bypass-push-protection-dialog'
 import {
-    ISecretScanResult,
-    PushProtectionErrorDialog,
+  ISecretScanResult,
+  PushProtectionErrorDialog,
 } from './secret-scanning/push-protection-error-dialog'
 import { ShellError } from './shell'
 import { SignIn } from './sign-in'
@@ -184,12 +184,12 @@ import { TermsAndConditions } from './terms-and-conditions'
 import { TestNotifications } from './test-notifications/test-notifications'
 import { ThankYou } from './thank-you'
 import {
-    BranchDropdown,
-    DropdownState,
-    PushPullButton,
-    RevertProgress,
-    Toolbar,
-    ToolbarDropdown,
+  BranchDropdown,
+  DropdownState,
+  PushPullButton,
+  RevertProgress,
+  Toolbar,
+  ToolbarDropdown,
 } from './toolbar'
 import { ConfirmExitTutorial } from './tutorial'
 import { WarnLocalChangesBeforeUndo } from './undo/warn-local-changes-before-undo'

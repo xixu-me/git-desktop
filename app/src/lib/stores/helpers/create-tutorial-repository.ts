@@ -10,8 +10,8 @@ import { envForRemoteOperation } from '../../git/environment'
 import { getDefaultBranch } from '../../helpers/default-branch'
 import { APIError } from '../../http'
 import {
-    executionOptionsWithProgress,
-    PushProgressParser,
+  executionOptionsWithProgress,
+  PushProgressParser,
 } from '../../progress'
 
 const nl = __WIN32__ ? '\r\n' : '\n'

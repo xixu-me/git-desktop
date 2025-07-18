@@ -53,8 +53,8 @@ export class SAMLReauthRequiredDialog extends React.Component<
             repositories.
           </p>
           <p>
-            Would you like to open a browser to grant Git Desktop permission
-            to access the repository?
+            Would you like to open a browser to grant Git Desktop permission to
+            access the repository?
           </p>
         </DialogContent>
         <DialogFooter>

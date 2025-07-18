@@ -1,15 +1,15 @@
 import * as Path from 'path'
 import {
-    AccountsStore,
-    CloningRepositoriesStore,
-    GitHubUserStore,
-    GitStore,
-    IssuesStore,
-    PullRequestCoordinator,
-    RepositoriesStore,
-    SignInResult,
-    SignInStore,
-    UpstreamRemoteName,
+  AccountsStore,
+  CloningRepositoriesStore,
+  GitHubUserStore,
+  GitStore,
+  IssuesStore,
+  PullRequestCoordinator,
+  RepositoriesStore,
+  SignInResult,
+  SignInStore,
+  UpstreamRemoteName,
 } from '.'
 import { Account, isDotComAccount } from '../../models/account'
 import { AppMenu, IMenu } from '../../models/app-menu'
@@ -19,120 +19,120 @@ import { BranchesTab } from '../../models/branches-tab'
 import { CloneRepositoryTab } from '../../models/clone-repository-tab'
 import { CloningRepository } from '../../models/cloning-repository'
 import {
-    Commit,
-    CommitOneLine,
-    ICommitContext,
-    shortenSHA,
+  Commit,
+  CommitOneLine,
+  ICommitContext,
+  shortenSHA,
 } from '../../models/commit'
 import { ICommitMessage } from '../../models/commit-message'
 import {
-    DiffSelection,
-    DiffSelectionType,
-    DiffType,
-    ImageDiffType,
-    ITextDiff,
+  DiffSelection,
+  DiffSelectionType,
+  DiffType,
+  ImageDiffType,
+  ITextDiff,
 } from '../../models/diff'
 import { FetchType } from '../../models/fetch'
 import {
-    GitHubRepository,
-    hasWritePermission,
+  GitHubRepository,
+  hasWritePermission,
 } from '../../models/github-repository'
 import { Popup, PopupType } from '../../models/popup'
 import {
-    ICheckoutProgress,
-    IFetchProgress,
-    IMultiCommitOperationProgress,
-    IRevertProgress,
-    Progress,
+  ICheckoutProgress,
+  IFetchProgress,
+  IMultiCommitOperationProgress,
+  IRevertProgress,
+  Progress,
 } from '../../models/progress'
 import {
-    defaultPullRequestSuggestedNextAction,
-    PullRequest,
-    PullRequestSuggestedNextAction,
+  defaultPullRequestSuggestedNextAction,
+  PullRequest,
+  PullRequestSuggestedNextAction,
 } from '../../models/pull-request'
 import {
-    forkPullRequestRemoteName,
-    IRemote,
-    remoteEquals,
+  forkPullRequestRemoteName,
+  IRemote,
+  remoteEquals,
 } from '../../models/remote'
 import {
-    getNonForkGitHubRepository,
-    ILocalRepositoryState,
-    isForkedRepositoryContributingToParent,
-    isRepositoryWithGitHubRepository,
-    nameOf,
-    Repository,
-    RepositoryWithGitHubRepository,
+  getNonForkGitHubRepository,
+  ILocalRepositoryState,
+  isForkedRepositoryContributingToParent,
+  isRepositoryWithGitHubRepository,
+  nameOf,
+  Repository,
+  RepositoryWithGitHubRepository,
 } from '../../models/repository'
 import {
-    AppFileStatusKind,
-    CommittedFileChange,
-    WorkingDirectoryFileChange,
-    WorkingDirectoryStatus,
+  AppFileStatusKind,
+  CommittedFileChange,
+  WorkingDirectoryFileChange,
+  WorkingDirectoryStatus,
 } from '../../models/status'
 import { IValidBranch, tipEquals, TipState } from '../../models/tip'
 import { getAppPath } from '../../ui/lib/app-proxy'
 import {
-    ApplicableTheme,
-    ApplicationTheme,
-    getCurrentlyAppliedTheme,
-    getPersistedThemeName,
-    setPersistedTheme,
+  ApplicableTheme,
+  ApplicationTheme,
+  getCurrentlyAppliedTheme,
+  getPersistedThemeName,
+  setPersistedTheme,
 } from '../../ui/lib/application-theme'
 import { themeChangeMonitor } from '../../ui/lib/theme-change-monitor'
 import {
-    getAppMenu,
-    getCurrentWindowState,
-    getCurrentWindowZoomFactor,
-    onShowInstallingUpdate,
-    quitApp,
-    sendCancelQuittingSync,
-    sendWillQuitEvenIfUpdatingSync,
-    setWindowZoomFactor,
-    updateAccounts,
-    updatePreferredAppMenuItemLabels,
+  getAppMenu,
+  getCurrentWindowState,
+  getCurrentWindowZoomFactor,
+  onShowInstallingUpdate,
+  quitApp,
+  sendCancelQuittingSync,
+  sendWillQuitEvenIfUpdatingSync,
+  setWindowZoomFactor,
+  updateAccounts,
+  updatePreferredAppMenuItemLabels,
 } from '../../ui/main-process-proxy'
 import {
-    API,
-    deleteToken,
-    getAccountForEndpoint,
-    getEndpointForRepository,
-    IAPIComment,
-    IAPICreatePushProtectionBypassResponse,
-    IAPIFullRepository,
-    IAPIOrganization,
-    IAPIRepoRuleset,
+  API,
+  deleteToken,
+  getAccountForEndpoint,
+  getEndpointForRepository,
+  IAPIComment,
+  IAPICreatePushProtectionBypassResponse,
+  IAPIFullRepository,
+  IAPIOrganization,
+  IAPIRepoRuleset,
 } from '../api'
 import { shell } from '../app-shell'
 import {
-    ChangesSelectionKind,
-    ChangesWorkingDirectorySelection,
-    CompareAction,
-    Foldout,
-    FoldoutType,
-    HistoryTabMode,
-    IAppState,
-    ICompareBranch,
-    ICompareFormUpdate,
-    ICompareState,
-    ICompareToBranch,
-    IConstrainedValue,
-    IDisplayHistory,
-    IFileListFilterState,
-    IMultiCommitOperationState,
-    IRepositoryState,
-    isCherryPickConflictState,
-    isMergeConflictState,
-    isRebaseConflictState,
-    PossibleSelections,
-    RepositorySectionTab,
-    SelectionType,
+  ChangesSelectionKind,
+  ChangesWorkingDirectorySelection,
+  CompareAction,
+  Foldout,
+  FoldoutType,
+  HistoryTabMode,
+  IAppState,
+  ICompareBranch,
+  ICompareFormUpdate,
+  ICompareState,
+  ICompareToBranch,
+  IConstrainedValue,
+  IDisplayHistory,
+  IFileListFilterState,
+  IMultiCommitOperationState,
+  IRepositoryState,
+  isCherryPickConflictState,
+  isMergeConflictState,
+  isRebaseConflictState,
+  PossibleSelections,
+  RepositorySectionTab,
+  SelectionType,
 } from '../app-state'
 import {
-    findEditorOrDefault,
-    getAvailableEditors,
-    launchCustomExternalEditor,
-    launchExternalEditor,
+  findEditorOrDefault,
+  getAvailableEditors,
+  launchCustomExternalEditor,
+  launchExternalEditor,
 } from '../editors'
 import { assertNever, fatalError, forceUnwrap } from '../fatal-error'
 
@@ -146,30 +146,30 @@ import { ManualConflictResolution } from '../../models/manual-conflict-resolutio
 import { MenuLabelsEvent } from '../../models/menu-labels'
 import { MergeTreeResult } from '../../models/merge'
 import {
-    MultiCommitOperationDetail,
-    MultiCommitOperationKind,
-    MultiCommitOperationStep,
-    MultiCommitOperationStepKind,
+  MultiCommitOperationDetail,
+  MultiCommitOperationKind,
+  MultiCommitOperationStep,
+  MultiCommitOperationStepKind,
 } from '../../models/multi-commit-operation'
 import { RepoRulesInfo } from '../../models/repo-rules'
 import { RetryAction, RetryActionType } from '../../models/retry-actions'
 import { IStashEntry, StashedChangesLoadStates } from '../../models/stash-entry'
 import {
-    isValidTutorialStep,
-    orderedTutorialSteps,
-    TutorialStep,
+  isValidTutorialStep,
+  orderedTutorialSteps,
+  TutorialStep,
 } from '../../models/tutorial-step'
 import {
-    defaultUncommittedChangesStrategy,
-    UncommittedChangesStrategy,
+  defaultUncommittedChangesStrategy,
+  UncommittedChangesStrategy,
 } from '../../models/uncommitted-changes-strategy'
 import { WorkflowPreferences } from '../../models/workflow-preferences'
 import { TrashNameLabel } from '../../ui/lib/context-menu'
 import { getDefaultDir } from '../../ui/lib/default-dir'
 import {
-    getShowSideBySideDiff,
-    setShowSideBySideDiff,
-    ShowSideBySideDiffDefault,
+  getShowSideBySideDiff,
+  setShowSideBySideDiff,
+  ShowSideBySideDiffDefault,
 } from '../../ui/lib/diff-mode'
 import { pathExists } from '../../ui/lib/path-exists'
 import { updateStore } from '../../ui/lib/update-store'
@@ -180,8 +180,8 @@ import { IRefCheck } from '../ci-checks/ci-checks'
 import { clamp } from '../clamp'
 import { compare } from '../compare'
 import {
-    ICustomIntegration,
-    migratedCustomIntegration,
+  ICustomIntegration,
+  migratedCustomIntegration,
 } from '../custom-integration'
 import { ExternalEditorError, suggestedExternalEditor } from '../editors/shared'
 import { isAttributableEmailFor } from '../email'
@@ -189,110 +189,110 @@ import { Emoji } from '../emoji'
 import { EndpointToken } from '../endpoint-token'
 import { arrayEquals } from '../equality'
 import {
-    CheckoutError,
-    DiscardChangesError,
-    ErrorWithMetadata,
+  CheckoutError,
+  DiscardChangesError,
+  ErrorWithMetadata,
 } from '../error-with-metadata'
 import {
-    enableCommitMessageGeneration,
-    enableCustomIntegration,
+  enableCommitMessageGeneration,
+  enableCustomIntegration,
 } from '../feature-flag'
 import { formatCommitMessage } from '../format-commit-message'
 import { getAccountForRepository } from '../get-account-for-repository'
 import {
-    abortMerge,
-    abortRebase,
-    addRemote,
-    appendIgnoreFile,
-    appendIgnoreRule,
-    checkoutBranch,
-    checkoutCommit,
-    continueRebase,
-    createCommit,
-    createMergeCommit,
-    deleteLocalBranch,
-    deleteRemoteBranch,
-    fastForwardBranches,
-    getAuthorIdentity,
-    getBranchAheadBehind,
-    getBranchesDifferingFromUpstream,
-    getBranchesPointedAt,
-    getBranchMergeBaseChangedFiles,
-    getBranchMergeBaseDiff,
-    getChangedFiles,
-    getCommit,
-    getCommitDiff,
-    getCommitRangeChangedFiles,
-    getCommitRangeDiff,
-    getFilesDiffText,
-    getGlobalConfigPath,
-    getMergeBase,
-    getRebaseInternalState,
-    getRebaseSnapshot,
-    getRemotes,
-    getRemoteURL,
-    getRepositoryType,
-    getWorkingDirectoryDiff,
-    GitError,
-    GitResetMode,
-    isCoAuthoredByTrailer,
-    IStatusResult,
-    MergeResult,
-    pull as pullRepo,
-    PushOptions,
-    push as pushRepo,
-    rebase,
-    RebaseResult,
-    renameBranch,
-    RepositoryType,
-    reset,
-    saveGitIgnore,
-    updateRemoteHEAD,
+  abortMerge,
+  abortRebase,
+  addRemote,
+  appendIgnoreFile,
+  appendIgnoreRule,
+  checkoutBranch,
+  checkoutCommit,
+  continueRebase,
+  createCommit,
+  createMergeCommit,
+  deleteLocalBranch,
+  deleteRemoteBranch,
+  fastForwardBranches,
+  getAuthorIdentity,
+  getBranchAheadBehind,
+  getBranchesDifferingFromUpstream,
+  getBranchesPointedAt,
+  getBranchMergeBaseChangedFiles,
+  getBranchMergeBaseDiff,
+  getChangedFiles,
+  getCommit,
+  getCommitDiff,
+  getCommitRangeChangedFiles,
+  getCommitRangeDiff,
+  getFilesDiffText,
+  getGlobalConfigPath,
+  getMergeBase,
+  getRebaseInternalState,
+  getRebaseSnapshot,
+  getRemotes,
+  getRemoteURL,
+  getRepositoryType,
+  getWorkingDirectoryDiff,
+  GitError,
+  GitResetMode,
+  isCoAuthoredByTrailer,
+  IStatusResult,
+  MergeResult,
+  pull as pullRepo,
+  PushOptions,
+  push as pushRepo,
+  rebase,
+  RebaseResult,
+  renameBranch,
+  RepositoryType,
+  reset,
+  saveGitIgnore,
+  updateRemoteHEAD,
 } from '../git'
 import { GitErrorContext } from '../git-error-context'
 import {
-    abortCherryPick,
-    cherryPick,
-    CherryPickResult,
-    continueCherryPick,
-    getCherryPickSnapshot,
-    isCherryPickHeadFound,
+  abortCherryPick,
+  cherryPick,
+  CherryPickResult,
+  continueCherryPick,
+  getCherryPickSnapshot,
+  isCherryPickHeadFound,
 } from '../git/cherry-pick'
 import {
-    installGlobalLFSFilters,
-    installLFSHooks,
-    isUsingLFS,
+  installGlobalLFSFilters,
+  installLFSHooks,
+  isUsingLFS,
 } from '../git/lfs'
 import { determineMergeability } from '../git/merge-tree'
 import { reorder } from '../git/reorder'
 import { squash } from '../git/squash'
 import {
-    createDesktopStashEntry,
-    dropDesktopStashEntry,
-    getLastDesktopStashEntryForBranch,
-    moveStashEntry,
-    popStashEntry,
+  createDesktopStashEntry,
+  dropDesktopStashEntry,
+  getLastDesktopStashEntryForBranch,
+  moveStashEntry,
+  popStashEntry,
 } from '../git/stash'
 import { sendNonFatalException } from '../helpers/non-fatal-exception'
 import {
-    findAssociatedPullRequest,
-    isPullRequestAssociatedWithBranch,
+  findAssociatedPullRequest,
+  isPullRequestAssociatedWithBranch,
 } from '../helpers/pull-request-matching'
 import { isBranchPushable } from '../helpers/push-control'
 import { parseRepoRules, useRepoRulesLogic } from '../helpers/repo-rules'
 import { inferLastPushForRepository } from '../infer-last-push-for-repository'
 import * as ipcRenderer from '../ipc-renderer'
 import {
-    getBoolean,
-    getEnum,
-    getFloatNumber,
-    getNumber,
-    getNumberArray,
-    getObject,
-    setBoolean,
-    setNumber,
-    setNumberArray,
-    setObject,
+  getBoolean,
+  getEnum,
+  getFloatNumber,
+  getNumber,
+  getNumberArray,
+  getObject,
+  setBoolean,
+  setNumber,
+  setNumberArray,
+  setObject,
 } from '../local-storage'
 import { updateMenuState } from '../menu-update'
 import { merge } from '../merge'
@@ -304,27 +304,27 @@ import { promiseWithMinimumTimeout } from '../promise'
 import { readEmoji } from '../read-emoji'
 import { ForcePushBranchState, getCurrentBranchForcePushState } from '../rebase'
 import {
-    IMatchedGitHubRepository,
-    matchExistingRepository,
-    matchGitHubRepository,
-    urlMatchesRemote,
+  IMatchedGitHubRepository,
+  matchExistingRepository,
+  matchGitHubRepository,
+  urlMatchesRemote,
 } from '../repository-matching'
 import {
-    Default as DefaultShell,
-    findShellOrDefault,
-    launchCustomShell,
-    launchShell,
-    parse as parseShell,
-    Shell,
+  Default as DefaultShell,
+  findShellOrDefault,
+  launchCustomShell,
+  launchShell,
+  parse as parseShell,
+  Shell,
 } from '../shells'
 import { UseWindowsOpenSSHKey } from '../ssh/ssh'
 import { ILaunchStats, StatsStore } from '../stats'
 import { getUntrackedFiles } from '../status'
 import { getTipSha } from '../tip'
 import {
-    setUseExternalCredentialHelper,
-    useExternalCredentialHelper,
-    useExternalCredentialHelperDefault,
+  setUseExternalCredentialHelper,
+  useExternalCredentialHelper,
+  useExternalCredentialHelperDefault,
 } from '../trampoline/use-external-credential-helper'
 import { ValidNotificationPullRequestReview } from '../valid-notification-pull-request-review'
 import { hasShownWelcomeFlow, markWelcomeFlowComplete } from '../welcome'
@@ -339,14 +339,14 @@ import { findRemoteBranchName } from './helpers/find-branch-name'
 import { RepositoryIndicatorUpdater } from './helpers/repository-indicator-updater'
 import { OnboardingTutorialAssessor } from './helpers/tutorial-assessor'
 import {
-    getNotificationsEnabled,
-    NotificationsStore,
+  getNotificationsEnabled,
+  NotificationsStore,
 } from './notifications-store'
 import { RepositoryStateCache } from './repository-state-cache'
 import {
-    selectWorkingDirectoryFiles,
-    updateChangedFiles,
-    updateConflictState,
+  selectWorkingDirectoryFiles,
+  updateChangedFiles,
+  updateConflictState,
 } from './updates/changes-state'
 import { updateRemoteUrl } from './updates/update-remote-url'
 

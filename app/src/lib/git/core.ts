@@ -1,11 +1,11 @@
 import {
-    GitError as DugiteError,
-    IGitExecutionOptions as DugiteExecutionOptions,
-    IGitResult as DugiteResult,
-    exec,
-    ExecError,
-    parseBadConfigValueErrorInfo,
-    parseError,
+  GitError as DugiteError,
+  IGitExecutionOptions as DugiteExecutionOptions,
+  IGitResult as DugiteResult,
+  exec,
+  ExecError,
+  parseBadConfigValueErrorInfo,
+  parseError,
 } from 'dugite'
 
 import { kStringMaxLength } from 'buffer'
@@ -402,9 +402,7 @@ export function getDescriptionForError(
   stderr: string
 ): string | null {
   if (isAuthFailureError(error)) {
-    const menuHint = __DARWIN__
-      ? 'Git Desktop > Settings.'
-      : 'File > Options.'
+    const menuHint = __DARWIN__ ? 'Git Desktop > Settings.' : 'File > Options.'
     return `Authentication failed. Some common reasons include:
 
 - You are not logged in to your account: see ${menuHint}

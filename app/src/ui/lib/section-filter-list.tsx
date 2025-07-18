@@ -3,8 +3,8 @@ import * as React from 'react'
 
 import { ClickSource, SectionList } from '../lib/list/section-list'
 import {
-    findNextSelectableRow,
-    SelectionDirection,
+  findNextSelectableRow,
+  SelectionDirection,
 } from '../lib/list/section-list-selection'
 import { Row } from '../lib/row'
 import { TextBox } from '../lib/text-box'
@@ -13,14 +13,14 @@ import { IMatch, IMatches, match } from '../../lib/fuzzy-find'
 import { AriaLiveContainer } from '../accessibility/aria-live-container'
 import * as octicons from '../octicons/octicons.generated'
 import {
-    IFilterListGroup,
-    IFilterListItem,
-    SelectionSource,
+  IFilterListGroup,
+  IFilterListItem,
+  SelectionSource,
 } from './filter-list'
 import {
-    InvalidRowIndexPath,
-    RowIndexPath,
-    rowIndexPathEquals,
+  InvalidRowIndexPath,
+  RowIndexPath,
+  rowIndexPathEquals,
 } from './list/list-row-index-path'
 
 interface IFlattenedGroup<T> {

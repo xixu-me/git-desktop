@@ -11,15 +11,15 @@ import { ICommitMessage } from '../models/commit-message'
 import { IDiff, ImageDiffType } from '../models/diff'
 import { MergeTreeResult } from '../models/merge'
 import {
-    ICheckoutProgress,
-    ICloneProgress,
-    IMultiCommitOperationProgress,
-    IRevertProgress,
-    Progress,
+  ICheckoutProgress,
+  ICloneProgress,
+  IMultiCommitOperationProgress,
+  IRevertProgress,
+  Progress,
 } from '../models/progress'
 import {
-    PullRequest,
-    PullRequestSuggestedNextAction,
+  PullRequest,
+  PullRequestSuggestedNextAction,
 } from '../models/pull-request'
 import { IRemote } from '../models/remote'
 import { ILocalRepositoryState, Repository } from '../models/repository'
@@ -36,8 +36,8 @@ import { DragElement } from '../models/drag-drop'
 import { ILastThankYou } from '../models/last-thank-you'
 import { ManualConflictResolution } from '../models/manual-conflict-resolution'
 import {
-    MultiCommitOperationDetail,
-    MultiCommitOperationStep,
+  MultiCommitOperationDetail,
+  MultiCommitOperationStep,
 } from '../models/multi-commit-operation'
 import { Popup } from '../models/popup'
 import { RepoRulesInfo } from '../models/repo-rules'

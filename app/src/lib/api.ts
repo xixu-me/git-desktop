@@ -4,25 +4,25 @@ import { Account } from '../models/account'
 import { BypassReasonType } from '../ui/secret-scanning/bypass-push-protection-dialog'
 import { CopilotError } from './copilot-error'
 import {
-    getEndpointVersion,
-    isDotCom,
-    isGHE,
-    isGHES,
-    updateEndpointVersion,
+  getEndpointVersion,
+  isDotCom,
+  isGHE,
+  isGHES,
+  updateEndpointVersion,
 } from './endpoint-capabilities'
 import {
-    APIError,
-    getUserAgent,
-    HTTPMethod,
-    parsedResponse,
-    request,
-    urlWithQueryString,
+  APIError,
+  getUserAgent,
+  HTTPMethod,
+  parsedResponse,
+  request,
+  urlWithQueryString,
 } from './http'
 import { HttpStatusCode } from './http-status-code'
 import { GitProtocol } from './remote-parsing'
 import {
-    clearCertificateErrorSuppressionFor,
-    suppressCertificateErrorFor,
+  clearCertificateErrorSuppressionFor,
+  suppressCertificateErrorFor,
 } from './suppress-certificate-error'
 import { uuid } from './uuid'
 

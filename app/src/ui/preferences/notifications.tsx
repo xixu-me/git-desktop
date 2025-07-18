@@ -1,15 +1,15 @@
 import {
-    getNotificationSettingsUrl,
-    supportsNotifications,
-    supportsNotificationsPermissionRequest,
+  getNotificationSettingsUrl,
+  supportsNotifications,
+  supportsNotificationsPermissionRequest,
 } from 'desktop-notifications'
 import * as React from 'react'
 import { DialogContent } from '../dialog'
 import { Checkbox, CheckboxValue } from '../lib/checkbox'
 import { LinkButton } from '../lib/link-button'
 import {
-    getNotificationsPermission,
-    requestNotificationsPermission,
+  getNotificationsPermission,
+  requestNotificationsPermission,
 } from '../main-process-proxy'
 
 interface INotificationPreferencesProps {
@@ -121,8 +121,8 @@ export class Notifications extends React.Component<
     if (warnNotificationsDenied) {
       return (
         <div className="setting-hint-warning">
-          <span className="warning-icon">⚠️</span> Git Desktop has no
-          permission to display notifications. Please, enable them in the{' '}
+          <span className="warning-icon">⚠️</span> Git Desktop has no permission
+          to display notifications. Please, enable them in the{' '}
           <LinkButton uri={notificationSettingsURL}>
             Notifications Settings
           </LinkButton>

@@ -2,9 +2,9 @@ import { readFile } from 'fs/promises'
 import * as Path from 'path'
 import * as semver from 'semver'
 import {
-    ReleaseMetadata,
-    ReleaseNote,
-    ReleaseSummary,
+  ReleaseMetadata,
+  ReleaseNote,
+  ReleaseSummary,
 } from '../models/release-notes'
 import { getVersion } from '../ui/lib/app-proxy'
 import { formatDate } from './format-date'

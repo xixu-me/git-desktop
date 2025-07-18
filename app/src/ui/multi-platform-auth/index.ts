@@ -1,2 +1,1 @@
-export { MultiPlatformAuthentication } from './multi-platform-auth';
-
+export { MultiPlatformAuthentication } from './multi-platform-auth'

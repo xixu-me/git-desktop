@@ -5,12 +5,12 @@ import { GitProtocol } from './remote-parsing'
  */
 export enum SupportedPlatform {
   GitHub = 'github',
-  GitLab = 'gitlab', 
+  GitLab = 'gitlab',
   Bitbucket = 'bitbucket',
   Gitee = 'gitee',
   GitCode = 'gitcode',
   HuggingFace = 'huggingface',
-  Generic = 'generic'
+  Generic = 'generic',
 }
 
 /**
@@ -54,9 +54,9 @@ export const PlatformConfigs: Record<SupportedPlatform, IPlatformConfig> = {
     urlPatterns: [
       'https://github.com/:owner/:repo',
       'git@github.com::owner/:repo.git',
-      'https://github.com/:owner/:repo.git'
+      'https://github.com/:owner/:repo.git',
     ],
-    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa']
+    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa'],
   },
   [SupportedPlatform.GitLab]: {
     name: 'gitlab',
@@ -75,9 +75,9 @@ export const PlatformConfigs: Record<SupportedPlatform, IPlatformConfig> = {
     urlPatterns: [
       'https://gitlab.com/:owner/:repo',
       'git@gitlab.com::owner/:repo.git',
-      'https://gitlab.com/:owner/:repo.git'
+      'https://gitlab.com/:owner/:repo.git',
     ],
-    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa']
+    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa'],
   },
   [SupportedPlatform.Bitbucket]: {
     name: 'bitbucket',
@@ -96,9 +96,9 @@ export const PlatformConfigs: Record<SupportedPlatform, IPlatformConfig> = {
     urlPatterns: [
       'https://bitbucket.org/:owner/:repo',
       'git@bitbucket.org::owner/:repo.git',
-      'https://bitbucket.org/:owner/:repo.git'
+      'https://bitbucket.org/:owner/:repo.git',
     ],
-    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa']
+    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa'],
   },
   [SupportedPlatform.Gitee]: {
     name: 'gitee',
@@ -117,9 +117,9 @@ export const PlatformConfigs: Record<SupportedPlatform, IPlatformConfig> = {
     urlPatterns: [
       'https://gitee.com/:owner/:repo',
       'git@gitee.com::owner/:repo.git',
-      'https://gitee.com/:owner/:repo.git'
+      'https://gitee.com/:owner/:repo.git',
     ],
-    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa']
+    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa'],
   },
   [SupportedPlatform.GitCode]: {
     name: 'gitcode',
@@ -138,9 +138,9 @@ export const PlatformConfigs: Record<SupportedPlatform, IPlatformConfig> = {
     urlPatterns: [
       'https://gitcode.net/:owner/:repo',
       'git@gitcode.net::owner/:repo.git',
-      'https://gitcode.net/:owner/:repo.git'
+      'https://gitcode.net/:owner/:repo.git',
     ],
-    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa']
+    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa'],
   },
   [SupportedPlatform.HuggingFace]: {
     name: 'huggingface',
@@ -158,9 +158,9 @@ export const PlatformConfigs: Record<SupportedPlatform, IPlatformConfig> = {
     urlPatterns: [
       'https://huggingface.co/:owner/:repo',
       'git@huggingface.co::owner/:repo.git',
-      'https://huggingface.co/:owner/:repo.git'
+      'https://huggingface.co/:owner/:repo.git',
     ],
-    sshKeyFormats: ['ed25519', 'rsa']
+    sshKeyFormats: ['ed25519', 'rsa'],
   },
   [SupportedPlatform.Generic]: {
     name: 'generic',
@@ -176,23 +176,25 @@ export const PlatformConfigs: Record<SupportedPlatform, IPlatformConfig> = {
     supportsOrganizations: false,
     defaultBranch: 'main',
     urlPatterns: [],
-    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa']
-  }
+    sshKeyFormats: ['ed25519', 'rsa', 'ecdsa'],
+  },
 }
 
 /**
  * Detect platform from hostname
  */
-export function detectPlatformFromHostname(hostname: string): SupportedPlatform {
+export function detectPlatformFromHostname(
+  hostname: string
+): SupportedPlatform {
   const normalizedHostname = hostname.toLowerCase()
-  
+
   // Check for exact matches first
   for (const [platform, config] of Object.entries(PlatformConfigs)) {
     if (config.hostname === normalizedHostname) {
       return platform as SupportedPlatform
     }
   }
-  
+
   // Check for subdomain matches
   if (normalizedHostname.includes('github')) {
     return SupportedPlatform.GitHub
@@ -212,14 +214,16 @@ export function detectPlatformFromHostname(hostname: string): SupportedPlatform 
   if (normalizedHostname.includes('huggingface')) {
     return SupportedPlatform.HuggingFace
   }
-  
+
   return SupportedPlatform.Generic
 }
 
 /**
  * Get platform configuration
  */
-export function getPlatformConfig(platform: SupportedPlatform): IPlatformConfig {
+export function getPlatformConfig(
+  platform: SupportedPlatform
+): IPlatformConfig {
   return PlatformConfigs[platform]
 }
 
@@ -228,12 +232,14 @@ export function getPlatformConfig(platform: SupportedPlatform): IPlatformConfig 
  */
 export function platformSupportsFeature(
   platform: SupportedPlatform,
-  feature: keyof Pick<IPlatformConfig, 
-    'supportsOAuth' | 
-    'supportsPersonalAccessTokens' | 
-    'supportsIssues' | 
-    'supportsPullRequests' | 
-    'supportsOrganizations'>
+  feature: keyof Pick<
+    IPlatformConfig,
+    | 'supportsOAuth'
+    | 'supportsPersonalAccessTokens'
+    | 'supportsIssues'
+    | 'supportsPullRequests'
+    | 'supportsOrganizations'
+  >
 ): boolean {
   const config = getPlatformConfig(platform)
   return config[feature]
@@ -267,11 +273,11 @@ export function getApiEndpointForUrl(url: string): string | null {
     const urlObj = new URL(url)
     const platform = detectPlatformFromHostname(urlObj.hostname)
     const config = getPlatformConfig(platform)
-    
+
     if (platform === SupportedPlatform.Generic) {
       return null
     }
-    
+
     // For self-hosted instances, construct API endpoint
     if (urlObj.hostname !== config.hostname) {
       switch (platform) {
@@ -285,7 +291,7 @@ export function getApiEndpointForUrl(url: string): string | null {
           return null
       }
     }
-    
+
     return config.apiEndpoint
   } catch {
     return null

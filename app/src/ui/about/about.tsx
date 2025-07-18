@@ -6,10 +6,10 @@ import { isOSNoLongerSupportedByElectron } from '../../lib/get-os'
 import { encodePathAsUrl } from '../../lib/path'
 import { AriaLiveContainer } from '../accessibility/aria-live-container'
 import {
-    DefaultDialogFooter,
-    Dialog,
-    DialogContent,
-    DialogError,
+  DefaultDialogFooter,
+  Dialog,
+  DialogContent,
+  DialogError,
 } from '../dialog'
 import { Button } from '../lib/button'
 import { LinkButton } from '../lib/link-button'
@@ -268,12 +268,7 @@ export class About extends React.Component<IAboutProps> {
         {this.renderUpdateErrors()}
         <DialogContent>
           <Row className="logo">
-            <img
-              src={DesktopLogo}
-              alt="Git Desktop"
-              width="64"
-              height="64"
-            />
+            <img src={DesktopLogo} alt="Git Desktop" width="64" height="64" />
           </Row>
           <h1 id={titleId}>About {name}</h1>
           <p className="no-padding">

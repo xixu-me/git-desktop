@@ -1,25 +1,25 @@
 import * as Path from 'path'
 import {
-    Branch,
-    BranchType,
-    IAheadBehind,
-    ICompareResult,
+  Branch,
+  BranchType,
+  IAheadBehind,
+  ICompareResult,
 } from '../../models/branch'
 import { Commit } from '../../models/commit'
 import {
-    DefaultCommitMessage,
-    ICommitMessage,
+  DefaultCommitMessage,
+  ICommitMessage,
 } from '../../models/commit-message'
 import { IFetchProgress, IRevertProgress } from '../../models/progress'
 import { IRemote } from '../../models/remote'
 import {
-    getNonForkGitHubRepository,
-    isRepositoryWithForkedGitHubRepository,
-    Repository,
+  getNonForkGitHubRepository,
+  isRepositoryWithForkedGitHubRepository,
+  Repository,
 } from '../../models/repository'
 import {
-    AppFileStatusKind,
-    WorkingDirectoryFileChange,
+  AppFileStatusKind,
+  WorkingDirectoryFileChange,
 } from '../../models/status'
 import { Tip, TipState } from '../../models/tip'
 import { ComparisonMode } from '../app-state'
@@ -27,9 +27,9 @@ import { ComparisonMode } from '../app-state'
 import { queueWorkHigh } from '../../lib/queue-work'
 import { IAppShell } from '../app-shell'
 import {
-    DiscardChangesError,
-    ErrorWithMetadata,
-    IErrorMetadata,
+  DiscardChangesError,
+  ErrorWithMetadata,
+  IErrorMetadata,
 } from '../error-with-metadata'
 
 import { GitError } from 'dugite'
@@ -45,48 +45,48 @@ import { forceUnwrap } from '../fatal-error'
 import { findDefaultBranch } from '../find-default-branch'
 import { formatCommitMessage } from '../format-commit-message'
 import {
-    addRemote,
-    checkoutIndex,
-    checkoutPaths,
-    createBranch,
-    createTag,
-    deleteRef,
-    deleteTag,
-    discardChangesFromSelection,
-    fetchRefspec,
-    fetch as fetchRepo,
-    getAheadBehind,
-    getAllTags,
-    getBranches,
-    getCommit,
-    getCommits,
-    getConfigValue,
-    getIndexChanges,
-    getRecentBranches,
-    getRemoteHEAD,
-    getRemotes,
-    getStatus,
-    getTrailerSeparatorCharacters,
-    GitResetMode,
-    IndexStatus,
-    isCoAuthoredByTrailer,
-    IStatusResult,
-    listSubmodules,
-    merge,
-    MergeResult,
-    mergeTrailers,
-    parseSingleUnfoldedTrailer,
-    parseTrailers,
-    removeRemote,
-    reset,
-    resetPaths,
-    resetSubmodulePaths,
-    revertCommit,
-    revRange,
-    revSymmetricDifference,
-    setRemoteURL,
-    unstageAllFiles,
-    updateRemoteHEAD,
+  addRemote,
+  checkoutIndex,
+  checkoutPaths,
+  createBranch,
+  createTag,
+  deleteRef,
+  deleteTag,
+  discardChangesFromSelection,
+  fetchRefspec,
+  fetch as fetchRepo,
+  getAheadBehind,
+  getAllTags,
+  getBranches,
+  getCommit,
+  getCommits,
+  getConfigValue,
+  getIndexChanges,
+  getRecentBranches,
+  getRemoteHEAD,
+  getRemotes,
+  getStatus,
+  getTrailerSeparatorCharacters,
+  GitResetMode,
+  IndexStatus,
+  isCoAuthoredByTrailer,
+  IStatusResult,
+  listSubmodules,
+  merge,
+  MergeResult,
+  mergeTrailers,
+  parseSingleUnfoldedTrailer,
+  parseTrailers,
+  removeRemote,
+  reset,
+  resetPaths,
+  resetSubmodulePaths,
+  revertCommit,
+  revRange,
+  revSymmetricDifference,
+  setRemoteURL,
+  unstageAllFiles,
+  updateRemoteHEAD,
 } from '../git'
 import { getStashedFiles, getStashes } from '../git/stash'
 import { getDefaultBranch } from '../helpers/default-branch'
@@ -95,8 +95,8 @@ import { BaseStore } from './base-store'
 import { findDefaultRemote } from './helpers/find-default-remote'
 import { findForkedRemotesToPrune } from './helpers/find-forked-remotes-to-prune'
 import {
-    findUpstreamRemote,
-    UpstreamRemoteName,
+  findUpstreamRemote,
+  UpstreamRemoteName,
 } from './helpers/find-upstream-remote'
 import { getTagsToPush, storeTagsToPush } from './helpers/tags-to-push-storage'
 import { UpstreamAlreadyExistsError } from './upstream-already-exists-error'

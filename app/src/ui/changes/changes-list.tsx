@@ -7,9 +7,9 @@ import { EOL } from 'os'
 import { basename } from 'path'
 import { revealInFileManager } from '../../lib/app-shell'
 import {
-    ConflictState,
-    Foldout,
-    RebaseConflictState,
+  ConflictState,
+  Foldout,
+  RebaseConflictState,
 } from '../../lib/app-state'
 import { arrayEquals } from '../../lib/equality'
 import { enableFilteredChangesList } from '../../lib/feature-flag'
@@ -26,27 +26,27 @@ import { hasWritePermission } from '../../models/github-repository'
 import { Popup } from '../../models/popup'
 import { RepoRulesInfo } from '../../models/repo-rules'
 import {
-    isRepositoryWithGitHubRepository,
-    Repository,
+  isRepositoryWithGitHubRepository,
+  Repository,
 } from '../../models/repository'
 import { IStashEntry } from '../../models/stash-entry'
 import {
-    AppFileStatusKind,
-    WorkingDirectoryFileChange,
-    WorkingDirectoryStatus,
+  AppFileStatusKind,
+  WorkingDirectoryFileChange,
+  WorkingDirectoryStatus,
 } from '../../models/status'
 import { IAutocompletionProvider } from '../autocompletion'
 import { Dispatcher } from '../dispatcher'
 import { Checkbox, CheckboxValue } from '../lib/checkbox'
 import {
-    CopyFilePathLabel,
-    CopyRelativeFilePathLabel,
-    CopySelectedPathsLabel,
-    CopySelectedRelativePathsLabel,
-    DefaultEditorLabel,
-    isSafeFileExtension,
-    OpenWithDefaultProgramLabel,
-    RevealInFileManagerLabel,
+  CopyFilePathLabel,
+  CopyRelativeFilePathLabel,
+  CopySelectedPathsLabel,
+  CopySelectedRelativePathsLabel,
+  DefaultEditorLabel,
+  isSafeFileExtension,
+  OpenWithDefaultProgramLabel,
+  RevealInFileManagerLabel,
 } from '../lib/context-menu'
 import { ClickSource, List } from '../lib/list'
 import { createObservableRef } from '../lib/observable-ref'

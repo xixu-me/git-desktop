@@ -1,7 +1,7 @@
 import { IRemote } from '../../models/remote'
 import {
-    Repository,
-    isRepositoryWithGitHubRepository,
+  Repository,
+  isRepositoryWithGitHubRepository,
 } from '../../models/repository'
 import { getHTMLURL } from '../api'
 import { resolveGitProxy } from '../resolve-git-proxy'

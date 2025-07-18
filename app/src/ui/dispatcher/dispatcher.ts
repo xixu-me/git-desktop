@@ -1,50 +1,50 @@
 import { Disposable, DisposableLike } from 'event-kit'
 
 import {
-    IAPICheckSuite,
-    IAPICreatePushProtectionBypassResponse,
-    IAPIFullRepository,
-    IAPIOrganization,
-    IAPIPullRequest,
-    IAPIRepoRuleset,
-    getDotComAPIEndpoint,
+  IAPICheckSuite,
+  IAPICreatePushProtectionBypassResponse,
+  IAPIFullRepository,
+  IAPIOrganization,
+  IAPIPullRequest,
+  IAPIRepoRuleset,
+  getDotComAPIEndpoint,
 } from '../../lib/api'
 import { shell } from '../../lib/app-shell'
 import {
-    CherryPickConflictState,
-    CompareAction,
-    Foldout,
-    FoldoutType,
-    ICompareFormUpdate,
-    IMultiCommitOperationState,
-    MultiCommitOperationConflictState,
-    RebaseConflictState,
-    RepositorySectionTab,
-    isCherryPickConflictState,
-    isRebaseConflictState,
+  CherryPickConflictState,
+  CompareAction,
+  Foldout,
+  FoldoutType,
+  ICompareFormUpdate,
+  IMultiCommitOperationState,
+  MultiCommitOperationConflictState,
+  RebaseConflictState,
+  RepositorySectionTab,
+  isCherryPickConflictState,
+  isRebaseConflictState,
 } from '../../lib/app-state'
 import { assertNever, fatalError } from '../../lib/fatal-error'
 import {
-    setGenericPassword,
-    setGenericUsername,
+  setGenericPassword,
+  setGenericUsername,
 } from '../../lib/generic-git-auth'
 import {
-    PushOptions,
-    RebaseResult,
-    getBranches,
-    getCommitsBetweenCommits,
-    getRebaseSnapshot,
-    getRepositoryType,
+  PushOptions,
+  RebaseResult,
+  getBranches,
+  getCommitsBetweenCommits,
+  getRebaseSnapshot,
+  getRepositoryType,
 } from '../../lib/git'
 import { isGitOnPath } from '../../lib/is-git-on-path'
 import {
-    IOpenRepositoryFromURLAction,
-    IUnknownAction,
-    URLActionType,
+  IOpenRepositoryFromURLAction,
+  IUnknownAction,
+  URLActionType,
 } from '../../lib/parse-app-url'
 import {
-    matchExistingRepository,
-    urlsMatch,
+  matchExistingRepository,
+  urlsMatch,
 } from '../../lib/repository-matching'
 import { Shell } from '../../lib/shells'
 import { ILaunchStats, StatsStore } from '../../lib/stats'
@@ -68,22 +68,22 @@ import { GitHubRepository } from '../../models/github-repository'
 import { ManualConflictResolution } from '../../models/manual-conflict-resolution'
 import { Popup, PopupType } from '../../models/popup'
 import {
-    PullRequest,
-    PullRequestSuggestedNextAction,
+  PullRequest,
+  PullRequestSuggestedNextAction,
 } from '../../models/pull-request'
 import {
-    Repository,
-    RepositoryWithGitHubRepository,
-    getGitHubHtmlUrl,
-    getNonForkGitHubRepository,
-    isRepositoryWithForkedGitHubRepository,
-    isRepositoryWithGitHubRepository,
+  Repository,
+  RepositoryWithGitHubRepository,
+  getGitHubHtmlUrl,
+  getNonForkGitHubRepository,
+  isRepositoryWithForkedGitHubRepository,
+  isRepositoryWithGitHubRepository,
 } from '../../models/repository'
 import { RetryAction, RetryActionType } from '../../models/retry-actions'
 import {
-    CommittedFileChange,
-    WorkingDirectoryFileChange,
-    WorkingDirectoryStatus,
+  CommittedFileChange,
+  WorkingDirectoryFileChange,
+  WorkingDirectoryStatus,
 } from '../../models/status'
 import { IValidBranch, TipState } from '../../models/tip'
 
@@ -98,8 +98,8 @@ import { getMultiCommitOperationChooseBranchStep } from '../../lib/multi-commit-
 import { resolveWithin } from '../../lib/path'
 import { sleep } from '../../lib/promise'
 import {
-    CommitStatusStore,
-    StatusCallBack,
+  CommitStatusStore,
+  StatusCallBack,
 } from '../../lib/stores/commit-status-store'
 import { SignInResult } from '../../lib/stores/sign-in-store'
 import { ValidNotificationPullRequestReviewState } from '../../lib/valid-notification-pull-request-review'
@@ -107,11 +107,11 @@ import { DragElement, DragType } from '../../models/drag-drop'
 import { ILastThankYou } from '../../models/last-thank-you'
 import { MergeTreeResult } from '../../models/merge'
 import {
-    CreateBranchStep,
-    MultiCommitOperationDetail,
-    MultiCommitOperationKind,
-    MultiCommitOperationStep,
-    MultiCommitOperationStepKind,
+  CreateBranchStep,
+  MultiCommitOperationDetail,
+  MultiCommitOperationKind,
+  MultiCommitOperationStep,
+  MultiCommitOperationStepKind,
 } from '../../models/multi-commit-operation'
 import { IStashEntry } from '../../models/stash-entry'
 import { UncommittedChangesStrategy } from '../../models/uncommitted-changes-strategy'
@@ -120,10 +120,10 @@ import { UnreachableCommitsTab } from '../history/unreachable-commits-dialog'
 import { ApplicationTheme } from '../lib/application-theme'
 import { installCLI } from '../lib/install-cli'
 import {
-    executeMenuItem,
-    isWindowFocused,
-    moveToApplicationsFolder,
-    showOpenDialog,
+  executeMenuItem,
+  isWindowFocused,
+  moveToApplicationsFolder,
+  showOpenDialog,
 } from '../main-process-proxy'
 import { BypassReasonType } from '../secret-scanning/bypass-push-protection-dialog'
 

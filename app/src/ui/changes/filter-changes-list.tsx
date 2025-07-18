@@ -8,8 +8,10 @@ import { EOL } from 'os'
 import { basename } from 'path'
 import { revealInFileManager } from '../../lib/app-shell'
 import {
-    ConflictState,
-    Foldout, IFileListFilterState, RebaseConflictState
+  ConflictState,
+  Foldout,
+  IFileListFilterState,
+  RebaseConflictState,
 } from '../../lib/app-state'
 import { arrayEquals } from '../../lib/equality'
 import { IMatches } from '../../lib/fuzzy-find'
@@ -27,14 +29,14 @@ import { hasWritePermission } from '../../models/github-repository'
 import { Popup, PopupType } from '../../models/popup'
 import { RepoRulesInfo } from '../../models/repo-rules'
 import {
-    isRepositoryWithGitHubRepository,
-    Repository,
+  isRepositoryWithGitHubRepository,
+  Repository,
 } from '../../models/repository'
 import { IStashEntry } from '../../models/stash-entry'
 import {
-    AppFileStatusKind,
-    WorkingDirectoryFileChange,
-    WorkingDirectoryStatus,
+  AppFileStatusKind,
+  WorkingDirectoryFileChange,
+  WorkingDirectoryStatus,
 } from '../../models/status'
 import { IAutocompletionProvider } from '../autocompletion'
 import { Dispatcher } from '../dispatcher'
@@ -42,14 +44,14 @@ import { AugmentedSectionFilterList } from '../lib/augmented-filter-list'
 import { Button } from '../lib/button'
 import { Checkbox, CheckboxValue } from '../lib/checkbox'
 import {
-    CopyFilePathLabel,
-    CopyRelativeFilePathLabel,
-    CopySelectedPathsLabel,
-    CopySelectedRelativePathsLabel,
-    DefaultEditorLabel,
-    isSafeFileExtension,
-    OpenWithDefaultProgramLabel,
-    RevealInFileManagerLabel,
+  CopyFilePathLabel,
+  CopyRelativeFilePathLabel,
+  CopySelectedPathsLabel,
+  CopySelectedRelativePathsLabel,
+  DefaultEditorLabel,
+  isSafeFileExtension,
+  OpenWithDefaultProgramLabel,
+  RevealInFileManagerLabel,
 } from '../lib/context-menu'
 import { IFilterListGroup, IFilterListItem } from '../lib/filter-list'
 import { LinkButton } from '../lib/link-button'
@@ -65,10 +67,10 @@ import { ChangesListFilterOptions } from './changes-list-filter-options'
 import { CommitMessage } from './commit-message'
 import { ContinueRebase } from './continue-rebase'
 import {
-    applyFilters,
-    getNoResultsMessage,
-    hasActiveFilters,
-    isCommittingFileHiddenByFilter,
+  applyFilters,
+  getNoResultsMessage,
+  hasActiveFilters,
+  isCommittingFileHiddenByFilter,
 } from './filter-changes-logic'
 
 export interface IChangesListItem extends IFilterListItem {

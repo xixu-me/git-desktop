@@ -1,7 +1,7 @@
 import uuid from 'uuid'
 import {
-    ExternalEditorError,
-    suggestedExternalEditor,
+  ExternalEditorError,
+  suggestedExternalEditor,
 } from '../../../lib/editors/shared'
 import { Emoji } from '../../../lib/emoji'
 import { assertNever } from '../../../lib/fatal-error'
@@ -17,13 +17,13 @@ import { GitHubRepository } from '../../../models/github-repository'
 import { PopupType } from '../../../models/popup'
 import { ReleaseNote } from '../../../models/release-notes'
 import {
-    isRepositoryWithGitHubRepository,
-    Repository,
+  isRepositoryWithGitHubRepository,
+  Repository,
 } from '../../../models/repository'
 import { RetryActionType } from '../../../models/retry-actions'
 import {
-    AppFileStatusKind,
-    WorkingDirectoryFileChange,
+  AppFileStatusKind,
+  WorkingDirectoryFileChange,
 } from '../../../models/status'
 import { Dispatcher } from '../../dispatcher'
 import { getVersion } from '../app-proxy'

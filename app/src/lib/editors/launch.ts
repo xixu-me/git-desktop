@@ -1,9 +1,9 @@
 import { spawn, SpawnOptions } from 'child_process'
 import { pathExists } from '../../ui/lib/path-exists'
 import {
-    expandTargetPathArgument,
-    ICustomIntegration,
-    parseCustomIntegrationArguments,
+  expandTargetPathArgument,
+  ICustomIntegration,
+  parseCustomIntegrationArguments,
 } from '../custom-integration'
 import { ExternalEditorError, FoundEditor } from './shared'
 

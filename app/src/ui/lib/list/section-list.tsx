@@ -9,28 +9,28 @@ import { DragData, DragType } from '../../../models/drag-drop'
 import { FocusContainer } from '../../lib/focus-container'
 import { createUniqueId, releaseUniqueId } from '../../lib/id-pool'
 import {
-    InsertionFeedbackType,
-    ListItemInsertionOverlay,
+  InsertionFeedbackType,
+  ListItemInsertionOverlay,
 } from './list-item-insertion-overlay'
 import { ListRow } from './list-row'
 import {
-    getTotalRowCount,
-    globalIndexToRowIndexPath,
-    InvalidRowIndexPath,
-    isValidRow,
-    RowIndexPath,
-    rowIndexPathEquals,
-    rowIndexPathToGlobalIndex,
-    rowListIncludesIndexPath,
+  getTotalRowCount,
+  globalIndexToRowIndexPath,
+  InvalidRowIndexPath,
+  isValidRow,
+  RowIndexPath,
+  rowIndexPathEquals,
+  rowIndexPathToGlobalIndex,
+  rowListIncludesIndexPath,
 } from './list-row-index-path'
 import {
-    findLastSelectableRow,
-    findNextSelectableRow,
-    IKeyboardSource,
-    IMouseClickSource,
-    ISelectAllSource,
-    SelectionDirection,
-    SelectionSource,
+  findLastSelectableRow,
+  findNextSelectableRow,
+  IKeyboardSource,
+  IMouseClickSource,
+  ISelectAllSource,
+  SelectionDirection,
+  SelectionSource,
 } from './section-list-selection'
 
 /**

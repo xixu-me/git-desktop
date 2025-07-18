@@ -29,10 +29,10 @@ export class TermsAndConditions extends React.Component<
           <p>
             These GitHub Open Source Applications Terms and Conditions
             ("Application Terms") are a legal agreement between you (either as
-            an individual or on behalf of an entity) and Xi Xu regarding
-            your use of GitHub's applications, such as Git Desktop™ and
-            associated documentation ("Software"). These Application Terms apply
-            to the executable code version of the Software. Source code for the
+            an individual or on behalf of an entity) and Xi Xu regarding your
+            use of GitHub's applications, such as Git Desktop™ and associated
+            documentation ("Software"). These Application Terms apply to the
+            executable code version of the Software. Source code for the
             Software is available separately and free of charge under open
             source software license agreements. If you do not agree to all of
             the terms in these Application Terms, do not download, install, use,
@@ -94,11 +94,11 @@ export class TermsAndConditions extends React.Component<
           </p>
 
           <p>
-            The names GitHub, Git Desktop, GitHub for Mac, GitHub for
-            Windows, Atom, the Octocat, and related GitHub logos and/or stylized
-            names are trademarks of GitHub. You agree not to display or use
-            these trademarks in any manner without GitHub's prior, written
-            permission, except as allowed by GitHub's Logos and Usage Policy:{' '}
+            The names GitHub, Git Desktop, GitHub for Mac, GitHub for Windows,
+            Atom, the Octocat, and related GitHub logos and/or stylized names
+            are trademarks of GitHub. You agree not to display or use these
+            trademarks in any manner without GitHub's prior, written permission,
+            except as allowed by GitHub's Logos and Usage Policy:{' '}
             <LinkButton uri={logos}>logos</LinkButton>.
           </p>
 

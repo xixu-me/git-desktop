@@ -1,4 +1,7 @@
-import { SupportedPlatform, detectPlatformFromHostname } from './platform-support'
+import {
+  SupportedPlatform,
+  detectPlatformFromHostname,
+} from './platform-support'
 
 export type GitProtocol = 'ssh' | 'https'
 
@@ -60,9 +63,7 @@ const remoteRegexes: ReadonlyArray<{ protocol: GitProtocol; regex: RegExp }> = [
   // GitLab self-hosted SSH pattern
   {
     protocol: 'ssh',
-    regex: new RegExp(
-      '^git@(.+\\.gitlab\\..*):([^/]+)/([^/]+?)(?:/|\\.git)?$'
-    ),
+    regex: new RegExp('^git@(.+\\.gitlab\\..*):([^/]+)/([^/]+?)(?:/|\\.git)?$'),
   },
   // Bitbucket self-hosted SSH pattern
   {
@@ -103,7 +104,7 @@ export function parseRemote(url: string): IGitRemoteURL | null {
       const owner = match[2]
       const name = match[3]
       const platform = detectPlatformFromHostname(hostname)
-      
+
       return { protocol, hostname, owner, name, platform }
     }
   }

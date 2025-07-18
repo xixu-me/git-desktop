@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { assertNever } from '../../lib/fatal-error'
 import {
-    IAuthenticationState,
-    IEndpointEntryState,
-    IExistingAccountWarning,
-    SignInState,
-    SignInStep,
+  IAuthenticationState,
+  IEndpointEntryState,
+  IExistingAccountWarning,
+  SignInState,
+  SignInStep,
 } from '../../lib/stores'
 import { Dialog, DialogContent, DialogError, DialogFooter } from '../dialog'
 import { Dispatcher } from '../dispatcher'
@@ -36,9 +36,9 @@ const DefaultTitle = 'Sign in'
 
 const browserSignInInfoContent = (
   <p>
-    Your browser will redirect you back to Git Desktop once you've signed in.
-    If your browser asks for your permission to launch Git Desktop, please
-    allow it.
+    Your browser will redirect you back to Git Desktop once you've signed in. If
+    your browser asks for your permission to launch Git Desktop, please allow
+    it.
   </p>
 )
 

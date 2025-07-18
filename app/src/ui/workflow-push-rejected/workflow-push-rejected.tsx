@@ -48,8 +48,8 @@ export class WorkflowPushRejectedDialog extends React.Component<
             additional permissions.
           </p>
           <p>
-            Would you like to open a browser to grant Git Desktop permission
-            to update workflow files?
+            Would you like to open a browser to grant Git Desktop permission to
+            update workflow files?
           </p>
         </DialogContent>
         <DialogFooter>

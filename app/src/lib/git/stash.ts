@@ -2,13 +2,13 @@ import { GitError as DugiteError } from 'dugite'
 import { Branch } from '../../models/branch'
 import { Repository } from '../../models/repository'
 import {
-    IStashEntry,
-    StashedChangesLoadStates,
-    StashedFileChanges,
+  IStashEntry,
+  StashedChangesLoadStates,
+  StashedFileChanges,
 } from '../../models/stash-entry'
 import {
-    CommittedFileChange,
-    WorkingDirectoryFileChange,
+  CommittedFileChange,
+  WorkingDirectoryFileChange,
 } from '../../models/status'
 import { coerceToString, git, GitError } from './core'
 import { createLogParser } from './git-delimiter-parser'

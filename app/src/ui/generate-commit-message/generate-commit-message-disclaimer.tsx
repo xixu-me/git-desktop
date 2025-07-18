@@ -2,10 +2,10 @@ import * as React from 'react'
 import { Repository } from '../../models/repository'
 import { WorkingDirectoryFileChange } from '../../models/status'
 import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    OkCancelButtonGroup,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  OkCancelButtonGroup,
 } from '../dialog'
 import { Dispatcher } from '../dispatcher'
 import { LinkButton } from '../lib/link-button'

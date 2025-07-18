@@ -1,12 +1,16 @@
 import { Account } from '../models/account'
 import {
-    APIError,
-    getUserAgent,
-    HTTPMethod,
-    parsedResponse,
-    request
+  APIError,
+  getUserAgent,
+  HTTPMethod,
+  parsedResponse,
+  request,
 } from './http'
-import { detectPlatformFromHostname, getPlatformConfig, SupportedPlatform } from './platform-support'
+import {
+  detectPlatformFromHostname,
+  getPlatformConfig,
+  SupportedPlatform,
+} from './platform-support'
 
 /**
  * Generic repository interface that works across all platforms
@@ -107,27 +111,46 @@ export interface IPlatformAPIClient {
   readonly platform: SupportedPlatform
   readonly endpoint: string
   readonly token: string | null
-  
+
   // Repository operations
   fetchRepository(owner: string, name: string): Promise<IGenericRepository>
-  fetchRepositories(options?: { page?: number; perPage?: number }): Promise<ReadonlyArray<IGenericRepository>>
-  
+  fetchRepositories(options?: {
+    page?: number
+    perPage?: number
+  }): Promise<ReadonlyArray<IGenericRepository>>
+
   // User operations
   fetchUser(login: string): Promise<IGenericUser>
   fetchAuthenticatedUser(): Promise<IGenericUser>
-  
+
   // Issue operations (if supported)
-  fetchIssues(owner: string, repo: string, options?: { state?: 'open' | 'closed' | 'all' }): Promise<ReadonlyArray<IGenericIssue>>
-  fetchIssue(owner: string, repo: string, number: number): Promise<IGenericIssue>
-  
+  fetchIssues(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericIssue>>
+  fetchIssue(
+    owner: string,
+    repo: string,
+    number: number
+  ): Promise<IGenericIssue>
+
   // Pull request operations (if supported)
-  fetchPullRequests(owner: string, repo: string, options?: { state?: 'open' | 'closed' | 'all' }): Promise<ReadonlyArray<IGenericPullRequest>>
-  fetchPullRequest(owner: string, repo: string, number: number): Promise<IGenericPullRequest>
-  
+  fetchPullRequests(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericPullRequest>>
+  fetchPullRequest(
+    owner: string,
+    repo: string,
+    number: number
+  ): Promise<IGenericPullRequest>
+
   // OAuth operations (if supported)
   getOAuthAuthorizationUrl(state: string, scopes?: string[]): string
   requestOAuthToken(code: string): Promise<string>
-  
+
   // Utility methods
   isAuthenticated(): boolean
   supportsFeature(feature: string): boolean
@@ -141,7 +164,11 @@ export abstract class BasePlatformAPIClient implements IPlatformAPIClient {
   public readonly endpoint: string
   public readonly token: string | null
 
-  constructor(platform: SupportedPlatform, endpoint: string, token: string | null = null) {
+  constructor(
+    platform: SupportedPlatform,
+    endpoint: string,
+    token: string | null = null
+  ) {
     this.platform = platform
     this.endpoint = endpoint
     this.token = token
@@ -155,7 +182,7 @@ export abstract class BasePlatformAPIClient implements IPlatformAPIClient {
   ): Promise<T> {
     const headers: Record<string, string> = {
       'User-Agent': getUserAgent(),
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
       ...options?.headers,
     }
@@ -166,7 +193,7 @@ export abstract class BasePlatformAPIClient implements IPlatformAPIClient {
 
     const url = `${this.endpoint}${path}`
     const response = await request(url, this.token, method, path, body, headers)
-    
+
     if (!response.ok) {
       const errorText = await response.text()
       throw new APIError(response, { message: errorText })
@@ -187,15 +214,40 @@ export abstract class BasePlatformAPIClient implements IPlatformAPIClient {
   }
 
   // Abstract methods to be implemented by platform-specific clients
-  public abstract fetchRepository(owner: string, name: string): Promise<IGenericRepository>
-  public abstract fetchRepositories(options?: { page?: number; perPage?: number }): Promise<ReadonlyArray<IGenericRepository>>
+  public abstract fetchRepository(
+    owner: string,
+    name: string
+  ): Promise<IGenericRepository>
+  public abstract fetchRepositories(options?: {
+    page?: number
+    perPage?: number
+  }): Promise<ReadonlyArray<IGenericRepository>>
   public abstract fetchUser(login: string): Promise<IGenericUser>
   public abstract fetchAuthenticatedUser(): Promise<IGenericUser>
-  public abstract fetchIssues(owner: string, repo: string, options?: { state?: 'open' | 'closed' | 'all' }): Promise<ReadonlyArray<IGenericIssue>>
-  public abstract fetchIssue(owner: string, repo: string, number: number): Promise<IGenericIssue>
-  public abstract fetchPullRequests(owner: string, repo: string, options?: { state?: 'open' | 'closed' | 'all' }): Promise<ReadonlyArray<IGenericPullRequest>>
-  public abstract fetchPullRequest(owner: string, repo: string, number: number): Promise<IGenericPullRequest>
-  public abstract getOAuthAuthorizationUrl(state: string, scopes?: string[]): string
+  public abstract fetchIssues(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericIssue>>
+  public abstract fetchIssue(
+    owner: string,
+    repo: string,
+    number: number
+  ): Promise<IGenericIssue>
+  public abstract fetchPullRequests(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericPullRequest>>
+  public abstract fetchPullRequest(
+    owner: string,
+    repo: string,
+    number: number
+  ): Promise<IGenericPullRequest>
+  public abstract getOAuthAuthorizationUrl(
+    state: string,
+    scopes?: string[]
+  ): string
   public abstract requestOAuthToken(code: string): Promise<string>
 }
 
@@ -211,16 +263,22 @@ export class GitHubAPIClient extends BasePlatformAPIClient {
     return `token ${this.token}`
   }
 
-  public async fetchRepository(owner: string, name: string): Promise<IGenericRepository> {
+  public async fetchRepository(
+    owner: string,
+    name: string
+  ): Promise<IGenericRepository> {
     const repo = await this.makeRequest<any>('GET', `/repos/${owner}/${name}`)
     return this.transformRepository(repo)
   }
 
-  public async fetchRepositories(options?: { page?: number; perPage?: number }): Promise<ReadonlyArray<IGenericRepository>> {
+  public async fetchRepositories(options?: {
+    page?: number
+    perPage?: number
+  }): Promise<ReadonlyArray<IGenericRepository>> {
     const params = new URLSearchParams()
     if (options?.page) params.set('page', options.page.toString())
     if (options?.perPage) params.set('per_page', options.perPage.toString())
-    
+
     const repos = await this.makeRequest<any[]>('GET', `/user/repos?${params}`)
     return repos.map(repo => this.transformRepository(repo))
   }
@@ -235,29 +293,57 @@ export class GitHubAPIClient extends BasePlatformAPIClient {
     return this.transformUser(user)
   }
 
-  public async fetchIssues(owner: string, repo: string, options?: { state?: 'open' | 'closed' | 'all' }): Promise<ReadonlyArray<IGenericIssue>> {
+  public async fetchIssues(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericIssue>> {
     const params = new URLSearchParams()
     if (options?.state) params.set('state', options.state)
-    
-    const issues = await this.makeRequest<any[]>('GET', `/repos/${owner}/${repo}/issues?${params}`)
+
+    const issues = await this.makeRequest<any[]>(
+      'GET',
+      `/repos/${owner}/${repo}/issues?${params}`
+    )
     return issues.map(issue => this.transformIssue(issue))
   }
 
-  public async fetchIssue(owner: string, repo: string, number: number): Promise<IGenericIssue> {
-    const issue = await this.makeRequest<any>('GET', `/repos/${owner}/${repo}/issues/${number}`)
+  public async fetchIssue(
+    owner: string,
+    repo: string,
+    number: number
+  ): Promise<IGenericIssue> {
+    const issue = await this.makeRequest<any>(
+      'GET',
+      `/repos/${owner}/${repo}/issues/${number}`
+    )
     return this.transformIssue(issue)
   }
 
-  public async fetchPullRequests(owner: string, repo: string, options?: { state?: 'open' | 'closed' | 'all' }): Promise<ReadonlyArray<IGenericPullRequest>> {
+  public async fetchPullRequests(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericPullRequest>> {
     const params = new URLSearchParams()
     if (options?.state) params.set('state', options.state)
-    
-    const prs = await this.makeRequest<any[]>('GET', `/repos/${owner}/${repo}/pulls?${params}`)
+
+    const prs = await this.makeRequest<any[]>(
+      'GET',
+      `/repos/${owner}/${repo}/pulls?${params}`
+    )
     return prs.map(pr => this.transformPullRequest(pr))
   }
 
-  public async fetchPullRequest(owner: string, repo: string, number: number): Promise<IGenericPullRequest> {
-    const pr = await this.makeRequest<any>('GET', `/repos/${owner}/${repo}/pulls/${number}`)
+  public async fetchPullRequest(
+    owner: string,
+    repo: string,
+    number: number
+  ): Promise<IGenericPullRequest> {
+    const pr = await this.makeRequest<any>(
+      'GET',
+      `/repos/${owner}/${repo}/pulls/${number}`
+    )
     return this.transformPullRequest(pr)
   }
 
@@ -265,26 +351,30 @@ export class GitHubAPIClient extends BasePlatformAPIClient {
     const config = getPlatformConfig(this.platform)
     const clientId = __OAUTH_CLIENT_ID__ || ''
     const scope = (scopes || ['repo', 'user']).join(' ')
-    
+
     const params = new URLSearchParams({
       client_id: clientId,
       state,
       scope,
     })
-    
+
     return `${config.oauthEndpoint}/authorize?${params}`
   }
 
   public async requestOAuthToken(code: string): Promise<string> {
     const clientId = __OAUTH_CLIENT_ID__ || ''
     const clientSecret = __OAUTH_SECRET__ || ''
-    
-    const response = await this.makeRequest<any>('POST', '/login/oauth/access_token', {
-      client_id: clientId,
-      client_secret: clientSecret,
-      code,
-    })
-    
+
+    const response = await this.makeRequest<any>(
+      'POST',
+      '/login/oauth/access_token',
+      {
+        client_id: clientId,
+        client_secret: clientSecret,
+        code,
+      }
+    )
+
     return response.access_token
   }
 
@@ -333,8 +423,10 @@ export class GitHubAPIClient extends BasePlatformAPIClient {
       state: issue.state,
       htmlUrl: issue.html_url,
       author: this.transformUser(issue.user),
-      assignees: issue.assignees?.map((user: any) => this.transformUser(user)) || [],
-      labels: issue.labels?.map((label: any) => this.transformLabel(label)) || [],
+      assignees:
+        issue.assignees?.map((user: any) => this.transformUser(user)) || [],
+      labels:
+        issue.labels?.map((label: any) => this.transformLabel(label)) || [],
       createdAt: issue.created_at,
       updatedAt: issue.updated_at,
       closedAt: issue.closed_at,
@@ -351,8 +443,11 @@ export class GitHubAPIClient extends BasePlatformAPIClient {
       state: pr.merged_at ? 'merged' : pr.state,
       htmlUrl: pr.html_url,
       author: this.transformUser(pr.user),
-      assignees: pr.assignees?.map((user: any) => this.transformUser(user)) || [],
-      reviewers: pr.requested_reviewers?.map((user: any) => this.transformUser(user)) || [],
+      assignees:
+        pr.assignees?.map((user: any) => this.transformUser(user)) || [],
+      reviewers:
+        pr.requested_reviewers?.map((user: any) => this.transformUser(user)) ||
+        [],
       labels: pr.labels?.map((label: any) => this.transformLabel(label)) || [],
       sourceBranch: pr.head.ref,
       targetBranch: pr.base.ref,
@@ -388,23 +483,35 @@ export class GitLabAPIClient extends BasePlatformAPIClient {
     return `Bearer ${this.token}`
   }
 
-  public async fetchRepository(owner: string, name: string): Promise<IGenericRepository> {
+  public async fetchRepository(
+    owner: string,
+    name: string
+  ): Promise<IGenericRepository> {
     const encodedPath = encodeURIComponent(`${owner}/${name}`)
-    const project = await this.makeRequest<any>('GET', `/projects/${encodedPath}`)
+    const project = await this.makeRequest<any>(
+      'GET',
+      `/projects/${encodedPath}`
+    )
     return this.transformRepository(project)
   }
 
-  public async fetchRepositories(options?: { page?: number; perPage?: number }): Promise<ReadonlyArray<IGenericRepository>> {
+  public async fetchRepositories(options?: {
+    page?: number
+    perPage?: number
+  }): Promise<ReadonlyArray<IGenericRepository>> {
     const params = new URLSearchParams()
     if (options?.page) params.set('page', options.page.toString())
     if (options?.perPage) params.set('per_page', options.perPage.toString())
-    
+
     const projects = await this.makeRequest<any[]>('GET', `/projects?${params}`)
     return projects.map(project => this.transformRepository(project))
   }
 
   public async fetchUser(login: string): Promise<IGenericUser> {
-    const users = await this.makeRequest<any[]>('GET', `/users?username=${login}`)
+    const users = await this.makeRequest<any[]>(
+      'GET',
+      `/users?username=${login}`
+    )
     if (users.length === 0) {
       throw new Error(`User ${login} not found`)
     }
@@ -416,33 +523,63 @@ export class GitLabAPIClient extends BasePlatformAPIClient {
     return this.transformUser(user)
   }
 
-  public async fetchIssues(owner: string, repo: string, options?: { state?: 'open' | 'closed' | 'all' }): Promise<ReadonlyArray<IGenericIssue>> {
+  public async fetchIssues(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericIssue>> {
     const encodedPath = encodeURIComponent(`${owner}/${repo}`)
     const params = new URLSearchParams()
-    if (options?.state && options.state !== 'all') params.set('state', options.state)
-    
-    const issues = await this.makeRequest<any[]>('GET', `/projects/${encodedPath}/issues?${params}`)
+    if (options?.state && options.state !== 'all')
+      params.set('state', options.state)
+
+    const issues = await this.makeRequest<any[]>(
+      'GET',
+      `/projects/${encodedPath}/issues?${params}`
+    )
     return issues.map(issue => this.transformIssue(issue))
   }
 
-  public async fetchIssue(owner: string, repo: string, number: number): Promise<IGenericIssue> {
+  public async fetchIssue(
+    owner: string,
+    repo: string,
+    number: number
+  ): Promise<IGenericIssue> {
     const encodedPath = encodeURIComponent(`${owner}/${repo}`)
-    const issue = await this.makeRequest<any>('GET', `/projects/${encodedPath}/issues/${number}`)
+    const issue = await this.makeRequest<any>(
+      'GET',
+      `/projects/${encodedPath}/issues/${number}`
+    )
     return this.transformIssue(issue)
   }
 
-  public async fetchPullRequests(owner: string, repo: string, options?: { state?: 'open' | 'closed' | 'all' }): Promise<ReadonlyArray<IGenericPullRequest>> {
+  public async fetchPullRequests(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericPullRequest>> {
     const encodedPath = encodeURIComponent(`${owner}/${repo}`)
     const params = new URLSearchParams()
-    if (options?.state && options.state !== 'all') params.set('state', options.state)
-    
-    const mrs = await this.makeRequest<any[]>('GET', `/projects/${encodedPath}/merge_requests?${params}`)
+    if (options?.state && options.state !== 'all')
+      params.set('state', options.state)
+
+    const mrs = await this.makeRequest<any[]>(
+      'GET',
+      `/projects/${encodedPath}/merge_requests?${params}`
+    )
     return mrs.map(mr => this.transformPullRequest(mr))
   }
 
-  public async fetchPullRequest(owner: string, repo: string, number: number): Promise<IGenericPullRequest> {
+  public async fetchPullRequest(
+    owner: string,
+    repo: string,
+    number: number
+  ): Promise<IGenericPullRequest> {
     const encodedPath = encodeURIComponent(`${owner}/${repo}`)
-    const mr = await this.makeRequest<any>('GET', `/projects/${encodedPath}/merge_requests/${number}`)
+    const mr = await this.makeRequest<any>(
+      'GET',
+      `/projects/${encodedPath}/merge_requests/${number}`
+    )
     return this.transformPullRequest(mr)
   }
 
@@ -450,28 +587,28 @@ export class GitLabAPIClient extends BasePlatformAPIClient {
     const config = getPlatformConfig(this.platform)
     const clientId = __OAUTH_CLIENT_ID__ || ''
     const scope = (scopes || ['api']).join(' ')
-    
+
     const params = new URLSearchParams({
       client_id: clientId,
       response_type: 'code',
       state,
       scope,
     })
-    
+
     return `${config.oauthEndpoint}/authorize?${params}`
   }
 
   public async requestOAuthToken(code: string): Promise<string> {
     const clientId = __OAUTH_CLIENT_ID__ || ''
     const clientSecret = __OAUTH_SECRET__ || ''
-    
+
     const response = await this.makeRequest<any>('POST', '/oauth/token', {
       client_id: clientId,
       client_secret: clientSecret,
       code,
       grant_type: 'authorization_code',
     })
-    
+
     return response.access_token
   }
 
@@ -488,7 +625,9 @@ export class GitLabAPIClient extends BasePlatformAPIClient {
       isPrivate: project.visibility === 'private',
       isFork: project.forked_from_project !== undefined,
       owner: this.transformUser(project.owner),
-      parent: project.forked_from_project ? this.transformRepository(project.forked_from_project) : undefined,
+      parent: project.forked_from_project
+        ? this.transformRepository(project.forked_from_project)
+        : undefined,
       createdAt: project.created_at,
       updatedAt: project.last_activity_at,
       pushedAt: project.last_activity_at,
@@ -520,8 +659,12 @@ export class GitLabAPIClient extends BasePlatformAPIClient {
       state: issue.state,
       htmlUrl: issue.web_url,
       author: this.transformUser(issue.author),
-      assignees: issue.assignees?.map((user: any) => this.transformUser(user)) || [],
-      labels: issue.labels?.map((label: string) => this.transformLabel({ name: label })) || [],
+      assignees:
+        issue.assignees?.map((user: any) => this.transformUser(user)) || [],
+      labels:
+        issue.labels?.map((label: string) =>
+          this.transformLabel({ name: label })
+        ) || [],
       createdAt: issue.created_at,
       updatedAt: issue.updated_at,
       closedAt: issue.closed_at,
@@ -538,9 +681,14 @@ export class GitLabAPIClient extends BasePlatformAPIClient {
       state: mr.state,
       htmlUrl: mr.web_url,
       author: this.transformUser(mr.author),
-      assignees: mr.assignees?.map((user: any) => this.transformUser(user)) || [],
-      reviewers: mr.reviewers?.map((user: any) => this.transformUser(user)) || [],
-      labels: mr.labels?.map((label: string) => this.transformLabel({ name: label })) || [],
+      assignees:
+        mr.assignees?.map((user: any) => this.transformUser(user)) || [],
+      reviewers:
+        mr.reviewers?.map((user: any) => this.transformUser(user)) || [],
+      labels:
+        mr.labels?.map((label: string) =>
+          this.transformLabel({ name: label })
+        ) || [],
       sourceBranch: mr.source_branch,
       targetBranch: mr.target_branch,
       sourceRepository: this.transformRepository(mr.source_project),
@@ -585,7 +733,9 @@ export function createPlatformAPIClient(
 /**
  * Create API client from account
  */
-export function createAPIClientFromAccount(account: Account): IPlatformAPIClient {
+export function createAPIClientFromAccount(
+  account: Account
+): IPlatformAPIClient {
   const platform = detectPlatformFromEndpoint(account.endpoint)
   return createPlatformAPIClient(platform, account.endpoint, account.token)
 }
@@ -593,7 +743,9 @@ export function createAPIClientFromAccount(account: Account): IPlatformAPIClient
 /**
  * Detect platform from API endpoint
  */
-export function detectPlatformFromEndpoint(endpoint: string): SupportedPlatform {
+export function detectPlatformFromEndpoint(
+  endpoint: string
+): SupportedPlatform {
   try {
     const url = new URL(endpoint)
     return detectPlatformFromHostname(url.hostname)
@@ -605,13 +757,16 @@ export function detectPlatformFromEndpoint(endpoint: string): SupportedPlatform 
 /**
  * Convert platform-specific repository to generic format
  */
-export function normalizeRepository(repo: any, platform: SupportedPlatform): IGenericRepository {
+export function normalizeRepository(
+  repo: any,
+  platform: SupportedPlatform
+): IGenericRepository {
   const client = createPlatformAPIClient(platform, '')
   if (client instanceof GitHubAPIClient) {
     return (client as any).transformRepository(repo)
   } else if (client instanceof GitLabAPIClient) {
     return (client as any).transformRepository(repo)
   }
-  
+
   throw new Error(`Unsupported platform: ${platform}`)
 }

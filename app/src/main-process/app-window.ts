@@ -1,10 +1,10 @@
 import {
-    BrowserWindow,
-    Menu,
-    app,
-    autoUpdater,
-    dialog,
-    nativeTheme,
+  BrowserWindow,
+  Menu,
+  app,
+  autoUpdater,
+  dialog,
+  nativeTheme,
 } from 'electron'
 import windowStateKeeper from 'electron-window-state'
 import { Disposable, Emitter } from 'event-kit'
@@ -16,16 +16,16 @@ import { URLActionType } from '../lib/parse-app-url'
 import { encodePathAsUrl } from '../lib/path'
 import { ILaunchStats } from '../lib/stats'
 import {
-    getWindowState,
-    registerWindowStateChangedEvents,
+  getWindowState,
+  registerWindowStateChangedEvents,
 } from '../lib/window-state'
 import { menuFromElectronMenu } from '../models/app-menu'
 import * as ipcMain from './ipc-main'
 import * as ipcWebContents from './ipc-webcontents'
 import { MenuEvent } from './menu'
 import {
-    installNotificationCallback,
-    terminateDesktopNotifications,
+  installNotificationCallback,
+  terminateDesktopNotifications,
 } from './notifications'
 import { now } from './now'
 import { addTrustedIPCSender } from './trusted-ipc-sender'

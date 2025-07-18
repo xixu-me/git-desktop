@@ -1,13 +1,13 @@
 import '../lib/logging/main/install'
 
 import {
-    app,
-    BrowserWindow,
-    Menu,
-    nativeTheme,
-    session,
-    shell,
-    systemPreferences,
+  app,
+  BrowserWindow,
+  Menu,
+  nativeTheme,
+  session,
+  shell,
+  systemPreferences,
 } from 'electron'
 import * as Fs from 'fs'
 
@@ -17,26 +17,26 @@ import { shellNeedsPatching, updateEnvironmentForProcess } from '../lib/shell'
 import { AppWindow } from './app-window'
 import { buildDefaultMenu, getAllMenuItems } from './menu'
 import {
-    handleSquirrelEvent,
-    installWindowsCLI,
-    uninstallWindowsCLI,
+  handleSquirrelEvent,
+  installWindowsCLI,
+  uninstallWindowsCLI,
 } from './squirrel-updater'
 
 import {
-    getNotificationsPermission,
-    requestNotificationsPermission,
-    showNotification,
+  getNotificationsPermission,
+  requestNotificationsPermission,
+  showNotification,
 } from 'desktop-notifications'
 import parseCommandLineArgs from 'minimist'
 import { CLIAction } from '../lib/cli-action'
 import {
-    getArchitecture,
-    isAppRunningUnderARM64Translation,
+  getArchitecture,
+  isAppRunningUnderARM64Translation,
 } from '../lib/get-architecture'
 import { getMainGUID, saveGUIDFile } from '../lib/get-main-guid'
 import {
-    enableSourceMaps,
-    withSourceMappedStack,
+  enableSourceMaps,
+  withSourceMappedStack,
 } from '../lib/source-map-support'
 import { installAliveOriginFilter } from './alive-origin-filter'
 import { installAuthenticatedImageFilter } from './authenticated-image-filter'

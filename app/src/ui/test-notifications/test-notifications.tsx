@@ -1,25 +1,25 @@
 import classNames from 'classnames'
 import {
-    getNotificationSettingsUrl,
-    getNotificationsPermission,
-    requestNotificationsPermission,
-    supportsNotificationsPermissionRequest,
+  getNotificationSettingsUrl,
+  getNotificationsPermission,
+  requestNotificationsPermission,
+  supportsNotificationsPermissionRequest,
 } from 'desktop-notifications'
 import React from 'react'
 import { getHTMLURL, IAPIComment } from '../../lib/api'
 import { assertNever } from '../../lib/fatal-error'
 import { NotificationsDebugStore } from '../../lib/stores/notifications-debug-store'
 import {
-    ValidNotificationPullRequestReview,
-    ValidNotificationPullRequestReviewState,
+  ValidNotificationPullRequestReview,
+  ValidNotificationPullRequestReviewState,
 } from '../../lib/valid-notification-pull-request-review'
 import { PullRequest } from '../../models/pull-request'
 import { RepositoryWithGitHubRepository } from '../../models/repository'
 import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    OkCancelButtonGroup,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  OkCancelButtonGroup,
 } from '../dialog'
 import { Dispatcher } from '../dispatcher'
 import { Button } from '../lib/button'
@@ -222,8 +222,8 @@ export class TestNotifications extends React.Component<
     if (warnNotificationsDenied) {
       return (
         <>
-          <span className="warning-icon">⚠️</span> Git Desktop has no
-          permission to display notifications. Please, enable them in the{' '}
+          <span className="warning-icon">⚠️</span> Git Desktop has no permission
+          to display notifications. Please, enable them in the{' '}
           <LinkButton uri={notificationSettingsURL}>
             Notifications Settings
           </LinkButton>

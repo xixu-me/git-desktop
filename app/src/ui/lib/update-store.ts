@@ -5,15 +5,15 @@ import { Disposable, Emitter } from 'event-kit'
 import { ErrorWithMetadata } from '../../lib/error-with-metadata'
 import { parseError } from '../../lib/squirrel-error-parser'
 import {
-    checkForUpdates,
-    isRunningUnderARM64Translation,
-    onAutoUpdaterCheckingForUpdate,
-    onAutoUpdaterError,
-    onAutoUpdaterUpdateAvailable,
-    onAutoUpdaterUpdateDownloaded,
-    onAutoUpdaterUpdateNotAvailable,
-    quitAndInstallUpdate,
-    sendWillQuitSync,
+  checkForUpdates,
+  isRunningUnderARM64Translation,
+  onAutoUpdaterCheckingForUpdate,
+  onAutoUpdaterError,
+  onAutoUpdaterUpdateAvailable,
+  onAutoUpdaterUpdateDownloaded,
+  onAutoUpdaterUpdateNotAvailable,
+  quitAndInstallUpdate,
+  sendWillQuitSync,
 } from '../main-process-proxy'
 
 import { gte, SemVer } from 'semver'

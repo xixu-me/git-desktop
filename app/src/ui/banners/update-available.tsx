@@ -4,9 +4,9 @@ import { PopupType } from '../../models/popup'
 import { Dispatcher } from '../dispatcher/index'
 import { LinkButton } from '../lib/link-button'
 import {
-    UpdateStatus,
-    lastShowCaseVersionSeen,
-    updateStore,
+  UpdateStatus,
+  lastShowCaseVersionSeen,
+  updateStore,
 } from '../lib/update-store'
 import { Octicon } from '../octicons'
 import * as octicons from '../octicons/octicons.generated'
@@ -76,9 +76,7 @@ export class UpdateAvailable extends React.Component<IUpdateAvailableProps> {
           An optimized version of Git Desktop is available for your{' '}
           {__DARWIN__ ? 'Apple silicon' : 'Arm64'} machine and will be installed
           at the next launch or{' '}
-          <LinkButton onClick={this.updateNow}>
-            restart Git Desktop
-          </LinkButton>{' '}
+          <LinkButton onClick={this.updateNow}>restart Git Desktop</LinkButton>{' '}
           now.
         </span>
       )
@@ -121,9 +119,7 @@ export class UpdateAvailable extends React.Component<IUpdateAvailableProps> {
             'important updates'
           )}
           . Please{' '}
-          <LinkButton onClick={this.updateNow}>
-            restart Git Desktop
-          </LinkButton>{' '}
+          <LinkButton onClick={this.updateNow}>restart Git Desktop</LinkButton>{' '}
           now to install pending updates.
         </span>
       )
@@ -131,11 +127,10 @@ export class UpdateAvailable extends React.Component<IUpdateAvailableProps> {
 
     return (
       <span onSubmit={this.updateNow}>
-        An updated version of Git Desktop is available and will be installed
-        at the next launch. See{' '}
+        An updated version of Git Desktop is available and will be installed at
+        the next launch. See{' '}
         <LinkButton onClick={this.showReleaseNotes}>what's new</LinkButton> or{' '}
-        <LinkButton onClick={this.updateNow}>restart Git Desktop</LinkButton>
-        .
+        <LinkButton onClick={this.updateNow}>restart Git Desktop</LinkButton>.
       </span>
     )
   }

@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    OkCancelButtonGroup,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  OkCancelButtonGroup,
 } from './dialog'
 import { Dispatcher } from './dispatcher'
 import { Checkbox, CheckboxValue } from './lib/checkbox'
@@ -49,8 +49,8 @@ export class MoveToApplicationsFolder extends React.Component<
             the app, including impacting your ability to sign in.
           </p>
           <p>
-            Do you want to move Git Desktop to the Applications folder now?
-            This will also restart the app.
+            Do you want to move Git Desktop to the Applications folder now? This
+            will also restart the app.
           </p>
           <div>
             <Checkbox

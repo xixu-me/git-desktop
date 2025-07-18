@@ -1,9 +1,9 @@
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
 import {
-    IOAuthAction,
-    IOpenRepositoryFromURLAction,
-    parseAppURL,
+  IOAuthAction,
+  IOpenRepositoryFromURLAction,
+  parseAppURL,
 } from '../../src/lib/parse-app-url'
 
 describe('parseAppURL', () => {

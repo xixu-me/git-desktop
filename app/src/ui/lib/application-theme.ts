@@ -1,11 +1,11 @@
 import {
-    isMacOSMojaveOrLater,
-    isWindows10And1809Preview17666OrLater,
+  isMacOSMojaveOrLater,
+  isWindows10And1809Preview17666OrLater,
 } from '../../lib/get-os'
 import { getBoolean } from '../../lib/local-storage'
 import {
-    setNativeThemeSource,
-    shouldUseDarkColors,
+  setNativeThemeSource,
+  shouldUseDarkColors,
 } from '../main-process-proxy'
 import { ThemeSource } from './theme-source'
 

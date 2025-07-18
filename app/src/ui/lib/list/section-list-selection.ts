@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {
-    getTotalRowCount,
-    globalIndexToRowIndexPath,
-    InvalidRowIndexPath,
-    isValidRow,
-    RowIndexPath,
-    rowIndexPathEquals,
-    rowIndexPathToGlobalIndex,
+  getTotalRowCount,
+  globalIndexToRowIndexPath,
+  InvalidRowIndexPath,
+  isValidRow,
+  RowIndexPath,
+  rowIndexPathEquals,
+  rowIndexPathToGlobalIndex,
 } from './list-row-index-path'
 
 export type SelectionDirection = 'up' | 'down'

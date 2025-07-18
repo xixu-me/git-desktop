@@ -1,6 +1,10 @@
 import * as React from 'react'
 
-import { SupportedPlatform, getPlatformConfig, getSupportedPlatforms } from '../../lib/platform-support'
+import {
+  SupportedPlatform,
+  getPlatformConfig,
+  getSupportedPlatforms,
+} from '../../lib/platform-support'
 import { Dialog, DialogContent, DialogFooter } from '../dialog'
 import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
 import { LinkButton } from '../lib/link-button'
@@ -13,19 +17,23 @@ import { TextBox } from '../lib/text-box'
 interface IMultiPlatformAuthenticationProps {
   /** The remote URL we're trying to authenticate against */
   readonly remoteUrl: string
-  
+
   /** The detected platform for this remote */
   readonly platform: SupportedPlatform
-  
+
   /** The username if already known */
   readonly username?: string
-  
+
   /** Called when the user selects a different platform */
   readonly onPlatformChange: (platform: SupportedPlatform) => void
-  
+
   /** Called when the user saves their credentials */
-  readonly onSave: (platform: SupportedPlatform, username: string, password: string) => void
-  
+  readonly onSave: (
+    platform: SupportedPlatform,
+    username: string,
+    password: string
+  ) => void
+
   /** Called when the user dismisses the dialog */
   readonly onDismiss: () => void
 }
@@ -67,8 +75,8 @@ export class MultiPlatformAuthentication extends React.Component<
         <DialogContent>
           <p id="multi-platform-auth-error">
             We were unable to authenticate with{' '}
-            <Ref>{this.props.remoteUrl}</Ref>. Please enter your credentials
-            to try again.
+            <Ref>{this.props.remoteUrl}</Ref>. Please enter your credentials to
+            try again.
           </p>
 
           <Row>
@@ -148,58 +156,63 @@ export class MultiPlatformAuthentication extends React.Component<
       case SupportedPlatform.GitHub:
         return (
           <>
-            For security, we recommend using a Personal Access Token. 
-            Learn how to create one in our{' '}
+            For security, we recommend using a Personal Access Token. Learn how
+            to create one in our{' '}
             <LinkButton uri="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">
               GitHub integration docs
-            </LinkButton>.
+            </LinkButton>
+            .
           </>
         )
       case SupportedPlatform.GitLab:
         return (
           <>
-            For security, we recommend using a Personal Access Token with 'api' scope. 
-            Learn how to create one in our{' '}
+            For security, we recommend using a Personal Access Token with 'api'
+            scope. Learn how to create one in our{' '}
             <LinkButton uri="https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html">
               GitLab integration docs
-            </LinkButton>.
+            </LinkButton>
+            .
           </>
         )
       case SupportedPlatform.Bitbucket:
         return (
           <>
-            Bitbucket requires App Passwords for authentication. 
-            Learn how to create one in our{' '}
+            Bitbucket requires App Passwords for authentication. Learn how to
+            create one in our{' '}
             <LinkButton uri="https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/">
               Bitbucket integration docs
-            </LinkButton>.
+            </LinkButton>
+            .
           </>
         )
       case SupportedPlatform.Gitee:
         return (
           <>
-            For security, we recommend using a Personal Access Token. 
-            Learn how to create one in the{' '}
+            For security, we recommend using a Personal Access Token. Learn how
+            to create one in the{' '}
             <LinkButton uri="https://gitee.com/profile/personal_access_tokens">
               Gitee Personal Access Tokens
-            </LinkButton> section.
+            </LinkButton>{' '}
+            section.
           </>
         )
       case SupportedPlatform.GitCode:
         return (
           <>
-            For security, we recommend using a Personal Access Token. 
-            Learn how to create one in your GitCode account settings.
+            For security, we recommend using a Personal Access Token. Learn how
+            to create one in your GitCode account settings.
           </>
         )
       case SupportedPlatform.HuggingFace:
         return (
           <>
-            Hugging Face requires an Access Token for authentication. 
-            Learn how to create one in your{' '}
+            Hugging Face requires an Access Token for authentication. Learn how
+            to create one in your{' '}
             <LinkButton uri="https://huggingface.co/settings/tokens">
               Hugging Face settings
-            </LinkButton>.
+            </LinkButton>
+            .
           </>
         )
       default:
