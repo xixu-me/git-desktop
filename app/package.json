@@ -3,7 +3,7 @@
   "productName": "Git Desktop",
   "bundleID": "com.github.GitHubClient",
   "companyName": "Xi Xu",
-  "version": "3.5.2-beta2",
+  "version": "0.0.1",
   "main": "./main.js",
   "repository": {
     "type": "git",
