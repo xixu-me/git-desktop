@@ -30,7 +30,7 @@
     "compare-versions": "^3.6.0",
     "deep-equal": "^1.0.1",
     "desktop-notifications": "file:../vendor/desktop-notifications",
-    "desktop-trampoline": "xixu-me/git-desktop-trampoline#v0.9.10",
+    "desktop-trampoline": "desktop/desktop-trampoline#v0.9.10",
     "dexie": "^3.2.3",
     "dompurify": "^3.2.4",
     "dugite": "3.0.0-rc12",
