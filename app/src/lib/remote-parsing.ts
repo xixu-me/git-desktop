@@ -1,3 +1,5 @@
+import { SupportedPlatform, detectPlatformFromHostname } from './platform-support'
+
 export type GitProtocol = 'ssh' | 'https'
 
 interface IGitRemoteURL {
@@ -7,47 +9,88 @@ interface IGitRemoteURL {
   readonly hostname: string
 
   /**
-   * The owner of the GitHub repository. This will be null if the URL doesn't
-   * take the form of a GitHub repository URL (e.g., owner/name).
+   * The owner of the repository. This will be null if the URL doesn't
+   * take the form of a standard repository URL (e.g., owner/name).
    */
   readonly owner: string
 
   /**
-   * The name of the GitHub repository. This will be null if the URL doesn't
-   * take the form of a GitHub repository URL (e.g., owner/name).
+   * The name of the repository. This will be null if the URL doesn't
+   * take the form of a standard repository URL (e.g., owner/name).
    */
   readonly name: string
+
+  /**
+   * The detected platform for this remote URL
+   */
+  readonly platform: SupportedPlatform
 }
 
+// Enhanced regex patterns to support multiple platforms
 // Examples:
 // https://github.com/octocat/Hello-World.git
-// https://github.com/octocat/Hello-World.git/
+// https://gitlab.com/octocat/Hello-World.git
+// https://bitbucket.org/octocat/Hello-World.git
+// https://gitee.com/octocat/Hello-World.git
+// https://gitcode.net/octocat/Hello-World.git
+// https://huggingface.co/octocat/Hello-World.git
 // git@github.com:octocat/Hello-World.git
-// git:github.com/octocat/Hello-World.git
+// git@gitlab.com:octocat/Hello-World.git
+// etc.
 const remoteRegexes: ReadonlyArray<{ protocol: GitProtocol; regex: RegExp }> = [
+  // HTTPS patterns - supports all platforms
   {
     protocol: 'https',
     regex: new RegExp(
       '^https?://(?:.+@)?(.+)/([^/]+)/([^/]+?)(?:/|\\.git/?)?$'
     ),
   },
+  // Standard SSH patterns - git@hostname:owner/repo.git
   {
     protocol: 'ssh',
     regex: new RegExp('^git@(.+):([^/]+)/([^/]+?)(?:/|\\.git)?$'),
   },
+  // GitHub Enterprise SSH pattern
   {
     protocol: 'ssh',
     regex: new RegExp(
       '^(?:.+)@(.+\\.ghe\\.com):([^/]+)/([^/]+?)(?:/|\\.git)?$'
     ),
   },
+  // GitLab self-hosted SSH pattern
+  {
+    protocol: 'ssh',
+    regex: new RegExp(
+      '^git@(.+\\.gitlab\\..*):([^/]+)/([^/]+?)(?:/|\\.git)?$'
+    ),
+  },
+  // Bitbucket self-hosted SSH pattern
+  {
+    protocol: 'ssh',
+    regex: new RegExp(
+      '^git@(.+\\.bitbucket\\..*):([^/]+)/([^/]+?)(?:/|\\.git)?$'
+    ),
+  },
+  // Generic git protocol
   {
     protocol: 'ssh',
     regex: new RegExp('^git:(.+)/([^/]+)/([^/]+?)(?:/|\\.git)?$'),
   },
+  // SSH with explicit protocol
   {
     protocol: 'ssh',
     regex: new RegExp('^ssh://git@(.+)/(.+)/(.+?)(?:/|\\.git)?$'),
+  },
+  // Hugging Face specific patterns (supports models, datasets, spaces)
+  {
+    protocol: 'https',
+    regex: new RegExp(
+      '^https?://(?:.+@)?huggingface\\.co/([^/]+)/([^/]+?)(?:/|\\.git/?)?$'
+    ),
+  },
+  {
+    protocol: 'ssh',
+    regex: new RegExp('^git@huggingface\\.co:([^/]+)/([^/]+?)(?:/|\\.git)?$'),
   },
 ]
 
@@ -56,7 +99,12 @@ export function parseRemote(url: string): IGitRemoteURL | null {
   for (const { protocol, regex } of remoteRegexes) {
     const match = regex.exec(url)
     if (match !== null && match.length >= 4) {
-      return { protocol, hostname: match[1], owner: match[2], name: match[3] }
+      const hostname = match[1]
+      const owner = match[2]
+      const name = match[3]
+      const platform = detectPlatformFromHostname(hostname)
+      
+      return { protocol, hostname, owner, name, platform }
     }
   }
 

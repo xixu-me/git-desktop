@@ -2406,6 +2406,9 @@ const knownThirdPartyHosts = new Set([
   'dev.azure.com',
   'gitlab.com',
   'bitbucket.org',
+  'gitee.com',
+  'gitcode.net',
+  'huggingface.co',
   'amazonaws.com',
   'visualstudio.com',
 ])
