@@ -335,7 +335,7 @@ delegates@^1.0.0:
 
 desktop-trampoline@desktop/desktop-trampoline#v0.9.10:
   version "0.9.10"
-  resolved "https://codeload.github.com/xixu-me/git-desktop-trampoline/tar.gz/8f6ceec51d9434d4ada9022bb7d62f01f1d8f51b"
+  resolved "https://codeload.github.com/desktop/desktop-trampoline/tar.gz/8f6ceec51d9434d4ada9022bb7d62f01f1d8f51b"
   dependencies:
     node-addon-api "^4.3.0"
     prebuild-install "^7.1.2"
