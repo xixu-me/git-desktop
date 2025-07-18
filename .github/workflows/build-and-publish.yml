@@ -143,8 +143,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
+          ref: main
           submodules: recursive
+          fetch-depth: 0
+          
+      - name: Pull latest changes
+        run: git pull origin main
           
       - uses: actions/setup-node@v4
         with:
@@ -188,7 +192,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
+          ref: main
           submodules: recursive
           
       - uses: actions/setup-python@v5
@@ -281,7 +285,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
+          ref: main
           
       - name: Download all artifacts
         uses: actions/download-artifact@v4
