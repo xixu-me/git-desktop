@@ -1,22 +1,22 @@
 import {
-  exec,
-  GitError as DugiteError,
-  parseError,
-  IGitResult as DugiteResult,
-  IGitExecutionOptions as DugiteExecutionOptions,
-  parseBadConfigValueErrorInfo,
-  ExecError,
+    GitError as DugiteError,
+    IGitExecutionOptions as DugiteExecutionOptions,
+    IGitResult as DugiteResult,
+    exec,
+    ExecError,
+    parseBadConfigValueErrorInfo,
+    parseError,
 } from 'dugite'
 
-import { assertNever } from '../fatal-error'
-import * as GitPerf from '../../ui/lib/git-perf'
+import { kStringMaxLength } from 'buffer'
 import * as Path from 'path'
+import * as GitPerf from '../../ui/lib/git-perf'
+import { createTerminalStream } from '../create-terminal-stream'
 import { isErrnoException } from '../errno-exception'
+import { assertNever } from '../fatal-error'
 import { merge } from '../merge'
 import { withTrampolineEnv } from '../trampoline/trampoline-environment'
 import { createTailStream } from './create-tail-stream'
-import { createTerminalStream } from '../create-terminal-stream'
-import { kStringMaxLength } from 'buffer'
 
 export const coerceToString = (
   value: string | Buffer,
@@ -403,7 +403,7 @@ export function getDescriptionForError(
 ): string | null {
   if (isAuthFailureError(error)) {
     const menuHint = __DARWIN__
-      ? 'GitHub Desktop > Settings.'
+      ? 'Git Desktop > Settings.'
       : 'File > Options.'
     return `Authentication failed. Some common reasons include:
 
@@ -488,7 +488,7 @@ export function getDescriptionForError(
     case DugiteError.CannotMergeUnrelatedHistories:
       return 'Unable to merge unrelated histories in this repository.'
     case DugiteError.PushWithPrivateEmail:
-      return 'Cannot push these commits as they contain an email address marked as private on GitHub. To push anyway, visit https://github.com/settings/emails, uncheck "Keep my email address private", then switch back to GitHub Desktop to push your commits. You can then enable the setting again.'
+      return 'Cannot push these commits as they contain an email address marked as private on GitHub. To push anyway, visit https://github.com/settings/emails, uncheck "Keep my email address private", then switch back to Git Desktop to push your commits. You can then enable the setting again.'
     case DugiteError.LFSAttributeDoesNotMatch:
       return 'Git LFS attribute found in global Git configuration does not match expected value.'
     case DugiteError.ProtectedBranchDeleteRejected:

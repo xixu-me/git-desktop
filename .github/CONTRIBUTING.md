@@ -1,25 +1,25 @@
-# Contributing to GitHub Desktop
+# Contributing to Git Desktop
 
 :+1: :tada: :sparkling_heart: Thanks for your interest! :sparkling_heart: :tada: :+1:
 
-The following is a set of guidelines for contributing to GitHub Desktop and its
+The following is a set of guidelines for contributing to Git Desktop and its
 related projects, which are hosted in the [Desktop organization](https://github.com/desktop)
 on GitHub. These are just guidelines, not rules. Use your best judgment, and
 feel free to propose changes to this document in a pull request.
 
-Note that GitHub Desktop is an evolving project, so expect things to change over
+Note that Git Desktop is an evolving project, so expect things to change over
 time as the team learns, listens and refines how we work with the community.
 
 #### Table Of Contents
 
 - [What should I know before I get started?](#what-should-i-know-before-i-get-started)
-  * [Code of Conduct](#code-of-conduct)
-  * [The Roadmap](#the-roadmap)
+  - [Code of Conduct](#code-of-conduct)
+  - [The Roadmap](#the-roadmap)
 
 - [How Can I Contribute?](#how-can-i-contribute)
-  * [Reporting Bugs](#reporting-bugs)
-  * [Suggesting Enhancements](#suggesting-enhancements)
-  * [Help Wanted](#help-wanted)
+  - [Reporting Bugs](#reporting-bugs)
+  - [Suggesting Enhancements](#suggesting-enhancements)
+  - [Help Wanted](#help-wanted)
 
 - [Process Documentation](#process-documentation)
 
@@ -45,7 +45,7 @@ how to contribute your feedback.
 
 ### Reporting Bugs
 
-This section guides you through submitting a bug report for GitHub Desktop.
+This section guides you through submitting a bug report for Git Desktop.
 Following these guidelines helps maintainers and the community understand your
 report :pencil:, reproduce the behavior :computer: :computer:, and find related
 reports :mag_right:.
@@ -66,20 +66,20 @@ comment to the existing issue if there is extra information you can contribute.
 
 Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 
-Simply create an issue on the [GitHub Desktop issue tracker](https://github.com/desktop/desktop/issues/new?template=bug_report.yaml)
+Simply create an issue on the [Git Desktop issue tracker](https://github.com/desktop/desktop/issues/new?template=bug_report.yaml)
 and fill out the provided issue template.
 
 The information we are interested in includes:
 
- - details about your environment - which build, which operating system
- - details about reproducing the issue - what steps to take, what happens, how
+- details about your environment - which build, which operating system
+- details about reproducing the issue - what steps to take, what happens, how
    often it happens
- - other relevant information - log files, screenshots, etc
+- other relevant information - log files, screenshots, etc
 
 ### Suggesting Enhancements
 
 This section guides you through submitting an enhancement suggestion for
-GitHub Desktop, including completely new features and minor improvements to
+Git Desktop, including completely new features and minor improvements to
 existing functionality. Following these guidelines helps maintainers and the
 community understand your suggestion :pencil: and find related suggestions
 :mag_right:.
@@ -101,31 +101,31 @@ information you would like to add.
 
 Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 
-Simply create an issue on the [GitHub Desktop issue tracker](https://github.com/desktop/desktop/issues/new?template=feature_request.yaml)
+Simply create an issue on the [Git Desktop issue tracker](https://github.com/desktop/desktop/issues/new?template=feature_request.yaml)
 and fill out the provided issue template.
 
 Some additional advice:
 
-* **Use a clear and descriptive title** for the feature request
-* **Provide a step-by-step description of the suggested enhancement**
+- **Use a clear and descriptive title** for the feature request
+- **Provide a step-by-step description of the suggested enhancement**
   This additional context helps the maintainers understand the enhancement from
   your perspective
-* **Explain why this enhancement would be useful** to GitHub Desktop users
-* **Include screenshots and animated GIFs** if relevant to help you demonstrate
-  the steps or point out the part of GitHub Desktop which the suggestion is
+- **Explain why this enhancement would be useful** to Git Desktop users
+- **Include screenshots and animated GIFs** if relevant to help you demonstrate
+  the steps or point out the part of Git Desktop which the suggestion is
   related to. You can use [this tool](http://www.cockos.com/licecap/) to record
   GIFs on macOS and Windows
-* **List some other applications where this enhancement exists, if applicable**
+- **List some other applications where this enhancement exists, if applicable**
 
 ### Help Wanted
 
-As part of building GitHub Desktop, we'll identify tasks that are good for
+As part of building Git Desktop, we'll identify tasks that are good for
 external contributors to pick up. These tasks:
 
- - have low impact, or have a known workaround
- - should be addressed
- - have a narrow scope and/or easy reproduction steps
- - can be worked on independent of other tasks
+- have low impact, or have a known workaround
+- should be addressed
+- have a narrow scope and/or easy reproduction steps
+- can be worked on independent of other tasks
 
 These issues will be labelled as [`help wanted`](https://github.com/desktop/desktop/labels/help%20wanted)
 in the repository. If you are interested in contributing to the project, please
@@ -136,13 +136,12 @@ interested in the issue.
 
 Start [here](https://github.com/desktop/desktop/blob/development/docs/contributing/setup.md).
 
-
 ## Process Documentation
 
 These documents are useful resources for contributors  to learn more about the project and how it is run:
 
- - [Teams](https://github.com/desktop/desktop/blob/development/docs/process/teams.md)
- - [Release Planning](https://github.com/desktop/desktop/blob/development/docs/process/release-planning.md)
- - [Issue Triage](https://github.com/desktop/desktop/blob/development/docs/process/issue-triage.md)
- - [Issue and Pull Request Labels](https://github.com/desktop/desktop/blob/development/docs/process/labels.md)
- - [Pull Requests](https://github.com/desktop/desktop/blob/development/docs/process/pull-requests.md)
+- [Teams](https://github.com/desktop/desktop/blob/development/docs/process/teams.md)
+- [Release Planning](https://github.com/desktop/desktop/blob/development/docs/process/release-planning.md)
+- [Issue Triage](https://github.com/desktop/desktop/blob/development/docs/process/issue-triage.md)
+- [Issue and Pull Request Labels](https://github.com/desktop/desktop/blob/development/docs/process/labels.md)
+- [Pull Requests](https://github.com/desktop/desktop/blob/development/docs/process/pull-requests.md)

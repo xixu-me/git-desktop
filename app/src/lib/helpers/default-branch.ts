@@ -1,7 +1,7 @@
 import { getGlobalConfigValue, setGlobalConfigValue } from '../git'
 
 /**
- * The default branch name that GitHub Desktop will use when
+ * The default branch name that Git Desktop will use when
  * initializing a new repository.
  */
 const DefaultBranchInDesktop = 'main'

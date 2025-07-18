@@ -1,6 +1,6 @@
 # Desktop Trampoline
 
-A cross-platform no-dependency C executable trampoline which lets GitHub Desktop
+A cross-platform no-dependency C executable trampoline which lets Git Desktop
 intercede in order to provide Git with any additional info it needs (like
 credentials through `GIT_ASKPASS` or `SSH_ASKPASS`).
 
@@ -31,7 +31,7 @@ The first option is unsatisfactory because it can be challenging to setup
 correctly, or may be changed under us.
 
 The second option is excessive - the account details are already managed in
-GitHub Desktop, and we only need to provide the credentials to Git when
+Git Desktop, and we only need to provide the credentials to Git when
 required.
 
 The third option is what we have currently settled on. An added benefit of this
@@ -47,7 +47,7 @@ programs that are otherwise challenging to integrate.
 On one side, we have Git, which has a number of ways it can authenticate the
 user against a HTTPS remote.
 
-On the other side, we have GitHub Desktop - an Electron app that is primarily
+On the other side, we have Git Desktop - an Electron app that is primarily
 running as a GUI. Electron also supports
 [environment variables](https://electronjs.org/docs/api/environment-variables)
 that allow us to run it like a command-line program.
@@ -75,8 +75,8 @@ only way to pass information down to the authentication process:
 - `DESKTOP_USERNAME` - the account associated with the current repository
 - `DESKTOP_ENDPOINT` - the endpoint associated with the account
 
-With this trampoline, all this info can be passed from GitHub Desktop to Git,
-and then back to GitHub Desktop via a TCP socket when Git requires us the user
+With this trampoline, all this info can be passed from Git Desktop to Git,
+and then back to Git Desktop via a TCP socket when Git requires us the user
 credentials, so Desktop can act based on that username and endpoint.
 
 ## Why Need An Executable?
@@ -118,12 +118,12 @@ it avoids all these problems as Windows can just execute the program.
 ## Why Need A TCP Server?
 
 The main reason for using a TCP server is that it provides a generic and very
-powerful mechanism for GitHub Desktop to interoperate with Git and handle any
+powerful mechanism for Git Desktop to interoperate with Git and handle any
 other protocol Git would require in order to supply any kind of info.
 
 Thanks to this, with only one generic trampoline that forwards everything via
 that TCP socket, the implementation for every possible protocol like
-`GIT_ASKPASS` can live within the GitHub Desktop codebase instead of having
+`GIT_ASKPASS` can live within the Git Desktop codebase instead of having
 multiple trampoline executables.
 
 ## SSH Wrapper

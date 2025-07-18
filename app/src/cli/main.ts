@@ -1,6 +1,6 @@
-import { join, resolve } from 'path'
-import parse from 'minimist'
 import { execFile, spawn } from 'child_process'
+import parse from 'minimist'
+import { join, resolve } from 'path'
 
 const run = (...args: Array<string>) => {
   function cb(e: unknown | null, stderr?: string) {
@@ -38,7 +38,7 @@ const args = parse(process.argv.slice(2), {
 
 const usage = (exitCode = 1): never => {
   process.stderr.write(
-    'GitHub Desktop CLI usage: \n' +
+    'Git Desktop CLI usage: \n' +
       '  github                            Open the current directory\n' +
       '  github open [path]                Open the provided path\n' +
       '  github clone [-b branch] <url>    Clone the repository by url or name/owner\n' +

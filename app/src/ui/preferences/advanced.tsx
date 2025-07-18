@@ -1,9 +1,9 @@
 import * as React from 'react'
+import { isWindowsOpenSSHAvailable } from '../../lib/ssh/ssh'
+import { SamplesURL } from '../../lib/stats'
 import { DialogContent } from '../dialog'
 import { Checkbox, CheckboxValue } from '../lib/checkbox'
 import { LinkButton } from '../lib/link-button'
-import { SamplesURL } from '../../lib/stats'
-import { isWindowsOpenSSHAvailable } from '../../lib/ssh/ssh'
 
 interface IAdvancedPreferencesProps {
   readonly useWindowsOpenSSH: boolean
@@ -77,7 +77,7 @@ export class Advanced extends React.Component<
   private reportDesktopUsageLabel() {
     return (
       <span>
-        Help GitHub Desktop improve by submitting{' '}
+        Help Git Desktop improve by submitting{' '}
         <LinkButton uri={SamplesURL}>usage stats</LinkButton>
       </span>
     )

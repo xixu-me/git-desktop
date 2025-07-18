@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {
-  getTotalRowCount,
-  globalIndexToRowIndexPath,
-  InvalidRowIndexPath,
-  isValidRow,
-  RowIndexPath,
-  rowIndexPathEquals,
-  rowIndexPathToGlobalIndex,
+    getTotalRowCount,
+    globalIndexToRowIndexPath,
+    InvalidRowIndexPath,
+    isValidRow,
+    RowIndexPath,
+    rowIndexPathEquals,
+    rowIndexPathToGlobalIndex,
 } from './list-row-index-path'
 
 export type SelectionDirection = 'up' | 'down'
@@ -65,7 +65,7 @@ export interface IKeyboardSource {
 /**
  * Interface describing a user initiated selection of all list
  * items (usually by clicking the Edit > Select all menu item in
- * the application window). This is highly specific to GitHub Desktop
+ * the application window). This is highly specific to Git Desktop
  */
 export interface ISelectAllSource {
   readonly kind: 'select-all'

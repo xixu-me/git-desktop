@@ -1,105 +1,105 @@
 import * as Path from 'path'
 import {
-  getNonForkGitHubRepository,
-  isRepositoryWithForkedGitHubRepository,
-  Repository,
+    Branch,
+    BranchType,
+    IAheadBehind,
+    ICompareResult,
+} from '../../models/branch'
+import { Commit } from '../../models/commit'
+import {
+    DefaultCommitMessage,
+    ICommitMessage,
+} from '../../models/commit-message'
+import { IFetchProgress, IRevertProgress } from '../../models/progress'
+import { IRemote } from '../../models/remote'
+import {
+    getNonForkGitHubRepository,
+    isRepositoryWithForkedGitHubRepository,
+    Repository,
 } from '../../models/repository'
 import {
-  WorkingDirectoryFileChange,
-  AppFileStatusKind,
+    AppFileStatusKind,
+    WorkingDirectoryFileChange,
 } from '../../models/status'
-import {
-  Branch,
-  BranchType,
-  IAheadBehind,
-  ICompareResult,
-} from '../../models/branch'
 import { Tip, TipState } from '../../models/tip'
-import { Commit } from '../../models/commit'
-import { IRemote } from '../../models/remote'
-import { IFetchProgress, IRevertProgress } from '../../models/progress'
-import {
-  ICommitMessage,
-  DefaultCommitMessage,
-} from '../../models/commit-message'
 import { ComparisonMode } from '../app-state'
 
+import { queueWorkHigh } from '../../lib/queue-work'
 import { IAppShell } from '../app-shell'
 import {
-  DiscardChangesError,
-  ErrorWithMetadata,
-  IErrorMetadata,
+    DiscardChangesError,
+    ErrorWithMetadata,
+    IErrorMetadata,
 } from '../error-with-metadata'
-import { queueWorkHigh } from '../../lib/queue-work'
 
-import {
-  reset,
-  GitResetMode,
-  getRemotes,
-  fetch as fetchRepo,
-  fetchRefspec,
-  getRecentBranches,
-  getBranches,
-  deleteRef,
-  getCommits,
-  merge,
-  setRemoteURL,
-  getStatus,
-  IStatusResult,
-  getCommit,
-  IndexStatus,
-  getIndexChanges,
-  checkoutIndex,
-  discardChangesFromSelection,
-  checkoutPaths,
-  resetPaths,
-  revertCommit,
-  unstageAllFiles,
-  addRemote,
-  listSubmodules,
-  resetSubmodulePaths,
-  parseTrailers,
-  mergeTrailers,
-  getTrailerSeparatorCharacters,
-  parseSingleUnfoldedTrailer,
-  isCoAuthoredByTrailer,
-  getAheadBehind,
-  revRange,
-  revSymmetricDifference,
-  getConfigValue,
-  removeRemote,
-  createTag,
-  getAllTags,
-  deleteTag,
-  MergeResult,
-  createBranch,
-  updateRemoteHEAD,
-  getRemoteHEAD,
-} from '../git'
-import { GitError as DugiteError } from '../../lib/git'
 import { GitError } from 'dugite'
-import { RetryAction, RetryActionType } from '../../models/retry-actions'
-import { UpstreamAlreadyExistsError } from './upstream-already-exists-error'
-import { forceUnwrap } from '../fatal-error'
-import {
-  findUpstreamRemote,
-  UpstreamRemoteName,
-} from './helpers/find-upstream-remote'
-import { findDefaultRemote } from './helpers/find-default-remote'
-import { Author, isKnownAuthor } from '../../models/author'
-import { formatCommitMessage } from '../format-commit-message'
-import { GitAuthor } from '../../models/git-author'
-import { BaseStore } from './base-store'
-import { getStashes, getStashedFiles } from '../git/stash'
-import { IStashEntry, StashedChangesLoadStates } from '../../models/stash-entry'
-import { PullRequest } from '../../models/pull-request'
-import { IStatsStore } from '../stats'
-import { getTagsToPush, storeTagsToPush } from './helpers/tags-to-push-storage'
-import { DiffSelection, ITextDiff } from '../../models/diff'
-import { getDefaultBranch } from '../helpers/default-branch'
 import { rm, stat } from 'fs/promises'
-import { findForkedRemotesToPrune } from './helpers/find-forked-remotes-to-prune'
+import { GitError as DugiteError } from '../../lib/git'
+import { Author, isKnownAuthor } from '../../models/author'
+import { DiffSelection, ITextDiff } from '../../models/diff'
+import { GitAuthor } from '../../models/git-author'
+import { PullRequest } from '../../models/pull-request'
+import { RetryAction, RetryActionType } from '../../models/retry-actions'
+import { IStashEntry, StashedChangesLoadStates } from '../../models/stash-entry'
+import { forceUnwrap } from '../fatal-error'
 import { findDefaultBranch } from '../find-default-branch'
+import { formatCommitMessage } from '../format-commit-message'
+import {
+    addRemote,
+    checkoutIndex,
+    checkoutPaths,
+    createBranch,
+    createTag,
+    deleteRef,
+    deleteTag,
+    discardChangesFromSelection,
+    fetchRefspec,
+    fetch as fetchRepo,
+    getAheadBehind,
+    getAllTags,
+    getBranches,
+    getCommit,
+    getCommits,
+    getConfigValue,
+    getIndexChanges,
+    getRecentBranches,
+    getRemoteHEAD,
+    getRemotes,
+    getStatus,
+    getTrailerSeparatorCharacters,
+    GitResetMode,
+    IndexStatus,
+    isCoAuthoredByTrailer,
+    IStatusResult,
+    listSubmodules,
+    merge,
+    MergeResult,
+    mergeTrailers,
+    parseSingleUnfoldedTrailer,
+    parseTrailers,
+    removeRemote,
+    reset,
+    resetPaths,
+    resetSubmodulePaths,
+    revertCommit,
+    revRange,
+    revSymmetricDifference,
+    setRemoteURL,
+    unstageAllFiles,
+    updateRemoteHEAD,
+} from '../git'
+import { getStashedFiles, getStashes } from '../git/stash'
+import { getDefaultBranch } from '../helpers/default-branch'
+import { IStatsStore } from '../stats'
+import { BaseStore } from './base-store'
+import { findDefaultRemote } from './helpers/find-default-remote'
+import { findForkedRemotesToPrune } from './helpers/find-forked-remotes-to-prune'
+import {
+    findUpstreamRemote,
+    UpstreamRemoteName,
+} from './helpers/find-upstream-remote'
+import { getTagsToPush, storeTagsToPush } from './helpers/tags-to-push-storage'
+import { UpstreamAlreadyExistsError } from './upstream-already-exists-error'
 
 /** The number of commits to load from history per batch. */
 const CommitBatchSize = 100
@@ -1167,7 +1167,7 @@ export class GitStore extends BaseStore {
   }
 
   /**
-   * Refreshes the list of GitHub Desktop created stash entries for the repository
+   * Refreshes the list of Git Desktop created stash entries for the repository
    */
   public async loadStashEntries(): Promise<void> {
     const map = new Map<string, IStashEntry>()
@@ -1198,7 +1198,7 @@ export class GitStore extends BaseStore {
   }
 
   /**
-   * A GitHub Desktop created stash entries for the current branch or
+   * A Git Desktop created stash entries for the current branch or
    * null if no entry exists
    */
   public get currentBranchStashEntry() {

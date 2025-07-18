@@ -1,15 +1,15 @@
-import { trampolineServer } from './trampoline-server'
-import { withTrampolineToken } from './trampoline-tokens'
-import * as Path from 'path'
-import { getSSHEnvironment } from '../ssh/ssh'
-import {
-  deleteMostRecentSSHCredential,
-  removeMostRecentSSHCredential,
-} from '../ssh/ssh-credential-storage'
+import { getDesktopAskpassTrampolineFilename } from 'desktop-trampoline'
 import { GitError as DugiteError, exec } from 'dugite'
 import memoizeOne from 'memoize-one'
+import * as Path from 'path'
 import { GitError, getDescriptionForError } from '../git/core'
-import { getDesktopAskpassTrampolineFilename } from 'desktop-trampoline'
+import { getSSHEnvironment } from '../ssh/ssh'
+import {
+    deleteMostRecentSSHCredential,
+    removeMostRecentSSHCredential,
+} from '../ssh/ssh-credential-storage'
+import { trampolineServer } from './trampoline-server'
+import { withTrampolineToken } from './trampoline-tokens'
 
 const hasRejectedCredentialsForEndpoint = new Map<string, Set<string>>()
 
@@ -69,7 +69,7 @@ export const GitUserAgent = memoizeOne(() =>
     })
     .then(v => {
       const suffix = __DEV__ ? `-${__SHA__.substring(0, 10)}` : ''
-      const ghdVersion = `GitHub Desktop/${__APP_VERSION__}${suffix}`
+      const ghdVersion = `Git Desktop/${__APP_VERSION__}${suffix}`
       const { platform, arch } = process
 
       return `git/${v} (${ghdVersion}; ${platform} ${arch})`

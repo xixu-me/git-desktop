@@ -16,7 +16,7 @@ Most (if not all) editors have integrations for these tools so that they will re
 Use
 
 ```shellsession
-$ yarn lint
+yarn lint
 ```
 
 in your local repository to run all linting checks. Each tool will report their errors on the command line.
@@ -26,11 +26,11 @@ in your local repository to run all linting checks. Each tool will report their 
 Some issues found by linters can be automatically fixed. Use
 
 ```shellsession
-$ yarn lint:fix
+yarn lint:fix
 ```
 
 to automatically fix them. If any issues remain, you'll have to fix them manually (and the output will tell you that).
 
 ## Continuous Integration (CI)
 
-Each of our CI services also runs linting checks on [open pull requests](https://github.com/desktop/desktop/pulls) in the GitHub Desktop repository. Pull requests must pass CI to before we accept them, so don't forget to lint locally.
+Each of our CI services also runs linting checks on [open pull requests](https://github.com/desktop/desktop/pulls) in the Git Desktop repository. Pull requests must pass CI to before we accept them, so don't forget to lint locally.

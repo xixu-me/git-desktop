@@ -1,20 +1,20 @@
-import { git } from './core'
-import {
-  CommittedFileChange,
-  AppFileStatusKind,
-  PlainFileStatus,
-  CopiedOrRenamedFileStatus,
-  UntrackedFileStatus,
-  AppFileStatus,
-  SubmoduleStatus,
-} from '../../models/status'
-import { Repository } from '../../models/repository'
+import assert from 'assert'
 import { Commit } from '../../models/commit'
 import { CommitIdentity } from '../../models/commit-identity'
-import { parseRawUnfoldedTrailers } from './interpret-trailers'
-import { createLogParser } from './git-delimiter-parser'
+import { Repository } from '../../models/repository'
+import {
+    AppFileStatus,
+    AppFileStatusKind,
+    CommittedFileChange,
+    CopiedOrRenamedFileStatus,
+    PlainFileStatus,
+    SubmoduleStatus,
+    UntrackedFileStatus,
+} from '../../models/status'
 import { forceUnwrap } from '../fatal-error'
-import assert from 'assert'
+import { git } from './core'
+import { createLogParser } from './git-delimiter-parser'
+import { parseRawUnfoldedTrailers } from './interpret-trailers'
 
 // File mode 160000 is used by git specifically for submodules:
 // https://github.com/git/git/blob/v2.37.3/cache.h#L62-L69
@@ -45,7 +45,7 @@ function mapSubmoduleStatusFileModes(
 
 /**
  * Map the raw status text from Git to an app-friendly value
- * shamelessly borrowed from GitHub Desktop (Windows)
+ * shamelessly borrowed from Git Desktop (Windows)
  */
 function mapStatus(
   rawStatus: string,

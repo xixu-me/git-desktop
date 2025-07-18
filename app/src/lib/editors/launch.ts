@@ -1,11 +1,11 @@
 import { spawn, SpawnOptions } from 'child_process'
 import { pathExists } from '../../ui/lib/path-exists'
-import { ExternalEditorError, FoundEditor } from './shared'
 import {
-  expandTargetPathArgument,
-  ICustomIntegration,
-  parseCustomIntegrationArguments,
+    expandTargetPathArgument,
+    ICustomIntegration,
+    parseCustomIntegrationArguments,
 } from '../custom-integration'
+import { ExternalEditorError, FoundEditor } from './shared'
 
 async function launchEditor(
   editorPath: string,
@@ -45,7 +45,7 @@ async function launchEditor(
     )
     throw new ExternalEditorError(
       e && typeof e === 'object' && 'code' in e && e.code === 'EACCES'
-        ? `GitHub Desktop doesn't have the proper permissions to start ${editorName}. Please open ${label} and try another editor.`
+        ? `Git Desktop doesn't have the proper permissions to start ${editorName}. Please open ${label} and try another editor.`
         : `Something went wrong while trying to start ${editorName}. Please open ${label} and try another editor.`,
       { openPreferences: true }
     )

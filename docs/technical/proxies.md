@@ -1,6 +1,6 @@
 # Automatic Git Proxy Support
 
-This documented is intended to contain a high level architectural overview of the automatic Git proxy support we're intending to ship in GitHub Desktop 2.4. Since the primary author of the feature (me) will be out on parental leave when 2.4 is slated to be released I'm gonna try to dump as much information as I have in this document. Hopefully it will never need to be referred to but hey, better safe than sorry!
+This documented is intended to contain a high level architectural overview of the automatic Git proxy support we're intending to ship in Git Desktop 2.4. Since the primary author of the feature (me) will be out on parental leave when 2.4 is slated to be released I'm gonna try to dump as much information as I have in this document. Hopefully it will never need to be referred to but hey, better safe than sorry!
 
 Some of the contents in this document is duplicated from the following pull requests which implemented the feature.
 
@@ -12,11 +12,11 @@ Some of the contents in this document is duplicated from the following pull requ
 
 ## High level overview
 
-When talking about network requests in GitHub Desktop it's important to remember that there's essentially two network frameworks at play (technically three if we include Squirrel.*). When GitHub Desktop is talking to the GitHub API as it does for sign-in, retrieving cloneable repositories, issues, etc it's using the Chromium network stack. When performing Git operations such as `pull`, `push`, `fetch`, `ls-remote` Git itself is [relying](https://github.com/git/git/blob/master/http.c) on [libcurl](https://github.com/curl/curl), a widely used cross-platform http library.
+When talking about network requests in Git Desktop it's important to remember that there's essentially two network frameworks at play (technically three if we include Squirrel.*). When Git Desktop is talking to the GitHub API as it does for sign-in, retrieving cloneable repositories, issues, etc it's using the Chromium network stack. When performing Git operations such as `pull`, `push`, `fetch`, `ls-remote` Git itself is [relying](https://github.com/git/git/blob/master/http.c) on [libcurl](https://github.com/curl/curl), a widely used cross-platform http library.
 
 In the straightforward case where a user is connected straight to the Internet without any intermediary [proxy servers](https://en.wikipedia.org/wiki/Proxy_server) the distinction above is almost unnoticeable. For the case that concerns us in this document however this difference matters greatly.
 
-### How do users configure 
+### How do users configure
 
 ### Chromium's vs libcurl proxy support
 
@@ -30,7 +30,7 @@ The cURL documentation contains [a fantastic page about proxies](https://ec.haxx
 
 ### Git proxy configuration
 
-Now that we've ironed out the differences let's talk about how we can tell Git to use a proxy. Git will look at the `http.proxy` [configuration variable](https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpproxy) as well as the `http_proxy`, `https_proxy`, and `all_proxy` environment variables. The `http.proxy` Git configuration takes precedence over the environment variables. GitHub Desktop will set the `http_proxy` or `https_proxy` **environment variables** and not the configuration variable. 
+Now that we've ironed out the differences let's talk about how we can tell Git to use a proxy. Git will look at the `http.proxy` [configuration variable](https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpproxy) as well as the `http_proxy`, `https_proxy`, and `all_proxy` environment variables. The `http.proxy` Git configuration takes precedence over the environment variables. Git Desktop will set the `http_proxy` or `https_proxy` **environment variables** and not the configuration variable.
 
 We could use the configuration variable by using the `git -c http.proxy=foo` approach but that would override any `http.proxy` setting the user might have configured in their global (and/or repo level) git config. More importantly though the `-c` approach wouldn't be inherited by subcommands executed by Git such as Git LFS.
 
@@ -38,13 +38,13 @@ Further more by relying on the environment variables we're able to avoid calling
 
 ### Bringing it all together
 
-Now that we understand the components involved we can talk about the big picture. When GitHub Desktop is about to perform a Git network operation such as `push`, `pull`, `fetch`, etc we follow this rough flow.
+Now that we understand the components involved we can talk about the big picture. When Git Desktop is about to perform a Git network operation such as `push`, `pull`, `fetch`, etc we follow this rough flow.
 
 1. [Determine remote endpoint for the Git network operations](https://github.com/desktop/desktop/pull/9139)
 2. [Determine if the user has set any environment variables](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/environment.ts#L94-L128) such as `http_proxy`, `all_proxy` etc that we would override if we attempted to automatically configure the proxy. If such a variable is set we bail.
 3. [Ask Electron to resolve the proxy](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/resolve-git-proxy.ts#L12-L23)
 4. [Parse the PAC-string](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/parse-pac-string.ts#L60-L90) that we get back from electron
-5. [Set the appropriate proxy environment variables](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/environment.ts#L130-L135) 
+5. [Set the appropriate proxy environment variables](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/environment.ts#L130-L135)
 
 #### Determining the remote endpoint
 
@@ -74,11 +74,11 @@ For now though this is our only workaround and as such [#9188](https://github.co
 
 ### There's no way to disable the automatic proxy support from the UI
 
-When implementing this feature we debated whether to include an "opt-out" setting in preferences to turn off the automatic proxy support. We decided against it for a few reasons. One being that we really wanted this feature to be exactly as transparent as the proxy support in Electron is today. We also felt that since we never override existing Git proxy configuration variables there's very little risk to existing users who are successfully using GitHub Desktop with a proxy today.
+When implementing this feature we debated whether to include an "opt-out" setting in preferences to turn off the automatic proxy support. We decided against it for a few reasons. One being that we really wanted this feature to be exactly as transparent as the proxy support in Electron is today. We also felt that since we never override existing Git proxy configuration variables there's very little risk to existing users who are successfully using Git Desktop with a proxy today.
 
 ### Can resolveProxy be slow?
 
-While I haven't found any indication of this being an actual problem it's theoretically possible that the resolveProxy logic in Electron/Chromium could be slow and therefore add an unreasonable delay to each Git network operation. Should this problem exist my assumption is that it's very rare as it would presumably have manifested itself in super slow API requests for the same reason. Nevertheless, should this occur post launch my recommendation for mitigation would be to either add an explicit timeout (using Promise.race) or add some way of disabling the entire proxy support from the UI (preferences). A workaround for users experiencing such a problem would be to set the `all_proxy` environment variable to the same value that they currently have for their `http.proxy` Git config variable as that effectively kills the automatic proxy support in GitHub Desktop.
+While I haven't found any indication of this being an actual problem it's theoretically possible that the resolveProxy logic in Electron/Chromium could be slow and therefore add an unreasonable delay to each Git network operation. Should this problem exist my assumption is that it's very rare as it would presumably have manifested itself in super slow API requests for the same reason. Nevertheless, should this occur post launch my recommendation for mitigation would be to either add an explicit timeout (using Promise.race) or add some way of disabling the entire proxy support from the UI (preferences). A workaround for users experiencing such a problem would be to set the `all_proxy` environment variable to the same value that they currently have for their `http.proxy` Git config variable as that effectively kills the automatic proxy support in Git Desktop.
 
 ## Potentially confusing things
 
@@ -86,11 +86,11 @@ While I haven't found any indication of this being an actual problem it's theore
 
 When reading about proxies and when reading our own implementation one thing to keep in mind is the confusing difference between an https proxy and the `https_proxy` environment variable. An https proxy is a proxy server which the client talks to over the https protocol whereas the `https_proxy` environment variable determines what proxy to use when the client wants to connect to an https server. To illustrate the difference here's a few example
 
-- https_proxy='http://proxy.local'
-  - Very common setup, tells Git to use the http proxy at proxy.local when connecting to an https server (like https://github.com)
+- https_proxy='<http://proxy.local>'
+  - Very common setup, tells Git to use the http proxy at proxy.local when connecting to an https server (like <https://github.com>)
 - https_proxy='socks4://proxy.local'
-  - Fairly rare setup. Tells Git to use the SOCKS4 proxy at proxy.local when connecting to an https server (like https://github.com)
-- http_proxy=https://proxy.local`
+  - Fairly rare setup. Tells Git to use the SOCKS4 proxy at proxy.local when connecting to an https server (like <https://github.com>)
+- http_proxy=<https://proxy.local`>
   - Really rare setup. Tells Git to use the https proxy at proxy.local when connecting to a non-encrypted http server
 
 It's further worth noting that https proxy support is so uncommon that it's not even supported in the version of Git/libcurl we use on Windows
@@ -120,13 +120,13 @@ Further more I'd expect a copy of the user's `~/.gitconfig` file to yield intere
 > https_proxy=http://proxy.local:8888 git -c http.proxy= ls-remote https://github.com/desktop/desktop
 ```
 
-That network request will **not** use a proxy server. So if you're troubleshooting a case where a user expects GitHub Desktop to automatically resolve the proxy server but doesn't you should look to see if they've got a blank `http.proxy` configuration variable set and perhaps suggest they remove that using something like `git config --global --unset http.proxy` (if it's configured globally) 
+That network request will **not** use a proxy server. So if you're troubleshooting a case where a user expects Git Desktop to automatically resolve the proxy server but doesn't you should look to see if they've got a blank `http.proxy` configuration variable set and perhaps suggest they remove that using something like `git config --global --unset http.proxy` (if it's configured globally)
 
 ## Future improvements
 
 #### Authenticating proxies
 
-A stretch goal for the proxy support was supporting authenticating proxies. That unfortunately didn't make it in. Worth noting here is that not even Electron supports authenticating proxies out of the box so there's no users out there today that's using GitHub Desktop in signed-in mode with an authenticating proxy blocking their traffic.
+A stretch goal for the proxy support was supporting authenticating proxies. That unfortunately didn't make it in. Worth noting here is that not even Electron supports authenticating proxies out of the box so there's no users out there today that's using Git Desktop in signed-in mode with an authenticating proxy blocking their traffic.
 
 #### Best effort certificate revocation checks in cURL
 

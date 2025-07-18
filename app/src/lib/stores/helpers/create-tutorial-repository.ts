@@ -1,26 +1,26 @@
 import * as Path from 'path'
 
-import { Account } from '../../../models/account'
 import { mkdir, writeFile } from 'fs/promises'
+import { Account } from '../../../models/account'
+import { IRemote } from '../../../models/remote'
+import { pathExists } from '../../../ui/lib/path-exists'
 import { API } from '../../api'
+import { git } from '../../git'
+import { envForRemoteOperation } from '../../git/environment'
+import { getDefaultBranch } from '../../helpers/default-branch'
 import { APIError } from '../../http'
 import {
-  executionOptionsWithProgress,
-  PushProgressParser,
+    executionOptionsWithProgress,
+    PushProgressParser,
 } from '../../progress'
-import { git } from '../../git'
-import { IRemote } from '../../../models/remote'
-import { getDefaultBranch } from '../../helpers/default-branch'
-import { envForRemoteOperation } from '../../git/environment'
-import { pathExists } from '../../../ui/lib/path-exists'
 
 const nl = __WIN32__ ? '\r\n' : '\n'
 const InitialReadmeContents =
-  `# Welcome to GitHub Desktop!${nl}${nl}` +
+  `# Welcome to Git Desktop!${nl}${nl}` +
   `This is your README. READMEs are where you can communicate ` +
   `what your project is and how to use it.${nl}${nl}` +
   `Write your name on line 6, save it, and then head ` +
-  `back to GitHub Desktop.${nl}`
+  `back to Git Desktop.${nl}`
 
 async function createAPIRepository(account: Account, name: string) {
   const api = new API(account.endpoint, account.token)
@@ -29,7 +29,7 @@ async function createAPIRepository(account: Account, name: string) {
     return await api.createRepository(
       null,
       name,
-      'GitHub Desktop tutorial repository',
+      'Git Desktop tutorial repository',
       true
     )
   } catch (err) {

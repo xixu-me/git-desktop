@@ -10,12 +10,12 @@ type ChannelToValidate = 'production' | 'beta'
 
 /**
  * This object states the valid/expected Electron versions for each publishable
- * channel of GitHub Desktop.
+ * channel of Git Desktop.
  *
  * The purpose of this is to ensure that we don't accidentally publish a
  * production/beta/test build with the wrong version of Electron, which could
  * cause really bad regressions to our users, and also the inability to go back
- * to a previous version of GitHub Desktop without losing all settings.
+ * to a previous version of Git Desktop without losing all settings.
  */
 const ValidElectronVersions: Record<ChannelToValidate, string> = {
   production: '36.1.0',

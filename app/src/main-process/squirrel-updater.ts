@@ -1,8 +1,8 @@
-import * as Path from 'path'
 import * as Os from 'os'
+import * as Path from 'path'
 
 import { mkdir, writeFile } from 'fs/promises'
-import { spawn, getPathSegments, setPathSegments } from '../lib/process/win32'
+import { getPathSegments, setPathSegments, spawn } from '../lib/process/win32'
 import { pathExists } from '../ui/lib/path-exists'
 
 const appFolder = Path.resolve(process.execPath, '..')
@@ -159,7 +159,7 @@ async function updateShortcut(): Promise<void> {
     const desktopShortcutPath = Path.join(
       homeDirectory,
       'Desktop',
-      'GitHub Desktop.lnk'
+      'Git Desktop.lnk'
     )
     const exists = await pathExists(desktopShortcutPath)
     const locations: ShortcutLocations = exists

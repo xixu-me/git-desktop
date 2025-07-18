@@ -1,6 +1,6 @@
 # Upgrading Dependencies
 
-This document outlines how we manage the dependencies that GitHub Desktop needs,
+This document outlines how we manage the dependencies that Git Desktop needs,
 as some need to be handled differently to others
 
 ## General Guidelines
@@ -35,32 +35,32 @@ questions, and some examples of answers here will help with the next section.
 
 ### How is this dependency used in the project?
 
-  - Core dependencies like Electron, React and Typescript are critical to
+- Core dependencies like Electron, React and Typescript are critical to
     Desktop - without these dependencies we'd have a very different product
-  - Application dependencies are other external packages which are needed at
+- Application dependencies are other external packages which are needed at
     runtime - how can we test they still work as expected?
-  - Tooling dependencies help to build and verify Desktop works as expected, but
+- Tooling dependencies help to build and verify Desktop works as expected, but
     aren't shipped to users
 
 ### If we ship a bad update due to updating a dependency, what is the impact to users?
 
-  - If a core dependency is broken, it may cause the app to crash, lose the
+- If a core dependency is broken, it may cause the app to crash, lose the
     user's work, or require the user to reinstall an old version of Desktop to
     get back to a usable state
-  - An application dependency breaking may affect some user's workflows and
+- An application dependency breaking may affect some user's workflows and
     their ability to work
-  - Broken tooling impacts the developers and their ability to work on the
+- Broken tooling impacts the developers and their ability to work on the
     project, and potentially affects shipping builds to users, but otherwise
     might not be seen
 
 ### Can we leverage automation to verify a change is safe?
 
-  - Core dependencies need to be tested in a variety of setups due to their
+- Core dependencies need to be tested in a variety of setups due to their
     complexity, and may still require manual testing in some cases even with
     automated tests in place
-  - Application dependencies may be able to be wrapped in tests, to help
+- Application dependencies may be able to be wrapped in tests, to help
     identify regressions before a change is released to users
-  - Tooling dependencies are used heavily as part of continuous integration
+- Tooling dependencies are used heavily as part of continuous integration
     tests, and any potential problems will be caught early
 
 ## Grouping dependencies by impact
@@ -72,19 +72,19 @@ help guide when they should be updated.
 
 These are the most important dependencies to the app, and include:
 
- - `package.json`
-   - `@types/node`
-   - `electron`
-   - `electron-packager`
-   - `electron-winstaller`
-   - `typescript`
-   - `webpack` and related dependencies
- - `app/package.json`
-   - `codemirror`
-   - `dugite`
-   - `react`
-   - `react-dom`
-   - `keytar`
+- `package.json`
+  - `@types/node`
+  - `electron`
+  - `electron-packager`
+  - `electron-winstaller`
+  - `typescript`
+  - `webpack` and related dependencies
+- `app/package.json`
+  - `codemirror`
+  - `dugite`
+  - `react`
+  - `react-dom`
+  - `keytar`
 
 Anyone who wants to get involved with updating these versions should be very
 familiar with both the library and what has changed between versions, so the
@@ -124,9 +124,9 @@ These are the rough rules for handling `@types/*` dependency updates, using
 `keytar` as an example as it has a corresponding type declaration package
 `@types/keytar`:
 
- - if you are upgrading `keytar`, ensure that you also upgrade `@types/keytar`
+- if you are upgrading `keytar`, ensure that you also upgrade `@types/keytar`
    and that any code affected by the type declarations change is also updated
- - if there is no `keytar` upgrade but a new version of `@types/keytar` is
+- if there is no `keytar` upgrade but a new version of `@types/keytar` is
    available, this suggests that some declarations have been updated - ensure
    that the app code works fine with it
 

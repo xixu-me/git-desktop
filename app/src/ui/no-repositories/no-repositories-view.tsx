@@ -1,18 +1,18 @@
 import * as React from 'react'
-import { UiView } from '../ui-view'
-import { Button } from '../lib/button'
-import { Octicon, OcticonSymbol } from '../octicons'
-import * as octicons from '../octicons/octicons.generated'
-import {
-  WelcomeLeftTopImageUri,
-  WelcomeLeftBottomImageUri,
-} from '../welcome/welcome'
+import { IAPIRepository } from '../../lib/api'
 import { IAccountRepositories } from '../../lib/stores/api-repositories-store'
 import { Account, accountEquals } from '../../models/account'
-import { CloneableRepositoryFilterList } from '../clone-repository/cloneable-repository-filter-list'
-import { IAPIRepository } from '../../lib/api'
-import { ClickSource } from '../lib/list'
 import { AccountPicker } from '../account-picker'
+import { CloneableRepositoryFilterList } from '../clone-repository/cloneable-repository-filter-list'
+import { Button } from '../lib/button'
+import { ClickSource } from '../lib/list'
+import { Octicon, OcticonSymbol } from '../octicons'
+import * as octicons from '../octicons/octicons.generated'
+import { UiView } from '../ui-view'
+import {
+    WelcomeLeftBottomImageUri,
+    WelcomeLeftTopImageUri,
+} from '../welcome/welcome'
 
 interface INoRepositoriesProps {
   /** A function to call when the user chooses to create a repository. */
@@ -97,7 +97,7 @@ export class NoRepositoriesView extends React.Component<
         <section aria-label="Let's get started!">
           <header>
             <h1>Let's get started!</h1>
-            <p>Add a repository to GitHub Desktop to start collaborating</p>
+            <p>Add a repository to Git Desktop to start collaborating</p>
           </header>
 
           <div className="content">

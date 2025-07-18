@@ -22,7 +22,7 @@ export async function resolveGitProxy(
   }
 
   for (const proxy of proxies) {
-    // On Windows GitHub Desktop relies on the `schannel` `http.sslBackend` to
+    // On Windows Git Desktop relies on the `schannel` `http.sslBackend` to
     // be used in order to support things like self-signed certificates.
     // Unfortunately it doesn't support https proxies so we'll exclude those
     // here. Luckily for us https proxies are really rare. On macOS we use

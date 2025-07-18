@@ -1,14 +1,14 @@
-import { Menu, shell, app, BrowserWindow } from 'electron'
-import { ensureItemIds } from './ensure-item-ids'
-import { MenuEvent } from './menu-event'
-import { truncateWithEllipsis } from '../../lib/truncate-with-ellipsis'
+import { app, BrowserWindow, Menu, shell } from 'electron'
+import { mkdir } from 'fs/promises'
+import { enableFilteredChangesList } from '../../lib/feature-flag'
 import { getLogDirectoryPath } from '../../lib/logging/get-log-path'
-import { UNSAFE_openDirectory } from '../shell'
+import { truncateWithEllipsis } from '../../lib/truncate-with-ellipsis'
 import { MenuLabelsEvent } from '../../models/menu-labels'
 import * as ipcWebContents from '../ipc-webcontents'
-import { mkdir } from 'fs/promises'
+import { UNSAFE_openDirectory } from '../shell'
 import { buildTestMenu } from './build-test-menu'
-import { enableFilteredChangesList } from '../../lib/feature-flag'
+import { ensureItemIds } from './ensure-item-ids'
+import { MenuEvent } from './menu-event'
 
 const createPullRequestLabel = __DARWIN__
   ? 'Create Pull Request'
@@ -65,10 +65,10 @@ export function buildDefaultMenu({
 
   if (__DARWIN__) {
     template.push({
-      label: 'GitHub Desktop',
+      label: 'Git Desktop',
       submenu: [
         {
-          label: 'About GitHub Desktop',
+          label: 'About Git Desktop',
           click: emit('show-about'),
           id: 'about',
         },
@@ -580,7 +580,7 @@ export function buildDefaultMenu({
         ...helpItems,
         separator,
         {
-          label: '&About GitHub Desktop',
+          label: '&About Git Desktop',
           click: emit('show-about'),
           id: 'about',
         },

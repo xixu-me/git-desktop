@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { Dialog, DialogContent, DialogFooter } from '../dialog'
-import { Dispatcher } from '../dispatcher'
-import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
-import { RetryAction } from '../../models/retry-actions'
 import { SignInResult } from '../../lib/stores'
+import { RetryAction } from '../../models/retry-actions'
+import { Dialog, DialogContent, DialogFooter } from '../dialog'
+import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
+import { Dispatcher } from '../dispatcher'
 
 const okButtonText = __DARWIN__ ? 'Continue in Browser' : 'Continue in browser'
 
@@ -49,11 +49,11 @@ export class SAMLReauthRequiredDialog extends React.Component<
           <p>
             The "{this.props.organizationName}" organization has enabled or
             enforced SAML SSO. To access this repository, you must sign in again
-            and grant GitHub Desktop permission to access the organization's
+            and grant Git Desktop permission to access the organization's
             repositories.
           </p>
           <p>
-            Would you like to open a browser to grant GitHub Desktop permission
+            Would you like to open a browser to grant Git Desktop permission
             to access the repository?
           </p>
         </DialogContent>

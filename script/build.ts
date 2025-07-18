@@ -1,11 +1,11 @@
 /* eslint-disable no-sync */
 /// <reference path="./globals.d.ts" />
 
-import * as path from 'path'
 import * as cp from 'child_process'
-import * as os from 'os'
 import packager, { OfficialArch, OsxNotarizeOptions } from 'electron-packager'
 import frontMatter from 'front-matter'
+import * as os from 'os'
+import * as path from 'path'
 import { externals } from '../app/webpack.common'
 
 interface IChooseALicense {
@@ -23,33 +23,33 @@ export interface ILicense {
 }
 
 import {
-  getBundleID,
-  getCompanyName,
-  getProductName,
+    getBundleID,
+    getCompanyName,
+    getProductName,
 } from '../app/package-info'
 
-import {
-  getChannel,
-  getDistRoot,
-  getExecutableName,
-  isPublishable,
-  getIconFileName,
-  getDistArchitecture,
-} from './dist-info'
 import { isGitHubActions } from './build-platforms'
-
-import { updateLicenseDump } from './licenses/update-license-dump'
-import { verifyInjectedSassVariables } from './validate-sass/validate-all'
 import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  rmSync,
-  unlinkSync,
-  writeFileSync,
+    getChannel,
+    getDistArchitecture,
+    getDistRoot,
+    getExecutableName,
+    getIconFileName,
+    isPublishable,
+} from './dist-info'
+
+import {
+    existsSync,
+    mkdirSync,
+    readdirSync,
+    readFileSync,
+    rmSync,
+    unlinkSync,
+    writeFileSync,
 } from 'fs'
 import { copySync } from 'fs-extra'
+import { updateLicenseDump } from './licenses/update-license-dump'
+import { verifyInjectedSassVariables } from './validate-sass/validate-all'
 
 const isPublishableBuild = isPublishable()
 const isDevelopmentBuild = getChannel() === 'development'
@@ -409,7 +409,7 @@ function generateLicenseMetadata(outRoot: string) {
   )
 
   const licenseText = readFileSync(chooseALicenseLicense, 'utf8')
-  const licenseWithHeader = `GitHub Desktop uses licensing information provided by choosealicense.com.
+  const licenseWithHeader = `Git Desktop uses licensing information provided by choosealicense.com.
 
 The bundle in available-licenses.json has been generated from a source list provided at https://github.com/github/choosealicense.com, which is made available under the below license:
 

@@ -1,11 +1,11 @@
-import { IDataStore, ISecureStore } from './stores'
-import { getKeyForAccount } from '../auth'
 import { Account, isDotComAccount } from '../../models/account'
-import { fetchUser, EmailVisibility, getEnterpriseAPIURL } from '../api'
+import { EmailVisibility, fetchUser, getEnterpriseAPIURL } from '../api'
+import { getKeyForAccount } from '../auth'
+import { compare, compareDescending } from '../compare'
+import { isGHE } from '../endpoint-capabilities'
 import { fatalError } from '../fatal-error'
 import { TypedBaseStore } from './base-store'
-import { isGHE } from '../endpoint-capabilities'
-import { compare, compareDescending } from '../compare'
+import { IDataStore, ISecureStore } from './stores'
 
 // Ensure that GitHub.com accounts appear first followed by Enterprise
 // accounts, sorted by the order in which they were added.
@@ -27,7 +27,7 @@ interface IEmail {
   /**
    * Represents whether GitHub has confirmed the user has access to this
    * email address. New users require a verified email address before
-   * they can sign into GitHub Desktop.
+   * they can sign into Git Desktop.
    */
   readonly verified: boolean
   /**
@@ -104,7 +104,7 @@ export class AccountsStore extends TypedBaseStore<ReadonlyArray<Account>> {
       if (__DARWIN__ && isKeyChainError(e)) {
         this.emitError(
           new Error(
-            `GitHub Desktop was unable to store the account token in the keychain. Please check you have unlocked access to the 'login' keychain.`
+            `Git Desktop was unable to store the account token in the keychain. Please check you have unlocked access to the 'login' keychain.`
           )
         )
       } else {

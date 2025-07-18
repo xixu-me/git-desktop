@@ -1,15 +1,15 @@
+import {
+    getNotificationSettingsUrl,
+    supportsNotifications,
+    supportsNotificationsPermissionRequest,
+} from 'desktop-notifications'
 import * as React from 'react'
 import { DialogContent } from '../dialog'
 import { Checkbox, CheckboxValue } from '../lib/checkbox'
 import { LinkButton } from '../lib/link-button'
 import {
-  getNotificationSettingsUrl,
-  supportsNotifications,
-  supportsNotificationsPermissionRequest,
-} from 'desktop-notifications'
-import {
-  getNotificationsPermission,
-  requestNotificationsPermission,
+    getNotificationsPermission,
+    requestNotificationsPermission,
 } from '../main-process-proxy'
 
 interface INotificationPreferencesProps {
@@ -107,7 +107,7 @@ export class Notifications extends React.Component<
           <LinkButton onClick={this.onGrantNotificationPermission}>
             grant permission
           </LinkButton>{' '}
-          to display these notifications from GitHub Desktop.
+          to display these notifications from Git Desktop.
         </>
       )
     }
@@ -121,7 +121,7 @@ export class Notifications extends React.Component<
     if (warnNotificationsDenied) {
       return (
         <div className="setting-hint-warning">
-          <span className="warning-icon">⚠️</span> GitHub Desktop has no
+          <span className="warning-icon">⚠️</span> Git Desktop has no
           permission to display notifications. Please, enable them in the{' '}
           <LinkButton uri={notificationSettingsURL}>
             Notifications Settings
@@ -138,7 +138,7 @@ export class Notifications extends React.Component<
     return (
       <>
         {' '}
-        Make sure notifications are {verb} for GitHub Desktop in the{' '}
+        Make sure notifications are {verb} for Git Desktop in the{' '}
         <LinkButton uri={notificationSettingsURL}>
           Notifications Settings
         </LinkButton>

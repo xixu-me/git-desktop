@@ -15,7 +15,7 @@ export enum GitStatusEntry {
   UpdatedButUnmerged = 'U',
 }
 
-/** The enum representation of a Git file change in GitHub Desktop. */
+/** The enum representation of a Git file change in Git Desktop. */
 export enum AppFileStatusKind {
   New = 'New',
   Modified = 'Modified',
@@ -27,7 +27,7 @@ export enum AppFileStatusKind {
 }
 
 /**
- * Normal changes to a repository detected by GitHub Desktop
+ * Normal changes to a repository detected by Git Desktop
  */
 export type PlainFileStatus = {
   kind:

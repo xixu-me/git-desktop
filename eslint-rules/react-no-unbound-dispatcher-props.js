@@ -3,7 +3,7 @@
 /**
  * react-no-unbound-dispatcher-props
  *
- * This custom eslint rule is highly specific to GitHub Desktop and attempts
+ * This custom eslint rule is highly specific to Git Desktop and attempts
  * to prevent errors caused by passing unbound dispatcher methods as callbacks
  * to components.
  *

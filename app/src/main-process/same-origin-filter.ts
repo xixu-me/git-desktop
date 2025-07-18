@@ -3,7 +3,7 @@ import { OrderedWebRequest } from './ordered-webrequest'
 /**
  * Installs a web request filter to prevent cross domain leaks of auth headers
  *
- * GitHub Desktop uses the fetch[1] web API for all of our API requests. When fetch
+ * Git Desktop uses the fetch[1] web API for all of our API requests. When fetch
  * is used in a browser and it encounters an http redirect to another origin
  * domain CORS policies will apply to prevent submission of credentials[2].
  *

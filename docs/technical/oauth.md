@@ -1,6 +1,6 @@
 # Developer OAuth App
 
-Because GitHub Desktop uses [OAuth web application flow](https://developer.github.com/v3/oauth/#web-application-flow)
+Because Git Desktop uses [OAuth web application flow](https://developer.github.com/v3/oauth/#web-application-flow)
 to interact with the GitHub API and perform actions on behalf of a user, it
 needs to be bundled with a Client ID and Secret.
 
@@ -22,5 +22,5 @@ The OAuth client ID and Client Secret are bundled into the application with
 webpack. If you want to provide your own Client ID and Client Secret, set these
 environment variables:
 
- - `DESKTOP_OAUTH_CLIENT_ID`
- - `DESKTOP_OAUTH_CLIENT_SECRET`
+- `DESKTOP_OAUTH_CLIENT_ID`
+- `DESKTOP_OAUTH_CLIENT_SECRET`

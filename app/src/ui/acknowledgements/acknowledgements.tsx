@@ -1,10 +1,10 @@
-import * as Path from 'path'
 import * as Fs from 'fs'
+import * as Path from 'path'
 import * as React from 'react'
+import { DefaultDialogFooter, Dialog, DialogContent } from '../dialog'
 import { getAppPath } from '../lib/app-proxy'
-import { Loading } from '../lib/loading'
 import { LinkButton } from '../lib/link-button'
-import { Dialog, DialogContent, DefaultDialogFooter } from '../dialog'
+import { Loading } from '../lib/loading'
 
 const WebsiteURL = 'https://desktop.github.com'
 const RepositoryURL = 'https://github.com/desktop/desktop'
@@ -121,7 +121,7 @@ export class Acknowledgements extends React.Component<
       >
         <DialogContent>
           <p>
-            <LinkButton uri={WebsiteURL}>GitHub Desktop</LinkButton> is an open
+            <LinkButton uri={WebsiteURL}>Git Desktop</LinkButton> is an open
             source project published under the MIT License. You can view the
             source code and contribute to this project on{' '}
             <LinkButton uri={RepositoryURL}>GitHub</LinkButton>.
@@ -129,7 +129,7 @@ export class Acknowledgements extends React.Component<
 
           {desktopLicense}
 
-          <p>GitHub Desktop also distributes these libraries:</p>
+          <p>Git Desktop also distributes these libraries:</p>
 
           {licenses ? this.renderLicenses(licenses) : <Loading />}
         </DialogContent>

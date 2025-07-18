@@ -1,17 +1,17 @@
 # "Open External Editor" integration
 
-GitHub Desktop supports the user choosing an external program to open their
+Git Desktop supports the user choosing an external program to open their
 local repositories, and this is available from the top-level **Repository** menu
 or when right-clicking on a repository in the sidebar.
 
-### My favourite editor XYZ isn't supported!
+### My favourite editor XYZ isn't supported
 
 This is the checklist of things that it needs to support:
 
- - the editor supports opening a directory, not just a file
- - the editor is installed by the user, so there is a reliable way to find it
+- the editor supports opening a directory, not just a file
+- the editor is installed by the user, so there is a reliable way to find it
    on the user's machine
- - it comes with a command-line interface that can be launched by Desktop
+- it comes with a command-line interface that can be launched by Desktop
 
 If you think your editor satisfies all these please read on to understand how
 Desktop integrates with each OS, and if you're still keen to integrate this
@@ -24,34 +24,33 @@ The source for the editor integration on Windows is found in
 
 These editors are currently supported:
 
- - [Atom](https://atom.io/) - stable, Beta and Nightly
- - [Visual Studio Code](https://code.visualstudio.com/) - both stable and Insiders channel
- - [Visual Studio Codium](https://vscodium.com/)
- - [Sublime Text](https://www.sublimetext.com/)
- - [ColdFusion Builder](https://www.adobe.com/products/coldfusion-builder.html)
- - [Typora](https://typora.io/)
- - [SlickEdit](https://www.slickedit.com)
- - [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/)
- - [JetBrains WebStorm](https://www.jetbrains.com/webstorm/)
- - [JetBrains PhpStorm](https://www.jetbrains.com/phpstorm/)
- - [JetBrains Rider](https://www.jetbrains.com/rider/)
- - [JetBrains CLion](https://www.jetbrains.com/clion/)
- - [JetBrains PyCharm](https://www.jetbrains.com/pycharm/)
- - [JetBrains RubyMine](https://www.jetbrains.com/rubymine/)
- - [JetBrains GoLand](https://www.jetbrains.com/go/)
- - [JetBrains RustRover](https://www.jetbrains.com/rust/)
- - [Android Studio](https://developer.android.com/studio)
- - [Brackets](http://brackets.io/)
- - [Notepad++](https://notepad-plus-plus.org/)
- - [RStudio](https://rstudio.com/)
- - [Aptana Studio](http://www.aptana.com/)
- - [JetBrains Fleet](https://www.jetbrains.com/fleet/)
- - [JetBrains DataSpell](https://www.jetbrains.com/dataspell/)
- - [Zed](https://zed.dev/) - both Stable and Preview channel
- - [Pulsar](https://pulsar-edit.dev/)
- - [Cursor](https://www.cursor.com/)
- - [Windsurf](https://www.codeium.com/windsurf)
-
+- [Atom](https://atom.io/) - stable, Beta and Nightly
+- [Visual Studio Code](https://code.visualstudio.com/) - both stable and Insiders channel
+- [Visual Studio Codium](https://vscodium.com/)
+- [Sublime Text](https://www.sublimetext.com/)
+- [ColdFusion Builder](https://www.adobe.com/products/coldfusion-builder.html)
+- [Typora](https://typora.io/)
+- [SlickEdit](https://www.slickedit.com)
+- [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/)
+- [JetBrains WebStorm](https://www.jetbrains.com/webstorm/)
+- [JetBrains PhpStorm](https://www.jetbrains.com/phpstorm/)
+- [JetBrains Rider](https://www.jetbrains.com/rider/)
+- [JetBrains CLion](https://www.jetbrains.com/clion/)
+- [JetBrains PyCharm](https://www.jetbrains.com/pycharm/)
+- [JetBrains RubyMine](https://www.jetbrains.com/rubymine/)
+- [JetBrains GoLand](https://www.jetbrains.com/go/)
+- [JetBrains RustRover](https://www.jetbrains.com/rust/)
+- [Android Studio](https://developer.android.com/studio)
+- [Brackets](http://brackets.io/)
+- [Notepad++](https://notepad-plus-plus.org/)
+- [RStudio](https://rstudio.com/)
+- [Aptana Studio](http://www.aptana.com/)
+- [JetBrains Fleet](https://www.jetbrains.com/fleet/)
+- [JetBrains DataSpell](https://www.jetbrains.com/dataspell/)
+- [Zed](https://zed.dev/) - both Stable and Preview channel
+- [Pulsar](https://pulsar-edit.dev/)
+- [Cursor](https://www.cursor.com/)
+- [Windsurf](https://www.codeium.com/windsurf)
 
 These are defined in a list at the top of the file:
 
@@ -87,7 +86,7 @@ async function findApplication(editor: WindowsExternalEditor) {
 
 Windows programs are typically installed by the user. Installers will add
 entries to the registry to help the OS with cleaning up later, if the user
-wishes to uninstall. These entries are used by GitHub Desktop to identify
+wishes to uninstall. These entries are used by Git Desktop to identify
 relevant programs and where they can be located.
 
 The registry locations for each editor are listed in the `registryKeys`
@@ -118,27 +117,27 @@ channels).
 
 If you're not sure how your editor is installed, check one of these locations:
 
- - `HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall` -
+- `HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall` -
     uninstall information about 64-bit Windows software is found here
 
- - `HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall` -
+- `HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall` -
     uninstall information about 32-bit Windows software is found here
 
- - `HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall` -
+- `HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall` -
     uninstall information for software that doesn't require administrator
     permissions is found here
-
 
 Your editor is probably hiding behind a GUID in one of these locations - this
 is the key that Desktop needs to read the registry and find the installation for your editor.
 
 As seen in the example above, you can use the following helper functions to
 enumerate the uninstall keys:
- - `LocalMachineUninstallKey` for keys in
+
+- `LocalMachineUninstallKey` for keys in
  `HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall`
- - `Wow64LocalMachineUninstallKey` for keys in
+- `Wow64LocalMachineUninstallKey` for keys in
  `HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall`
- - `CurrentUserUninstallKey` for keys in
+- `CurrentUserUninstallKey` for keys in
  `HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall`
 
 ### Step 2: Validate The Installation
@@ -213,7 +212,7 @@ missing or lost it won't let you launch the external editor.
 
 ### Support for JetBrains Toolbox editors
 
-Now GitHub Desktop support editors installed through JetBrains Toolbox.
+Now Git Desktop support editors installed through JetBrains Toolbox.
 The technique used to achieve that is using `jetBrainsToolboxScriptName` field
 to check if, in the default section for scripts in JetBrainsm Toolbox, a script
 with the corresponding name exists.
@@ -233,6 +232,7 @@ shell script with the same name that overrides the existing one. So it's
 impossible to differentiate between the various editions of the same product.
 
 **Overriding example:**
+
 1. Install JetBrains PyCharm Community
 2. At this point, JetBrains Toolbox will generate a shell script called `pycharm`
 3. Install JetBrains PyCharm Professional
@@ -249,44 +249,44 @@ The source for the editor integration on macOS is found in
 
 These editors are currently supported:
 
- - [Atom](https://atom.io/)
- - [Eclipse](https://www.eclipse.org/downloads/packages/release/)
-     - All IDE variants (Java, JavaEE, C/C++, PHP, etc.) are supported.
- - [MacVim](https://macvim-dev.github.io/macvim/)
- - [Neovide](https://github.com/neovide/neovide)
- - [VimR](https://github.com/qvacua/vimr)
- - [Visual Studio Code](https://code.visualstudio.com/) - both stable and Insiders channel
- - [Visual Studio Codium](https://vscodium.com/)
- - [Sublime Text](https://www.sublimetext.com/)
- - [BBEdit](http://www.barebones.com/products/bbedit/)
- - [JetBrains PhpStorm](https://www.jetbrains.com/phpstorm/)
- - [JetBrains PyCharm](https://www.jetbrains.com/pycharm/)
- - [JetBrains RubyMine](https://www.jetbrains.com/rubymine/)
- - [JetBrains CLion](https://www.jetbrains.com/clion/)
- - [RStudio](https://rstudio.com/)
- - [TextMate](https://macromates.com)
- - [Brackets](http://brackets.io/)
-     - To use Brackets the Command Line shortcut must be installed.
-       - This can be done by opening Brackets, choosing File > Install Command Line Shortcut
- - [JetBrains WebStorm](https://www.jetbrains.com/webstorm/)
- - [Typora](https://typora.io/)
- - [CodeRunner](https://coderunnerapp.com/)
- - [SlickEdit](https://www.slickedit.com)
- - [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/)
- - [Xcode](https://developer.apple.com/xcode/)
- - [JetBrains GoLand](https://www.jetbrains.com/go/)
- - [Android Studio](https://developer.android.com/studio)
- - [JetBrains Rider](https://www.jetbrains.com/rider/)
- - [JetBrains RustRover](https://www.jetbrains.com/rust/)
- - [Nova](https://nova.app/)
- - [Aptana Studio](http://www.aptana.com/)
- - [Emacs](https://www.gnu.org/software/emacs/)
- - [Lite XL](https://lite-xl.com/)
- - [JetBrains Fleet](https://www.jetbrains.com/fleet/)
- - [JetBrains DataSpell](https://www.jetbrains.com/dataspell/)
- - [Pulsar](https://pulsar-edit.dev/)
- - [Cursor](https://www.cursor.com/)
- - [Zed](https://zed.dev/)
+- [Atom](https://atom.io/)
+- [Eclipse](https://www.eclipse.org/downloads/packages/release/)
+  - All IDE variants (Java, JavaEE, C/C++, PHP, etc.) are supported.
+- [MacVim](https://macvim-dev.github.io/macvim/)
+- [Neovide](https://github.com/neovide/neovide)
+- [VimR](https://github.com/qvacua/vimr)
+- [Visual Studio Code](https://code.visualstudio.com/) - both stable and Insiders channel
+- [Visual Studio Codium](https://vscodium.com/)
+- [Sublime Text](https://www.sublimetext.com/)
+- [BBEdit](http://www.barebones.com/products/bbedit/)
+- [JetBrains PhpStorm](https://www.jetbrains.com/phpstorm/)
+- [JetBrains PyCharm](https://www.jetbrains.com/pycharm/)
+- [JetBrains RubyMine](https://www.jetbrains.com/rubymine/)
+- [JetBrains CLion](https://www.jetbrains.com/clion/)
+- [RStudio](https://rstudio.com/)
+- [TextMate](https://macromates.com)
+- [Brackets](http://brackets.io/)
+  - To use Brackets the Command Line shortcut must be installed.
+    - This can be done by opening Brackets, choosing File > Install Command Line Shortcut
+- [JetBrains WebStorm](https://www.jetbrains.com/webstorm/)
+- [Typora](https://typora.io/)
+- [CodeRunner](https://coderunnerapp.com/)
+- [SlickEdit](https://www.slickedit.com)
+- [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/)
+- [Xcode](https://developer.apple.com/xcode/)
+- [JetBrains GoLand](https://www.jetbrains.com/go/)
+- [Android Studio](https://developer.android.com/studio)
+- [JetBrains Rider](https://www.jetbrains.com/rider/)
+- [JetBrains RustRover](https://www.jetbrains.com/rust/)
+- [Nova](https://nova.app/)
+- [Aptana Studio](http://www.aptana.com/)
+- [Emacs](https://www.gnu.org/software/emacs/)
+- [Lite XL](https://lite-xl.com/)
+- [JetBrains Fleet](https://www.jetbrains.com/fleet/)
+- [JetBrains DataSpell](https://www.jetbrains.com/dataspell/)
+- [Pulsar](https://pulsar-edit.dev/)
+- [Cursor](https://www.cursor.com/)
+- [Zed](https://zed.dev/)
 
 These are defined in a list at the top of the file:
 
@@ -317,12 +317,12 @@ read information from the OS to see if they are present.
 
 The `CFBundleIdentifier` value in the plist is what applications use to
 uniquely identify themselves, for example `com.github.GitHubClient` is the
-identifier for GitHub Desktop.
+identifier for Git Desktop.
 
 To find the bundle identifier for an application, using `PhpStorm` as an example,
 run `defaults read /Applications/PhpStorm.app/Contents/Info CFBundleIdentifier`.
 
-With this bundle identifier, GitHub Desktop can obtain the install location of
+With this bundle identifier, Git Desktop can obtain the install location of
 the app.
 
 The `bundleIdentifiers` attribute lists all the bundle identifiers that can
@@ -347,34 +347,34 @@ The source for the editor integration on Linux is found in
 
 These editors are currently supported:
 
- - [Atom](https://atom.io/)
- - [Visual Studio Code](https://code.visualstudio.com/) - both stable and Insiders channel
- - [Visual Studio Codium](https://vscodium.com/)
- - [Sublime Text](https://www.sublimetext.com/)
- - [Typora](https://typora.io/)
- - [SlickEdit](https://www.slickedit.com)
- - [Neovim](https://neovim.io/)
- - [Neovide](https://github.com/neovide/neovide)
- - [Notepadqq](https://github.com/notepadqq/notepadqq)
- - [Mousepad](https://github.com/codebrainz/mousepad)
- - [GNOME Builder](https://apps.gnome.org/Builder/)
- - [Code](https://github.com/elementary/code)
- - [Lite XL](https://lite-xl.com/)
- - [Kate](https://kate-editor.org/)
- - [JetBrains PHPStorm](https://www.jetbrains.com/phpstorm/)
- - [JetBrains PyCharm](https://www.jetbrains.com/pycharm/)
- - [JetBrains WebStorm](https://www.jetbrains.com/webstorm/)
- - [JetBrains CLion](https://www.jetbrains.com/clion/)
- - [JetBrains RubyMine](https://www.jetbrains.com/ruby/)
- - [JetBrains RustRover](https://www.jetbrains.com/rust/)
- - [JetBrains Rider](https://www.jetbrains.com/rider/)
- - [IntelliJ Idea](https://www.jetbrains.com/idea/)
- - [JetBrains Goland](https://www.jetbrains.com/go/)
- - [Android Studio](https://developer.android.com/studio)
- - [Emacs](https://www.gnu.org/software/emacs/)
- - [Pulsar](https://pulsar-edit.dev/)
- - [Pluma](https://github.com/mate-desktop/pluma)
- - [Zed](https://zed.dev/)
+- [Atom](https://atom.io/)
+- [Visual Studio Code](https://code.visualstudio.com/) - both stable and Insiders channel
+- [Visual Studio Codium](https://vscodium.com/)
+- [Sublime Text](https://www.sublimetext.com/)
+- [Typora](https://typora.io/)
+- [SlickEdit](https://www.slickedit.com)
+- [Neovim](https://neovim.io/)
+- [Neovide](https://github.com/neovide/neovide)
+- [Notepadqq](https://github.com/notepadqq/notepadqq)
+- [Mousepad](https://github.com/codebrainz/mousepad)
+- [GNOME Builder](https://apps.gnome.org/Builder/)
+- [Code](https://github.com/elementary/code)
+- [Lite XL](https://lite-xl.com/)
+- [Kate](https://kate-editor.org/)
+- [JetBrains PHPStorm](https://www.jetbrains.com/phpstorm/)
+- [JetBrains PyCharm](https://www.jetbrains.com/pycharm/)
+- [JetBrains WebStorm](https://www.jetbrains.com/webstorm/)
+- [JetBrains CLion](https://www.jetbrains.com/clion/)
+- [JetBrains RubyMine](https://www.jetbrains.com/ruby/)
+- [JetBrains RustRover](https://www.jetbrains.com/rust/)
+- [JetBrains Rider](https://www.jetbrains.com/rider/)
+- [IntelliJ Idea](https://www.jetbrains.com/idea/)
+- [JetBrains Goland](https://www.jetbrains.com/go/)
+- [Android Studio](https://developer.android.com/studio)
+- [Emacs](https://www.gnu.org/software/emacs/)
+- [Pulsar](https://pulsar-edit.dev/)
+- [Pluma](https://github.com/mate-desktop/pluma)
+- [Zed](https://zed.dev/)
 
 These are defined in a list at the top of the file:
 

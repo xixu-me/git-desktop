@@ -1,13 +1,13 @@
 import React from 'react'
 import { parseRepositoryIdentifier } from '../../lib/remote-parsing'
+import { shortenSHA } from '../../models/commit'
 import { ISubmoduleDiff } from '../../models/diff'
+import { CopyButton } from '../copy-button'
 import { LinkButton } from '../lib/link-button'
+import { Ref } from '../lib/ref'
 import { Octicon } from '../octicons'
 import * as octicons from '../octicons/octicons.generated'
 import { SuggestedAction } from '../suggested-actions'
-import { Ref } from '../lib/ref'
-import { CopyButton } from '../copy-button'
-import { shortenSHA } from '../../models/commit'
 
 type SubmoduleItemIcon =
   | {
@@ -196,8 +196,8 @@ export class SubmoduleDiff extends React.Component<ISubmoduleDiffProps> {
     return (
       <span>
         <SuggestedAction
-          title="Open this submodule on GitHub Desktop"
-          description="You can open this submodule on GitHub Desktop as a normal repository to manage and commit any changes in it."
+          title="Open this submodule on Git Desktop"
+          description="You can open this submodule on Git Desktop as a normal repository to manage and commit any changes in it."
           buttonText={__DARWIN__ ? 'Open Repository' : 'Open repository'}
           type="primary"
           onClick={this.onOpenSubmoduleClick}

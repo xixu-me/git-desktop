@@ -1,13 +1,12 @@
 import * as React from 'react'
 
 import { encodePathAsUrl } from '../../lib/path'
-import { Dispatcher } from '../dispatcher'
-import { Repository } from '../../models/repository'
 import { PopupType } from '../../models/popup'
+import { Repository } from '../../models/repository'
+import { Dispatcher } from '../dispatcher'
 import { Octicon } from '../octicons'
 import * as octicons from '../octicons/octicons.generated'
-import { SuggestedAction } from '../suggested-actions'
-import { SuggestedActionGroup } from '../suggested-actions'
+import { SuggestedAction, SuggestedActionGroup } from '../suggested-actions'
 
 const ClappingHandsImage = encodePathAsUrl(
   __dirname,
@@ -62,7 +61,7 @@ export class TutorialDone extends React.Component<ITutorialDoneProps, {}> {
             <div className="text">
               <h1 ref={this.header}>You're done!</h1>
               <p>
-                You’ve learned the basics on how to use GitHub Desktop. Here are
+                You’ve learned the basics on how to use Git Desktop. Here are
                 some suggestions for what to do next.
               </p>
             </div>
@@ -93,7 +92,7 @@ export class TutorialDone extends React.Component<ITutorialDoneProps, {}> {
             />
             <SuggestedAction
               title="Add a local repository"
-              description="Work on an existing project in GitHub Desktop"
+              description="Work on an existing project in Git Desktop"
               buttonText={__DARWIN__ ? 'Add Repository' : 'Add repository'}
               onClick={this.onAddExistingRepository}
               type="normal"

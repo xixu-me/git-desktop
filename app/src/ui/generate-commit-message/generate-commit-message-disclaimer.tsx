@@ -1,13 +1,13 @@
 import * as React from 'react'
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  OkCancelButtonGroup,
-} from '../dialog'
-import { Dispatcher } from '../dispatcher'
 import { Repository } from '../../models/repository'
 import { WorkingDirectoryFileChange } from '../../models/status'
+import {
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    OkCancelButtonGroup,
+} from '../dialog'
+import { Dispatcher } from '../dispatcher'
 import { LinkButton } from '../lib/link-button'
 
 interface IGenerateCommitMessageDisclaimerProps {
@@ -42,7 +42,7 @@ export class GenerateCommitMessageDisclaimer extends React.Component<IGenerateCo
             Copilot is powered by AI, so mistakes are possible. Review and edit
             the generated message carefully before use.{' '}
             <LinkButton uri="https://gh.io/copilot-for-desktop-transparency">
-              Learn more about Copilot in GitHub Desktop.
+              Learn more about Copilot in Git Desktop.
             </LinkButton>
           </p>
         </DialogContent>

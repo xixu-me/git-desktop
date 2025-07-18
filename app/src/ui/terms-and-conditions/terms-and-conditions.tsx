@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Dialog, DialogContent, DefaultDialogFooter } from '../dialog'
+import { DefaultDialogFooter, Dialog, DialogContent } from '../dialog'
 import { LinkButton } from '../lib/link-button'
 
 interface ITermsAndConditionsProps {
@@ -30,7 +30,7 @@ export class TermsAndConditions extends React.Component<
             These GitHub Open Source Applications Terms and Conditions
             ("Application Terms") are a legal agreement between you (either as
             an individual or on behalf of an entity) and GitHub, Inc. regarding
-            your use of GitHub's applications, such as GitHub Desktop™ and
+            your use of GitHub's applications, such as Git Desktop™ and
             associated documentation ("Software"). These Application Terms apply
             to the executable code version of the Software. Source code for the
             Software is available separately and free of charge under open
@@ -94,7 +94,7 @@ export class TermsAndConditions extends React.Component<
           </p>
 
           <p>
-            The names GitHub, GitHub Desktop, GitHub for Mac, GitHub for
+            The names GitHub, Git Desktop, GitHub for Mac, GitHub for
             Windows, Atom, the Octocat, and related GitHub logos and/or stylized
             names are trademarks of GitHub. You agree not to display or use
             these trademarks in any manner without GitHub's prior, written

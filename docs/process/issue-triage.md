@@ -10,7 +10,7 @@
 The above describes medical triage but it is clear that it also applies to our
 situation. Triage is a process of sifting through all the things that we could
 work on to select the few things that we will work on. In order to maximize the
-impact we have for the people that use GitHub Desktop, things that will get top
+impact we have for the people that use Git Desktop, things that will get top
 priority are items that are well-described, clearly presented and have obvious
 benefit.
 
@@ -26,19 +26,19 @@ choice is clear.
 ## Goals
 
 * Communicate clearly and effectively
-    * What the maintainers will work on
-    * What pull requests will be reviewed for acceptance
-    * What pull requests *will not* be reviewed for acceptance
+  * What the maintainers will work on
+  * What pull requests will be reviewed for acceptance
+  * What pull requests *will not* be reviewed for acceptance
 * Outline exactly what is expected for an issue to meet the "triage bar" so
   that issues that don't meet the bar can be closed
 * Reduce the amount of time and back-and-forth needed to take an issue from
   being first-opened to `triaged` or closed
 * Accept input from the community that helps us deliver meaningful results to
-  GitHub Desktop and its users
+  Git Desktop and its users
 
 ## The Issues List Is Our Backlog
 
-The GitHub Desktop issues list is what the maintainers team uses to guide our
+The Git Desktop issues list is what the maintainers team uses to guide our
 work. In order for our work to be focused and efficient, our issues list must
 be clean and well-organized. Accepting input from the community is a
 significant benefit *when it does not distract us from making things better*.
@@ -103,6 +103,7 @@ issues from time to time that isn't and won't be covered here.
 If a reviewer cannot understand or reproduce the issue with the information provided, they should add a comment indicating what is not clear and add the label `more-information-needed`.
 
 Although we use a bot, the first responder should also do a manual sweep of issues that are open and labeled `more-information-needed` at least once a week.
+
 * If a `more-information-needed` issue is stale for more than 14 days after the last comment by a reviewer, the issue will be automatically closed by the no-response bot.
 * If the original poster did not fill out the issue template and has not responded to our request within 7 days, close the issue with the following message `I'm closing the issue due to inactivity but I'm happy to re-open if you can provide more details.`
 
@@ -123,9 +124,9 @@ about the steps to reproduce the problem, then we should label it
 These are problems with the current app that are identified by users. These
 should be reviewed to ensure they:
 
- - specify the build associated with the issue
- - have instructions sufficient to reproduce the issue
- - have details about the impact and severity of the issue
+* specify the build associated with the issue
+* have instructions sufficient to reproduce the issue
+* have details about the impact and severity of the issue
 
 We will use the `more-information-needed` and `reproduction-required` labels to
 indicate when issues are incomplete.
@@ -147,15 +148,15 @@ To ensure the quality of the application remains high over time, the core team
 may need to work with the user proposing the change to clarify details before
 work should proceed:
 
- - user interface - appropriate use of styles, layout
- - user experience - ensure things are consistent, discoverable
- - quality - ensure the change does not adversely affect other features
+* user interface - appropriate use of styles, layout
+* user experience - ensure things are consistent, discoverable
+* quality - ensure the change does not adversely affect other features
 
-e.g. GitHub Desktop should support worktrees as a first class feature.
+e.g. Git Desktop should support worktrees as a first class feature.
 
 ## Out-of-scope
 
 We anticipate ideas or suggestions that don't align with how we see the
 application evolving, so we may close issues with an explanation of why.
 
-e.g. GitHub Desktop should support working with Mercurial repositories.
+e.g. Git Desktop should support working with Mercurial repositories.

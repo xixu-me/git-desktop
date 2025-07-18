@@ -8,12 +8,12 @@ it published in a release.
 
 We organize releases in two ways - marketing and milestones:
 
- - Marketing releases are what we use to represent planned features, and are
+- Marketing releases are what we use to represent planned features, and are
    high-level goals
-      - **for example: 1.4, 1.5, etc.**
- - Milestones are used to track issues and pull requests associated with an
+  - **for example: 1.4, 1.5, etc.**
+- Milestones are used to track issues and pull requests associated with an
    upcoming release, and can be [followed on GitHub](https://github.com/desktop/desktop/milestones)
-      - **for example: 1.4.1, 1.4.2, 1.5.0, etc.**
+  - **for example: 1.4.1, 1.4.2, 1.5.0, etc.**
 
 We aim to ship updates to production approximately every two weeks, to ensure a
 continuous flow of improvements to our users. Track our progress in the
@@ -32,7 +32,7 @@ help track.
 
 Pull requests for new features should leverage [feature flags](https://github.com/desktop/desktop/blob/development/docs/technical/feature-flagging.md),
 so we can control when a feature is made available to users. If you are using
-the GitHub Desktop [beta channel](https://github.com/desktop/desktop#beta-channel)
+the Git Desktop [beta channel](https://github.com/desktop/desktop#beta-channel)
 you will be able to help test and provide feedback about upcoming features
 before they are made available to everyone.
 
@@ -53,11 +53,11 @@ comment to provide context around their choice.
 
 These factors can be used when deciding on the chosen milestone:
 
- - **priority** - Some bugs are more harmful (and affect more users) than
+- **priority** - Some bugs are more harmful (and affect more users) than
    others...
- - **impact** - Does this need time on the `beta` channel to verify it's good to
+- **impact** - Does this need time on the `beta` channel to verify it's good to
    go?
- - **timing** - Are we close to a release? Maybe it can wait a couple of days...
+- **timing** - Are we close to a release? Maybe it can wait a couple of days...
 
 During the 24-hour approval window for merged pull request other maintainers may
 discuss the proposed milestone (or just :thumbsup: to acknowledge and agree

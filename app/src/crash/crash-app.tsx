@@ -1,16 +1,16 @@
 import * as React from 'react'
-import { ErrorType } from './shared'
-import { TitleBar } from '../ui/window/title-bar'
-import { encodePathAsUrl } from '../lib/path'
-import { WindowState } from '../lib/window-state'
-import { Octicon } from '../ui/octicons'
-import * as octicons from '../ui/octicons/octicons.generated'
-import { Button } from '../ui/lib/button'
-import { LinkButton } from '../ui/lib/link-button'
-import { getVersion } from '../ui/lib/app-proxy'
 import { getOS } from '../lib/get-os'
 import * as ipcRenderer from '../lib/ipc-renderer'
+import { encodePathAsUrl } from '../lib/path'
+import { WindowState } from '../lib/window-state'
+import { getVersion } from '../ui/lib/app-proxy'
+import { Button } from '../ui/lib/button'
+import { LinkButton } from '../ui/lib/link-button'
 import { getCurrentWindowState } from '../ui/main-process-proxy'
+import { Octicon } from '../ui/octicons'
+import * as octicons from '../ui/octicons/octicons.generated'
+import { TitleBar } from '../ui/window/title-bar'
+import { ErrorType } from './shared'
 
 // This is a weird one, let's leave it as a placeholder
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -136,8 +136,8 @@ export class CrashApp extends React.Component<ICrashAppProps, ICrashAppState> {
   private renderTitle() {
     const message =
       this.state.type === 'launch'
-        ? 'GitHub Desktop failed to launch'
-        : 'GitHub Desktop encountered an error'
+        ? 'Git Desktop failed to launch'
+        : 'Git Desktop encountered an error'
 
     return (
       <header>
@@ -151,18 +151,18 @@ export class CrashApp extends React.Component<ICrashAppProps, ICrashAppState> {
     if (this.state.type === 'launch') {
       return (
         <p>
-          GitHub Desktop encountered a catastrophic error that prevents it from
+          Git Desktop encountered a catastrophic error that prevents it from
           launching. This has been reported to the team, but if you encounter
-          this repeatedly please report this issue to the GitHub Desktop{' '}
+          this repeatedly please report this issue to the Git Desktop{' '}
           <LinkButton uri={issuesUri}>issue tracker</LinkButton>.
         </p>
       )
     } else {
       return (
         <p>
-          GitHub Desktop has encountered an unrecoverable error and will need to
+          Git Desktop has encountered an unrecoverable error and will need to
           restart. This has been reported to the team, but if you encounter this
-          repeatedly please report this issue to the GitHub Desktop{' '}
+          repeatedly please report this issue to the Git Desktop{' '}
           <LinkButton uri={issuesUri}>issue tracker</LinkButton>.
         </p>
       )

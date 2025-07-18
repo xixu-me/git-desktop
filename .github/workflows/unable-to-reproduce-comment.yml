@@ -27,7 +27,7 @@ jobs:
         are the best.
           - Be as specific as possible; include as much detail as you can. 
           - If not already provided, include:
-              - the version of GitHub Desktop you are using. 
+              - the version of Git Desktop you are using. 
               - the operating system you are using
               - any environment factors you can think of.
               - any custom configuration you are using.

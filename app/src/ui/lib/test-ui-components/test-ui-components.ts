@@ -1,33 +1,33 @@
 import uuid from 'uuid'
-import { TestMenuEvent } from '../../../main-process/menu'
 import {
-  isRepositoryWithGitHubRepository,
-  Repository,
-} from '../../../models/repository'
-import { Dispatcher } from '../../dispatcher'
-import { assertNever } from '../../../lib/fatal-error'
-import {
-  ExternalEditorError,
-  suggestedExternalEditor,
+    ExternalEditorError,
+    suggestedExternalEditor,
 } from '../../../lib/editors/shared'
-import { updateStore } from '../update-store'
-import { enableTestMenuItems } from '../../../lib/feature-flag'
-import { Banner, BannerType } from '../../../models/banner'
-import { PopupType } from '../../../models/popup'
-import { CloningRepository } from '../../../models/cloning-repository'
-import { generateDevReleaseSummary } from '../../../lib/release-notes'
-import { ReleaseNote } from '../../../models/release-notes'
-import { getVersion } from '../app-proxy'
 import { Emoji } from '../../../lib/emoji'
-import { GitHubRepository } from '../../../models/github-repository'
-import { Account } from '../../../models/account'
+import { assertNever } from '../../../lib/fatal-error'
+import { enableTestMenuItems } from '../../../lib/feature-flag'
+import { generateDevReleaseSummary } from '../../../lib/release-notes'
 import { ShellError } from '../../../lib/shells/error'
+import { TestMenuEvent } from '../../../main-process/menu'
+import { Account } from '../../../models/account'
+import { Banner, BannerType } from '../../../models/banner'
+import { CloningRepository } from '../../../models/cloning-repository'
+import { DiffSelection, DiffSelectionType } from '../../../models/diff'
+import { GitHubRepository } from '../../../models/github-repository'
+import { PopupType } from '../../../models/popup'
+import { ReleaseNote } from '../../../models/release-notes'
+import {
+    isRepositoryWithGitHubRepository,
+    Repository,
+} from '../../../models/repository'
 import { RetryActionType } from '../../../models/retry-actions'
 import {
-  AppFileStatusKind,
-  WorkingDirectoryFileChange,
+    AppFileStatusKind,
+    WorkingDirectoryFileChange,
 } from '../../../models/status'
-import { DiffSelection, DiffSelectionType } from '../../../models/diff'
+import { Dispatcher } from '../../dispatcher'
+import { getVersion } from '../app-proxy'
+import { updateStore } from '../update-store'
 
 export function showTestUI(
   name: TestMenuEvent,
@@ -336,7 +336,7 @@ export function showTestUI(
   function showTestNoExternalEditor() {
     dispatcher.postError(
       new ExternalEditorError(
-        `No suitable editors installed for GitHub Desktop to launch. Install ${suggestedExternalEditor.name} for your platform and restart GitHub Desktop to try again.`,
+        `No suitable editors installed for Git Desktop to launch. Install ${suggestedExternalEditor.name} for your platform and restart Git Desktop to try again.`,
         { suggestDefaultEditor: true }
       )
     )

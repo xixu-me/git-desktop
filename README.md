@@ -1,6 +1,6 @@
-# [GitHub Desktop](https://desktop.github.com)
+# [Git Desktop](https://desktop.github.com)
 
-[GitHub Desktop](https://desktop.github.com/) is an open-source [Electron](https://www.electronjs.org/)-based
+[Git Desktop](https://desktop.github.com/) is an open-source [Electron](https://www.electronjs.org/)-based
 GitHub app. It is written in [TypeScript](https://www.typescriptlang.org) and
 uses [React](https://reactjs.org/).
 
@@ -12,7 +12,7 @@ uses [React](https://reactjs.org/).
   <img
     width="1072"
     src="https://user-images.githubusercontent.com/634063/202742985-bb3b3b94-8aca-404a-8d8a-fd6a6f030672.png"
-    alt="A screenshot of the GitHub Desktop application showing changes being viewed and committed with two attributed co-authors"
+    alt="A screenshot of the Git Desktop application showing changes being viewed and committed with two attributed co-authors"
   />
 </picture>
 
@@ -20,46 +20,48 @@ uses [React](https://reactjs.org/).
 
 Download the official installer for your operating system:
 
- - [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin)
- - [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64)
- - [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32)
- - [Windows machine-wide install](https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi)
+- [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin)
+- [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64)
+- [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32)
+- [Windows machine-wide install](https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi)
 
-Linux is not officially supported; however, you can find installers created for Linux from a fork of GitHub Desktop in the [Community Releases](https://github.com/desktop/desktop#community-releases) section.
+Linux is not officially supported; however, you can find installers created for Linux from a fork of Git Desktop in the [Community Releases](https://github.com/desktop/desktop#community-releases) section.
 
 ### Beta Channel
 
 Want to test out new features and get fixes before everyone else? Install the
 beta channel to get access to early builds of Desktop:
 
- - [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin?env=beta)
- - [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64?env=beta)
- - [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32?env=beta)
- - [Windows (ARM64)](https://central.github.com/deployments/desktop/desktop/latest/win32-arm64?env=beta)
+- [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin?env=beta)
+- [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64?env=beta)
+- [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32?env=beta)
+- [Windows (ARM64)](https://central.github.com/deployments/desktop/desktop/latest/win32-arm64?env=beta)
 
 The release notes for the latest beta versions are available [here](https://desktop.github.com/release-notes/?env=beta).
 
 ### Past Releases
-You can find past releases at https://desktop.githubusercontent.com. After installation of a past version, the auto update functionality will attempt to download the latest version. 
+
+You can find past releases at <https://desktop.githubusercontent.com>. After installation of a past version, the auto update functionality will attempt to download the latest version.
 
 ### Community Releases
 
 There are several community-supported package managers that can be used to
-install GitHub Desktop:
- - Windows users can install using [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) `c:\> winget install github-desktop` or [Chocolatey](https://chocolatey.org/) `c:\> choco install github-desktop`
- - macOS users can install using [Homebrew](https://brew.sh/) package manager:
+install Git Desktop:
+
+- Windows users can install using [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) `c:\> winget install github-desktop` or [Chocolatey](https://chocolatey.org/) `c:\> choco install github-desktop`
+- macOS users can install using [Homebrew](https://brew.sh/) package manager:
       `$ brew install --cask github`
 
 Installers for various Linux distributions can be found on the
 [`shiftkey/desktop`](https://github.com/shiftkey/desktop) fork.
 
-## Is GitHub Desktop right for me? What are the primary areas of focus?
+## Is Git Desktop right for me? What are the primary areas of focus?
 
-[This document](https://github.com/desktop/desktop/blob/development/docs/process/what-is-desktop.md) describes the focus of GitHub Desktop and who the product is most useful for.
+[This document](https://github.com/desktop/desktop/blob/development/docs/process/what-is-desktop.md) describes the focus of Git Desktop and who the product is most useful for.
 
-## I have a problem with GitHub Desktop
+## I have a problem with Git Desktop
 
-Note: The [GitHub Desktop Code of Conduct](https://github.com/desktop/desktop/blob/development/CODE_OF_CONDUCT.md) applies in all interactions relating to the GitHub Desktop project.
+Note: The [Git Desktop Code of Conduct](https://github.com/desktop/desktop/blob/development/CODE_OF_CONDUCT.md) applies in all interactions relating to the Git Desktop project.
 
 First, please search the [open issues](https://github.com/desktop/desktop/issues?q=is%3Aopen)
 and [closed issues](https://github.com/desktop/desktop/issues?q=is%3Aclosed)
@@ -74,9 +76,9 @@ further.
 
 ## The issue I reported isn't fixed yet. What can I do?
 
-If nobody has responded to your issue in a few days, you're welcome to respond to it with a friendly ping in the issue. Please do not respond more than a second time if nobody has responded. The GitHub Desktop maintainers are constrained in time and resources, and diagnosing individual configurations can be difficult and time consuming. While we'll try to at least get you pointed in the right direction, we can't guarantee we'll be able to dig too deeply into any one person's issue.
+If nobody has responded to your issue in a few days, you're welcome to respond to it with a friendly ping in the issue. Please do not respond more than a second time if nobody has responded. The Git Desktop maintainers are constrained in time and resources, and diagnosing individual configurations can be difficult and time consuming. While we'll try to at least get you pointed in the right direction, we can't guarantee we'll be able to dig too deeply into any one person's issue.
 
-## How can I contribute to GitHub Desktop?
+## How can I contribute to Git Desktop?
 
 The [CONTRIBUTING.md](./.github/CONTRIBUTING.md) document will help you get setup and
 familiar with the source. The [documentation](docs/) folder also contains more
@@ -91,9 +93,9 @@ To setup your development environment for building Desktop, check out: [`setup.m
 ## More Resources
 
 See [desktop.github.com](https://desktop.github.com) for more product-oriented
-information about GitHub Desktop.
+information about Git Desktop.
 
-See our [getting started documentation](https://docs.github.com/en/desktop/overview/getting-started-with-github-desktop) for more information on how to set up, authenticate, and configure GitHub Desktop.
+See our [getting started documentation](https://docs.github.com/en/desktop/overview/getting-started-with-github-desktop) for more information on how to set up, authenticate, and configure Git Desktop.
 
 ## License
 

@@ -1,4 +1,4 @@
-# GitHub Desktop Engineering Values
+# Git Desktop Engineering Values
 
 There's value in defining what we as shepherds of this project believe are important traits and practices. As we grow and welcome new members into our team it's beneficial to have a sense of what guided us towards the product being implemented the way it has been.
 
@@ -28,7 +28,7 @@ We [write our own type definitions](https://github.com/desktop/desktop/blob/eee9
 
 ### Immutability is good
 
-By choosing to keep as much of our state as possible in immutable data structures we can be explicit about when and where we update it and have confidence that it's not going to change from underneath us. The last part is especially important in an application such as GitHub Desktop which has lots of state. The best way we've found so far to maintain our sanity is to be explicit about how that state flows through the app and when it's updated and immutability is one tool to help us stay on the right track.
+By choosing to keep as much of our state as possible in immutable data structures we can be explicit about when and where we update it and have confidence that it's not going to change from underneath us. The last part is especially important in an application such as Git Desktop which has lots of state. The best way we've found so far to maintain our sanity is to be explicit about how that state flows through the app and when it's updated and immutability is one tool to help us stay on the right track.
 
 #### Examples
 

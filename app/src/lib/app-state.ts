@@ -1,56 +1,56 @@
 import { Account } from '../models/account'
-import { CommitIdentity } from '../models/commit-identity'
-import { IDiff, ImageDiffType } from '../models/diff'
-import { Repository, ILocalRepositoryState } from '../models/repository'
-import { Branch, IAheadBehind } from '../models/branch'
-import { Tip } from '../models/tip'
-import { Commit } from '../models/commit'
-import { CommittedFileChange, WorkingDirectoryStatus } from '../models/status'
-import { CloningRepository } from '../models/cloning-repository'
 import { IMenu } from '../models/app-menu'
-import { IRemote } from '../models/remote'
-import { CloneRepositoryTab } from '../models/clone-repository-tab'
-import { BranchesTab } from '../models/branches-tab'
-import {
-  PullRequest,
-  PullRequestSuggestedNextAction,
-} from '../models/pull-request'
 import { Author } from '../models/author'
-import { MergeTreeResult } from '../models/merge'
+import { Branch, IAheadBehind } from '../models/branch'
+import { BranchesTab } from '../models/branches-tab'
+import { CloneRepositoryTab } from '../models/clone-repository-tab'
+import { CloningRepository } from '../models/cloning-repository'
+import { Commit } from '../models/commit'
+import { CommitIdentity } from '../models/commit-identity'
 import { ICommitMessage } from '../models/commit-message'
+import { IDiff, ImageDiffType } from '../models/diff'
+import { MergeTreeResult } from '../models/merge'
 import {
-  IRevertProgress,
-  Progress,
-  ICheckoutProgress,
-  ICloneProgress,
-  IMultiCommitOperationProgress,
+    ICheckoutProgress,
+    ICloneProgress,
+    IMultiCommitOperationProgress,
+    IRevertProgress,
+    Progress,
 } from '../models/progress'
+import {
+    PullRequest,
+    PullRequestSuggestedNextAction,
+} from '../models/pull-request'
+import { IRemote } from '../models/remote'
+import { ILocalRepositoryState, Repository } from '../models/repository'
+import { CommittedFileChange, WorkingDirectoryStatus } from '../models/status'
+import { Tip } from '../models/tip'
 
 import { SignInState } from './stores/sign-in-store'
 
-import { WindowState } from './window-state'
 import { Shell } from './shells'
+import { WindowState } from './window-state'
 
-import { ApplicableTheme, ApplicationTheme } from '../ui/lib/application-theme'
-import { IAccountRepositories } from './stores/api-repositories-store'
-import { ManualConflictResolution } from '../models/manual-conflict-resolution'
 import { Banner } from '../models/banner'
+import { DragElement } from '../models/drag-drop'
+import { ILastThankYou } from '../models/last-thank-you'
+import { ManualConflictResolution } from '../models/manual-conflict-resolution'
+import {
+    MultiCommitOperationDetail,
+    MultiCommitOperationStep,
+} from '../models/multi-commit-operation'
+import { Popup } from '../models/popup'
+import { RepoRulesInfo } from '../models/repo-rules'
 import { IStashEntry } from '../models/stash-entry'
 import { TutorialStep } from '../models/tutorial-step'
 import { UncommittedChangesStrategy } from '../models/uncommitted-changes-strategy'
-import { DragElement } from '../models/drag-drop'
-import { ILastThankYou } from '../models/last-thank-you'
-import {
-  MultiCommitOperationDetail,
-  MultiCommitOperationStep,
-} from '../models/multi-commit-operation'
-import { IChangesetData } from './git'
-import { Popup } from '../models/popup'
-import { RepoRulesInfo } from '../models/repo-rules'
+import { ApplicableTheme, ApplicationTheme } from '../ui/lib/application-theme'
+import { IUpdateState } from '../ui/lib/update-store'
 import { IAPIRepoRuleset } from './api'
 import { ICustomIntegration } from './custom-integration'
 import { Emoji } from './emoji'
-import { IUpdateState } from '../ui/lib/update-store'
+import { IChangesetData } from './git'
+import { IAccountRepositories } from './stores/api-repositories-store'
 
 export enum SelectionType {
   Repository,
@@ -591,9 +591,9 @@ export interface IBranchesState {
   /**
    * The default branch for a given repository. Historically it's been
    * common to use 'master' as the default branch but as of September 2020
-   * GitHub Desktop and GitHub.com default to using 'main' as the default branch.
+   * Git Desktop and GitHub.com default to using 'main' as the default branch.
    *
-   * GitHub Desktop users are able to configure the `init.defaultBranch` Git
+   * Git Desktop users are able to configure the `init.defaultBranch` Git
    * setting in preferences.
    *
    * GitHub.com users are able to change their default branch in the web UI.
@@ -750,7 +750,7 @@ export interface IChangesState {
   readonly conflictState: ConflictState | null
 
   /**
-   * The latest GitHub Desktop stash entry for the current branch, or `null`
+   * The latest Git Desktop stash entry for the current branch, or `null`
    * if no stash exists for the current branch.
    */
   readonly stashEntry: IStashEntry | null
@@ -882,9 +882,9 @@ export interface ICompareState {
   /**
    * The default branch for a given repository. Historically it's been
    * common to use 'master' as the default branch but as of September 2020
-   * GitHub Desktop and GitHub.com default to using 'main' as the default branch.
+   * Git Desktop and GitHub.com default to using 'main' as the default branch.
    *
-   * GitHub Desktop users are able to configure the `init.defaultBranch` Git
+   * Git Desktop users are able to configure the `init.defaultBranch` Git
    * setting in preferences.
    *
    * GitHub.com users are able to change their default branch in the web UI.

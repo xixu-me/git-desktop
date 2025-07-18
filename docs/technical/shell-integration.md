@@ -1,15 +1,15 @@
 # "Open Shell" integration
 
-GitHub Desktop supports launching an available shell found on the user's
+Git Desktop supports launching an available shell found on the user's
 machine, to work with Git repositories outside of Desktop.
 
-### My favourite shell XYZ isn't supported!
+### My favourite shell XYZ isn't supported
 
 This is the checklist of things that it needs to support:
 
- - Desktop can check it exists on the user's machine
- - Desktop is able to launch it using the operating system's APIs
- - It has a stable interface (command line arguments) that doesn't change
+- Desktop can check it exists on the user's machine
+- Desktop is able to launch it using the operating system's APIs
+- It has a stable interface (command line arguments) that doesn't change
    between updates
 
 If you think your shell satisfies all these requirements please read on to
@@ -23,16 +23,16 @@ The source for the Windows shell integration is found in [`app/src/lib/shells/wi
 
 These shells are currently supported:
 
- - Command Prompt (cmd)
- - PowerShell
- - [PowerShell Core](https://github.com/powershell/powershell/)
- - [Hyper](https://hyper.sh/)
- - Git Bash (from [Git for Windows](https://git-for-windows.github.io/))
- - [Cygwin](https://www.cygwin.com/)
- - [WSL](https://docs.microsoft.com/en-us/windows/wsl/about) (beta)
- - [Windows Terminal](https://github.com/microsoft/terminal)
- - [Alacritty](https://github.com/alacritty/alacritty)
- - [Fluent Terminal](https://github.com/felixse/FluentTerminal)
+- Command Prompt (cmd)
+- PowerShell
+- [PowerShell Core](https://github.com/powershell/powershell/)
+- [Hyper](https://hyper.sh/)
+- Git Bash (from [Git for Windows](https://git-for-windows.github.io/))
+- [Cygwin](https://www.cygwin.com/)
+- [WSL](https://docs.microsoft.com/en-us/windows/wsl/about) (beta)
+- [Windows Terminal](https://github.com/microsoft/terminal)
+- [Alacritty](https://github.com/alacritty/alacritty)
+- [Fluent Terminal](https://github.com/felixse/FluentTerminal)
 
 These are defined in an enum at the top of the file:
 
@@ -106,9 +106,9 @@ async function findGitBash(): Promise<string | null> {
 
 This approximately reads as:
 
- - check if Git for Windows has been installed, using the registry
- - if it is, check the installation path exists
- - return the path to `git-bash.exe` within that directory
+- check if Git for Windows has been installed, using the registry
+- if it is, check the installation path exists
+- return the path to `git-bash.exe` within that directory
 
 ### Step 2: Parse the shell
 
@@ -143,15 +143,15 @@ The source for the macOS shell integration is found in [`app/src/lib/shells/darw
 
 These shells are currently supported:
 
- - Terminal
- - [Hyper](https://hyper.sh/)
- - [iTerm2](https://www.iterm2.com/)
- - [PowerShell Core](https://github.com/powershell/powershell/)
- - [Kitty](https://sw.kovidgoyal.net/kitty/)
- - [Alacritty](https://github.com/alacritty/alacritty)
- - [Tabby](https://tabby.sh/)
- - [WezTerm](https://github.com/wez/wezterm)
- - [Ghostty](https://ghostty.org/)
+- Terminal
+- [Hyper](https://hyper.sh/)
+- [iTerm2](https://www.iterm2.com/)
+- [PowerShell Core](https://github.com/powershell/powershell/)
+- [Kitty](https://sw.kovidgoyal.net/kitty/)
+- [Alacritty](https://github.com/alacritty/alacritty)
+- [Tabby](https://tabby.sh/)
+- [WezTerm](https://github.com/wez/wezterm)
+- [Ghostty](https://ghostty.org/)
 
 These are defined in an enum at the top of the file:
 
@@ -234,15 +234,15 @@ The source for the Linux shell integration is found in [`app/src/lib/shells/linu
 
 These shells are currently supported:
 
- - [GNOME Terminal](https://help.gnome.org/users/gnome-terminal/stable/)
- - [MATE Terminal](https://github.com/mate-desktop/mate-terminal)
- - [Tilix](https://github.com/gnunn1/tilix)
- - [Terminator](https://gnometerminator.blogspot.com)
- - [Rxvt Unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
- - [Konsole](https://konsole.kde.org/)
- - [XTerm](http://invisible-island.net/xterm/)
- - [Terminology](https://www.enlightenment.org/docs/apps/terminology.md)
- - [Ghostty](https://ghostty.org/)
+- [GNOME Terminal](https://help.gnome.org/users/gnome-terminal/stable/)
+- [MATE Terminal](https://github.com/mate-desktop/mate-terminal)
+- [Tilix](https://github.com/gnunn1/tilix)
+- [Terminator](https://gnometerminator.blogspot.com)
+- [Rxvt Unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
+- [Konsole](https://konsole.kde.org/)
+- [XTerm](http://invisible-island.net/xterm/)
+- [Terminology](https://www.enlightenment.org/docs/apps/terminology.md)
+- [Ghostty](https://ghostty.org/)
 
 These are defined in an enum at the top of the file:
 

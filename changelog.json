@@ -1163,7 +1163,7 @@
       "[Fixed] Stick to one tooltip at a time in the repository list  - #15583",
       "[Fixed] Notifications of Pull Request reviews are displayed for forked repositories - #15580",
       "[Fixed] Notifications when checks of a Pull Request fail are displayed for forked repositories - #15422",
-      "[Fixed] Prevent closing GitHub Desktop while it's being updated - #7055, #5197",
+      "[Fixed] Prevent closing Git Desktop while it's being updated - #7055, #5197",
       "[Fixed] Notifications are shown only when they are relevant to the current repository - #15487",
       "[Fixed] The repository change indicator is visible if repository list item is selected and in focus - #7651. Thanks @angusdev!",
       "[Fixed] Tooltips are positioned properly if mouse is not moved - #13636. Thanks @angusdev!",
@@ -1217,7 +1217,7 @@
       "[Added] Enable menu option to Force-push branches that have diverged - #15211",
       "[Added] Add menu option to Fetch the current repository at any time - #7805",
       "[Added] Support VSCodium as an external editor - #15348. Thanks @daniel-ciaglia!",
-      "[Fixed] Prevent closing the GitHub Desktop while it's being updated - #7055, #5197",
+      "[Fixed] Prevent closing the Git Desktop while it's being updated - #7055, #5197",
       "[Fixed] Notifications are shown only when they are relevant to the current repository - #15487",
       "[Fixed] Disable reorder, squashing, cherry-picking while an action of this type is in progress. - #15468",
       "[Fixed] Fix repository change indicator not visible if selected and in focus - #7651. Thanks @angusdev!",
@@ -1343,7 +1343,7 @@
     ],
     "3.0.2": [
       "[Fixed] Fix crash launching the app on macOS High Sierra - #14712",
-      "[Fixed] Terminate all GitHub Desktop processes on Windows when the app is closed - #14733. Thanks @tsvetilian-ty!"
+      "[Fixed] Terminate all Git Desktop processes on Windows when the app is closed - #14733. Thanks @tsvetilian-ty!"
     ],
     "3.0.2-beta4": [
       "[Improved] Add support for SSH password prompts when accessing repositories - #14676",
@@ -1351,7 +1351,7 @@
       "[Fixed] Fix issue with some repositories not being properly persisted - #14748"
     ],
     "3.0.2-beta3": [
-      "[Fixed] Terminate all GitHub Desktop processes on Windows when the app is closed - #14733. Thanks @tsvetilian-ty!"
+      "[Fixed] Terminate all Git Desktop processes on Windows when the app is closed - #14733. Thanks @tsvetilian-ty!"
     ],
     "3.0.2-beta2": [
       "[Fixed] Fix crash launching the app on macOS High Sierra - #14712"
@@ -1367,7 +1367,7 @@
       "[Fixed] Fix opening files with Android Studio - #14519",
       "[Fixed] Checks popover summary correctly reflects a successful conclusion when skipped or neutral checks are present - #14508",
       "[Fixed] Long lists of conflicted files to commit or files to discard can be scrolled - #14468",
-      "[Fixed] Fix random crashes when external apps probe GitHub Desktop trampoline port - #14471",
+      "[Fixed] Fix random crashes when external apps probe Git Desktop trampoline port - #14471",
       "[Improved] Display a banner when we have a pretext release note to highlight the new feature - #14620",
       "[Improved] Enable interactions with notifications from previous app sessions - #14496",
       "[Improved] Improve feedback about user permission to display notifications - #14496",
@@ -1385,7 +1385,7 @@
       "[Fixed] Fix opening files with Android Studio - #14519",
       "[Fixed] Checks popover summary correctly reflects a successful conclusion when skipped or neutral checks are present - #14508",
       "[Fixed] Long lists of conflicted files to commit or files to discard can be scrolled - #14468",
-      "[Fixed] Fix random crashes when external apps probe GitHub Desktop trampoline port - #14471",
+      "[Fixed] Fix random crashes when external apps probe Git Desktop trampoline port - #14471",
       "[Improved] Display a banner when we have a pretext release note to highlight the new feature - #14620",
       "[Improved] Enable interactions with notifications from previous app sessions - #14496",
       "[Improved] Improve feedback about user permission to display notifications - #14496",
@@ -1976,7 +1976,7 @@
       "[Fixed] Allow users to modify git config on a per repository basis - #9449. Thanks @say25!",
       "[Fixed] The app is not maximized on macOS every time the user clicks on the app's icon in the dock - #11590",
       "[Fixed] Always respect the default branch name chosen by the user - #11447",
-      "[Fixed] Notepad++ does not close when GitHub Desktop closes - #11518",
+      "[Fixed] Notepad++ does not close when Git Desktop closes - #11518",
       "[Improved] Update app icon for Windows - #11541",
       "[Improved] Suggest emails from GitHub accounts and warn about misattributed commits in the commit message area - #11591",
       "[Improved] Suggest emails from GitHub accounts and warn about misattributed commits in onboarding and preferences - #11561 #11566",
@@ -1992,7 +1992,7 @@
     "2.6.4-beta1": [
       "[Added] Add branch context menu with rename and delete to branch dropdown list - #5803 #10432",
       "[Fixed] Always respect the default branch name chosen by the user - #11447",
-      "[Fixed] Notepad++ is not closed anymore when GitHub Desktop closes - #11518",
+      "[Fixed] Notepad++ is not closed anymore when Git Desktop closes - #11518",
       "[Improved] Suggest emails from GitHub accounts and warn about misattributed commits in onboarding and Preferences - #11561 #11566",
       "[Improved] Update app icon for Windows - #11541",
       "[Improved] Automatic branch fast-forwarding is now faster - #11463"
@@ -2270,7 +2270,7 @@
     "2.5.1": [
       "[Added] Provide a setting to more easily work with maintained forks - #9679",
       "[Added] Support deleting tags that have not been pushed - #9796",
-      "[Fixed] Checkout correct PR branch when using \"Open in GitHub Desktop\" from github.com - #9873",
+      "[Fixed] Checkout correct PR branch when using \"Open in Git Desktop\" from github.com - #9873",
       "[Fixed] Support pressing \"Enter\" key to submit in Clone Repository dialog - #5234 #8804. Thanks @ruggi99!",
       "[Fixed] Avoid errors in restoring a stash when a branch is also named \"stash\" - #9844",
       "[Fixed] Avoid background network operations to calculate unpushed tags - #9793 #9828",
@@ -2283,7 +2283,7 @@
     "2.5.1-beta2": [
       "[Added] Provide a setting to more easily work with maintained forks - #9679",
       "[Added] Offer ability to delete tags that haven't been pushed - #9796",
-      "[Fixed] Checkout PR branch when using \"Open in GitHub Desktop\" from github.com - #9873",
+      "[Fixed] Checkout PR branch when using \"Open in Git Desktop\" from github.com - #9873",
       "[Fixed] Handle Enter key presses in Clone Repository Dialog - #5234 #8804. Thanks @ruggi99!",
       "[Fixed] Avoid errors in restoring a stash when a branch is also named \"stash\" - #9844",
       "[Fixed] Avoid performing background network operations to calculate unpushed tags - #9828",
@@ -2427,7 +2427,7 @@
       "[Improved] Allow \"Open in Desktop\" button from pull requests on GitHub to open in a local fork in Desktop - #9012"
     ],
     "2.3.2-beta3": [
-      "[Fixed] Checkout correct PR branch from “open this in GitHub Desktop” link on GitHub.com pull request page - #9108",
+      "[Fixed] Checkout correct PR branch from “open this in Git Desktop” link on GitHub.com pull request page - #9108",
       "[Fixed] Ensure branch protection warning works when branch names contain special characters - #9086",
       "[Fixed] Fix graphic indicating files selected in Dark Mode - #8716. Thanks @say25!",
       "[Fixed] Support keyboard scrolling in diffs - #9074"
@@ -2460,7 +2460,7 @@
       "[Fixed] Show branch protection warning after checking out protected branches outside Desktop - #8790",
       "[Improved] Only show branch protection warning when changed files are present - #8795",
       "[Improved] Show an error when editing a Git configuration file fails due to existing lock file - #8956",
-      "[Improved] Update design and layout for GitHub Desktop preferences - #8774"
+      "[Improved] Update design and layout for Git Desktop preferences - #8774"
     ],
     "2.3.0-beta2": [
       "[Fixed] Remove stray characters from Git progress indicators - #8962",
@@ -2540,7 +2540,7 @@
     "2.2.2": [
       "[Added] Onboarding tutorial animations help guide users to the next action - #8487",
       "[Added] Prompt users to re-authenticate if they are unable to push changes to a workflow file - #8357",
-      "[Improved] Starting the tutorial is more prominent when getting started with GitHub Desktop - #8441",
+      "[Improved] Starting the tutorial is more prominent when getting started with Git Desktop - #8441",
       "[Improved] Use a different editor if previously selected editor cannot be found - #8386"
     ],
     "2.2.2-beta3": [
@@ -2548,7 +2548,7 @@
     ],
     "2.2.2-beta2": [
       "[Improved] Use a different editor if previously selected editor cannot be found - #8386",
-      "[Improved] Starting the tutorial is more prominent when getting started with GitHub Desktop - #8441"
+      "[Improved] Starting the tutorial is more prominent when getting started with Git Desktop - #8441"
     ],
     "2.2.2-beta1": [
       "[Added] Prompt users to re-authenticate if they are unable to push changes to a workflow file - #8357"
@@ -2755,7 +2755,7 @@
       "[Fixed] Prevent console errors due to underlying component unmounts - #6970",
       "[Fixed] Menus disabled by activity in inactive repositories - #6313",
       "[Fixed] Race condition with Git remote lookup may cause push to incorrect remote - #6986",
-      "[Fixed] Restore GitHub Desktop to main screen if external monitor removed - #7418 #2107. Thanks @say25!",
+      "[Fixed] Restore Git Desktop to main screen if external monitor removed - #7418 #2107. Thanks @say25!",
       "[Fixed] Tab Bar focus ring outlines clip into other elements - #5802. Thanks @Daniel-McCarthy!",
       "[Improved] \"Automatically Switch Theme\" on macOS checks theme on launch - #7116. Thanks @say25!",
       "[Improved] \"Add\" button in repository list should always be visible - #6646",
@@ -2833,7 +2833,7 @@
     ],
     "1.7.0-beta3": [
       "[New] Users can choose to bring changes with them to a new branch or stash them on the current branch when switching branches - #6107",
-      "[Added] GitHub Desktop keyboard shortcuts available in Help menu - #7184",
+      "[Added] Git Desktop keyboard shortcuts available in Help menu - #7184",
       "[Added] .resx file extension highlighting support - #7235. Thanks @say25!",
       "[Fixed] Attempting to revert commits not on current branch results in an error - #6300. Thanks @msftrncs!",
       "[Improved] Warn users before rebase if operation will require a force push after rebase complete - #6963",
@@ -3210,7 +3210,7 @@
     ],
     "1.4.1-beta0": [],
     "1.4.0": [
-      "[New] When an update is available for GitHub Desktop, release notes can be viewed in Desktop - #2774",
+      "[New] When an update is available for Git Desktop, release notes can be viewed in Desktop - #2774",
       "[New] Detect merge conflicts when comparing branches - #4588",
       "[Fixed] Avoid double checkout warning when opening a pull request in Desktop - #5375",
       "[Fixed] Error when publishing repository is now associated with the right tab - #5422. Thanks @Daniel-McCarthy!",
@@ -3222,7 +3222,7 @@
       "[Improved] Avoid multiple lookups of default remote - #5399"
     ],
     "1.4.0-beta3": [
-      "[New] When an update is available for GitHub Desktop, the release notes can be viewed in Desktop - #2774",
+      "[New] When an update is available for Git Desktop, the release notes can be viewed in Desktop - #2774",
       "[New] Detect merge conflicts when comparing branches - #4588",
       "[Fixed] Avoid double checkout warning when opening a pull request in Desktop - #5375",
       "[Fixed] Error when publishing repository is now associated with the right tab - #5422. Thanks @Daniel-McCarthy!",
@@ -3233,7 +3233,7 @@
       "[Improved] Skip optional locks when checking status of repository - #5376"
     ],
     "1.4.0-beta2": [
-      "[New] When an update is available for GitHub Desktop, the release notes can be viewed in Desktop - #2774",
+      "[New] When an update is available for Git Desktop, the release notes can be viewed in Desktop - #2774",
       "[New] Detect merge conflicts when comparing branches - #4588",
       "[Fixed] Avoid double checkout warning when opening a pull request in Desktop - #5375",
       "[Fixed] Error when publishing repository is now associated with the right tab - #5422. Thanks @Daniel-McCarthy!",
@@ -3244,7 +3244,7 @@
       "[Improved] Skip optional locks when checking status of repository - #5376"
     ],
     "1.4.0-beta1": [
-      "[New] When an update is available for GitHub Desktop, the release notes can be viewed in Desktop - #2774",
+      "[New] When an update is available for Git Desktop, the release notes can be viewed in Desktop - #2774",
       "[New] Detect merge conflicts when comparing branches - #4588",
       "[Fixed] Avoid double checkout warning when opening a pull request in Desktop - #5375",
       "[Fixed] Error when publishing repository is now associated with the right tab - #5422. Thanks @Daniel-McCarthy!",
@@ -4565,7 +4565,7 @@
       "[New] Commit summary and description fields now display issues and mentions as links for GitHub repositories - #941",
       "[New] Show placeholder when the repository cannot be found on disk - #946",
       "[New] New Repository actions moved out of popover and into new menu - #1018",
-      "[Fixed] Display a helpful error message when an unverified user signs into GitHub Desktop - #1010",
+      "[Fixed] Display a helpful error message when an unverified user signs into Git Desktop - #1010",
       "[Fixed] Fix kerning issue when access keys displayed - #1033",
       "[Fixed] Protected branches show a descriptive error when the push is rejected - #1036",
       "[Fixed] 'Open in shell' on Windows opens to repository location - #1037"

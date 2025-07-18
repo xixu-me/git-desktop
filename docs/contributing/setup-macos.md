@@ -2,24 +2,24 @@
 
 You will need to install these tools on your machine:
 
- - Node.js
- - Yarn
- - Python 3
- - Xcode and Xcode Command Line Tools (Xcode -> Preferences -> Downloads)
+- Node.js
+- Yarn
+- Python 3
+- Xcode and Xcode Command Line Tools (Xcode -> Preferences -> Downloads)
 
 ## Node.js
 
 Let's see if you have the right version of `node` installed. Open a terminal and run this command inside the Desktop source directory:
 
 ```shellsession
-$ node -v
+node -v
 ```
 
 If you see an error about being unable to find `node`, that probably means you don't have any Node tools installed. You can download Node from the [Node.js website](https://nodejs.org/), install the package, and restart your shell.
 
-You can verify that your installed version matches the one currently used by GitHub Desktop by looking at [our .node-version file](https://github.com/desktop/desktop/blob/development/.node-version). Usually the same major version is enough but if you're running into problems building Desktop please try installing that exact version.
+You can verify that your installed version matches the one currently used by Git Desktop by looking at [our .node-version file](https://github.com/desktop/desktop/blob/development/.node-version). Usually the same major version is enough but if you're running into problems building Desktop please try installing that exact version.
 
-### I need to use different versions of Node.js in different projects!
+### I need to use different versions of Node.js in different projects
 
 We currently support these Node version managers: `nvm` and `asdf-nodejs`.
 
@@ -30,19 +30,19 @@ We currently support these Node version managers: `nvm` and `asdf-nodejs`.
 2. Within the Desktop source directory, install version of Node.js it requires:
 
 ```shellsession
-$ nvm install
+nvm install
 ```
 
 3. Ensure you are running the right version:
 
 ```shellsession
-$ nvm use
+nvm use
 ```
 
 4. Verify you have the right version by running `node -v` again:
 
 ```shellsession
-$ node -v
+node -v
 ```
 
 If you see any version number, you're good to go.
@@ -54,7 +54,7 @@ If you see any version number, you're good to go.
 ## Yarn
 
 Follow [this guide](https://yarnpkg.com/en/docs/install#mac-stable) to install
-a system-level `yarn`. GitHub Desktop uses a local version of `yarn`, but it
+a system-level `yarn`. Git Desktop uses a local version of `yarn`, but it
 needs a version on your `PATH` to bootstrap itself.
 
 This is important because `yarn` uses lock files to pin dependencies. If you
@@ -70,12 +70,12 @@ relevant to Desktop.
 macOS comes with Python pre-installed, and it happens to be the right version, so you're probably fine! But let's be sure. Open a terminal and run this command inside the Desktop source directory:
 
 ```shellsession
-$ python3 --version
+python3 --version
 ```
 
 If you see the output `Python 3.9.x`, you're good to go!
 
-### I need to use different versions of Python in different projects!
+### I need to use different versions of Python in different projects
 
 For this, we recommend [pyenv](https://github.com/pyenv/pyenv). (It's the only game in town.)
 
@@ -90,7 +90,7 @@ pyenv install
 3. Verify you have the right version by running `python3 --version` again:
 
 ```shellsession
-$ python3 --version
+python3 --version
 ```
 
 If you see the output `Python 3.9.x`, you're good to go!

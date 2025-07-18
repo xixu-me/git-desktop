@@ -1,4 +1,4 @@
-import { Emitter, Disposable } from 'event-kit'
+import { Disposable, Emitter } from 'event-kit'
 import * as ipcRenderer from '../../lib/ipc-renderer'
 
 /**
@@ -28,7 +28,7 @@ export interface IUiActivityMonitor {
 export type UiActivityKind = 'pointer' | 'keyboard' | 'menu'
 
 /**
- * UI Activity monitor for user interactions within GitHub Desktop.
+ * UI Activity monitor for user interactions within Git Desktop.
  */
 export class UiActivityMonitor implements IUiActivityMonitor {
   private readonly emitter = new Emitter()

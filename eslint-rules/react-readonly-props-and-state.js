@@ -3,7 +3,7 @@
 /**
  * react-readonly-props-and-state
  *
- * This custom eslint rule is highly specific to GitHub Desktop and attempts
+ * This custom eslint rule is highly specific to Git Desktop and attempts
  * to prevent props and state interfaces from being declared with mutable
  * members.
  *

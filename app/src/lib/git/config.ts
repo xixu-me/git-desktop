@@ -1,6 +1,6 @@
-import { git } from './core'
-import { Repository } from '../../models/repository'
 import { normalize } from 'path'
+import { Repository } from '../../models/repository'
+import { git } from './core'
 
 /**
  * Look up a config value by name in the repository.
@@ -76,7 +76,7 @@ export async function getGlobalBooleanConfigValue(
  * @param path      The path to execute the `git` command in. If null
  *                  we'll use the global configuration (i.e. --global)
  *                  and execute the Git call from the same location that
- *                  GitHub Desktop is installed in.
+ *                  Git Desktop is installed in.
  * @param onlyLocal Whether or not the value to be retrieved should stick to
  *                  the local repository settings (if a path is specified). It
  *                  is false by default. It is equivalent to using the `--local`
@@ -211,7 +211,7 @@ export async function addGlobalConfigValueIfMissing(
  * @param path The path to execute the `git` command in. If null
  *             we'll use the global configuration (i.e. --global)
  *             and execute the Git call from the same location that
- *             GitHub Desktop is installed in.
+ *             Git Desktop is installed in.
  */
 async function setConfigValueInPath(
   name: string,
@@ -261,7 +261,7 @@ export async function removeGlobalConfigValue(
  * @param path The path to execute the `git` command in. If null
  *             we'll use the global configuration (i.e. --global)
  *             and execute the Git call from the same location that
- *             GitHub Desktop is installed in.
+ *             Git Desktop is installed in.
  */
 async function removeConfigValueInPath(
   name: string,

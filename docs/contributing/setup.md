@@ -1,16 +1,16 @@
-#  Development Environment Setup
+# Development Environment Setup
 
 ## Setup
 
 Refer to the specific instructions for each platform:
 
- - [macOS](./setup-macos.md)
- - [Windows](./setup-windows.md)
- - [Linux](./setup-linux.md)
+- [macOS](./setup-macos.md)
+- [Windows](./setup-windows.md)
+- [Linux](./setup-linux.md)
 
 Experimental support for building Desktop is also available for these platforms:
 
- - [ARM64](./building-arm64.md)
+- [ARM64](./building-arm64.md)
 
 ## Verification
 
@@ -29,7 +29,7 @@ Python 3.9.x
 ```
 
 There are also [additional resources](tooling.md) to configure your favorite
-editor to work nicely with the GitHub Desktop repository.
+editor to work nicely with the Git Desktop repository.
 
 ## Building Desktop
 
@@ -37,9 +37,9 @@ First, create a fork of `desktop/desktop` and then clone the repository to your 
 
 The typical workflow to get up running is as follows:
 
-* Run `yarn` to get all required dependencies on your machine.
-* Run `yarn build:dev` to create a development build of the app.
-* Run `yarn start` to launch the application. Changes will be compiled in the
+- Run `yarn` to get all required dependencies on your machine.
+- Run `yarn build:dev` to create a development build of the app.
+- Run `yarn start` to launch the application. Changes will be compiled in the
   background. The app can then be reloaded to see the changes (<kbd>Ctrl/Command+Alt+R</kbd>).
 
 **Optional Tip**: On macOS and Linux, you can use `screen` to avoid filling your terminal with logging output:
@@ -56,7 +56,7 @@ If you've made changes in the `main-process` folder you need to run `yarn
 build:dev` to rebuild the package, and then `yarn start` for these changes to be
 reflected in the running app.
 
-If you are using GitHub Enterprise with your development build of GitHub Desktop, you will need to follow a few extra steps to [authenticate properly](github-enterprise-auth-from-dev-build.md).
+If you are using GitHub Enterprise with your development build of Git Desktop, you will need to follow a few extra steps to [authenticate properly](github-enterprise-auth-from-dev-build.md).
 
 If you're still encountering issues with building, refer to our
 [troubleshooting](troubleshooting.md) guide for more common
@@ -66,7 +66,7 @@ problems.
 
 - `yarn test` - Alias for `yarn test:unit`
 - `yarn test:script` - Runs all script tests
-- `yarn test:eslint` - Runs all eslint tests 
+- `yarn test:eslint` - Runs all eslint tests
 - `yarn test:unit` - Runs all unit tests
   - Add `<file>` argument to only run tests in the specified file
   - Add `<directory>` to search for tests matching our test pattern in the given directory
@@ -89,7 +89,7 @@ should automatically install itself on first start when in development mode.
 
 You're almost there! Here's a couple of things we recommend you read next:
 
- - [Help Wanted](../../.github/CONTRIBUTING.md#help-wanted) - we've marked some
+- [Help Wanted](../../.github/CONTRIBUTING.md#help-wanted) - we've marked some
    tasks in the backlog that are ideal for external contributors
- - [Notes for Contributors](../process/notes-for-contributors.md) - some notes
+- [Notes for Contributors](../process/notes-for-contributors.md) - some notes
    for new contributors getting started

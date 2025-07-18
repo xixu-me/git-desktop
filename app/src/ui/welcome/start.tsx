@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { WelcomeStep } from './welcome'
-import { LinkButton } from '../lib/link-button'
+import { SamplesURL } from '../../lib/stats'
 import { Dispatcher } from '../dispatcher'
+import { BrowserRedirectMessage } from '../lib/authentication-form'
+import { Button } from '../lib/button'
+import { LinkButton } from '../lib/link-button'
+import { Loading } from '../lib/loading'
 import { Octicon } from '../octicons'
 import * as octicons from '../octicons/octicons.generated'
-import { Button } from '../lib/button'
-import { Loading } from '../lib/loading'
-import { BrowserRedirectMessage } from '../lib/authentication-form'
-import { SamplesURL } from '../../lib/stats'
+import { WelcomeStep } from './welcome'
 
 /**
  * The URL to the sign-up page on GitHub.com. Used in conjunction
@@ -28,17 +28,17 @@ export class Start extends React.Component<IStartProps, {}> {
     return (
       <section
         id="start"
-        aria-label="Welcome to GitHub Desktop"
+        aria-label="Welcome to Git Desktop"
         aria-describedby="start-description"
       >
         <div className="start-content">
           <h1 className="welcome-title">
-            Welcome to <span>GitHub Desktop</span>
+            Welcome to <span>Git Desktop</span>
           </h1>
           {!this.props.loadingBrowserAuth ? (
             <>
               <p id="start-description" className="welcome-text">
-                GitHub Desktop is a seamless way to contribute to projects on
+                Git Desktop is a seamless way to contribute to projects on
                 GitHub and GitHub Enterprise. Sign in below to get started with
                 your existing projects.
               </p>
@@ -96,7 +96,7 @@ export class Start extends React.Component<IStartProps, {}> {
             </LinkButton>
           </p>
           <p>
-            GitHub Desktop sends usage metrics to improve the product and inform
+            Git Desktop sends usage metrics to improve the product and inform
             feature decisions.{' '}
             <LinkButton uri={SamplesURL}>
               Learn more about user metrics.

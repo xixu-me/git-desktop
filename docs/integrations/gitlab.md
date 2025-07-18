@@ -1,10 +1,10 @@
-# Authenticating to GitLab with GitHub Desktop
+# Authenticating to GitLab with Git Desktop
 
-GitHub Desktop now provides support for [Git Credential Manager (GCM)](https://gh.io/gcm), which makes the task of authenticating to GitLab repositories easy and secure. This feature can be enabled by going to **File** > **Options** > **Advanced** on Windows, or **GitHub Desktop** > **Preferences** > **Advanced** on macOS, and then selecting the **Use Git Credential Manager** checkbox.
+Git Desktop now provides support for [Git Credential Manager (GCM)](https://gh.io/gcm), which makes the task of authenticating to GitLab repositories easy and secure. This feature can be enabled by going to **File** > **Options** > **Advanced** on Windows, or **Git Desktop** > **Preferences** > **Advanced** on macOS, and then selecting the **Use Git Credential Manager** checkbox.
 
-![screenshot of the GitHub Desktop settings menu with the "Use Git Credential Manager" checkbox outlined](/docs/assets/git-credential-manager.png)
+![screenshot of the Git Desktop settings menu with the "Use Git Credential Manager" checkbox outlined](/docs/assets/git-credential-manager.png)
 
-When GCM is enabled all credentials for GitLab will be handled, and stored, outside of GitHub Desktop. GCM supports browser authentication and will avoid the need to create personal access tokens (PATs). 
+When GCM is enabled all credentials for GitLab will be handled, and stored, outside of Git Desktop. GCM supports browser authentication and will avoid the need to create personal access tokens (PATs).
 
 The prompt to authenticate to your GitLab account using GCM will be shown after you enter the HTTPS clone URL of the GitLab repository by going to **File** > **Clone Repository** > **URL**.
 
@@ -24,20 +24,20 @@ To authenticate against GitLab repositories you will need to create a personal a
 
 3. Under **Add a personal access token** choose a name and set an expiration date for your token.
 
-4. For **Scopes** select `api` to ensure that GitHub Desktop has the correct read/write access to your GitLab repositories.
+4. For **Scopes** select `api` to ensure that Git Desktop has the correct read/write access to your GitLab repositories.
 
 5. Click **Create personal access token** to create a new token, and then copy the token to your clipboard.
 
 ![](https://user-images.githubusercontent.com/721500/54831880-8feaa800-4c91-11e9-801b-40ed2af869a0.png)
 
-## Cloning your GitLab repository in GitHub Desktop
+## Cloning your GitLab repository in Git Desktop
 
- 1. Open GitHub Desktop and go to **File** > **Clone Repository** > **URL**. Enter the Git URL of your GitLab repository. Make sure you enter the correct URL, which should have the following structure:
+ 1. Open Git Desktop and go to **File** > **Clone Repository** > **URL**. Enter the Git URL of your GitLab repository. Make sure you enter the correct URL, which should have the following structure:
 
       `https://gitlab.com/<username>/<repository>`
 
- 2. You will receive an `Authentication Failed` error. Enter your GitLab username and paste in the token you just copied to your clipboard as your password. Click **Save and Retry** to successfully clone the repository to your local machine in GitHub Desktop.
+ 2. You will receive an `Authentication Failed` error. Enter your GitLab username and paste in the token you just copied to your clipboard as your password. Click **Save and Retry** to successfully clone the repository to your local machine in Git Desktop.
 
 ![](https://user-images.githubusercontent.com/721500/54835396-5f5a3c80-4c98-11e9-9306-df234f8f7abc.png)
 
-   - **Note:** Your GitLab credentials will be securely stored on your local machine so you will not need to repeat this process when cloning another repository from GitLab.
+- **Note:** Your GitLab credentials will be securely stored on your local machine so you will not need to repeat this process when cloning another repository from GitLab.

@@ -17,7 +17,7 @@ export class TutorialWelcome extends React.Component {
     return (
       <div id="tutorial-welcome">
         <div className="header">
-          <h1>Welcome to GitHub Desktop</h1>
+          <h1>Welcome to Git Desktop</h1>
           <p>
             Use this tutorial to get comfortable with Git, GitHub, and GitHub
             Desktop.
@@ -43,7 +43,7 @@ export class TutorialWelcome extends React.Component {
           <li>
             <img src={CloudServerImage} alt="Server stack with cloud" />
             <p>
-              <strong>GitHub Desktop</strong> helps you work with GitHub
+              <strong>Git Desktop</strong> helps you work with GitHub
               locally.
             </p>
           </li>

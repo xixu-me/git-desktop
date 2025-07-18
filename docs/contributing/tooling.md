@@ -1,4 +1,4 @@
-# Tooling Support for GitHub Desktop
+# Tooling Support for Git Desktop
 
 ### [Atom](https://atom.io/)
 
@@ -16,13 +16,14 @@ You can install them all at once with:
 ```shellsession
 apm i atom-typescript build-npm build busy-signal linter-tslint linter linter-ui-default intentions
 ```
+
 If atom prompts you to install any additional dependencies for these packages, be sure to say yes.
 
 ### [Visual Studio Code](https://code.visualstudio.com/)
 
 The Desktop repository includes a list of recommended extensions:
 
-1. Select the _Extension_ view, select *Show Workspace Recommended Extensions* from the dropdown menu
+1. Select the _Extension_ view, select _Show Workspace Recommended Extensions_ from the dropdown menu
 2. Install all the extensions
 
 ## Debugging
@@ -30,14 +31,14 @@ The Desktop repository includes a list of recommended extensions:
 When running the app in development mode, the Chrome Dev Tools are also launched, to assist with debugging and poking at the live application.
 
 ```shellsession
-$ yarn
-$ yarn build:dev
-$ yarn start
+yarn
+yarn build:dev
+yarn start
 ```
 
 At a basic level, the logs from the running app are displayed in the **Console** tab, but other features include:
 
- - [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) - enables you to inspect components and view rendering activity in real time
+* [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) - enables you to inspect components and view rendering activity in real time
 
 If you are looking to diagnose React performance issues in Desktop, [this post by Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad)
 is a great introduction to the workflow enabled by React 16 around measuring and investigating using the **Performance** tab.

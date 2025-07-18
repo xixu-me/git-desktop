@@ -11,7 +11,7 @@ help understand the type of work involved.
 |                               | Label name       | Description |
 | ----------------------------- | -----------------| ----------- |
 | [:mag_right:][docs]           | `docs`           | Issues and pull requests related to documentation work on the project |
-| [:mag_right:][infrastructure] | `infrastructure` | Issues and pull requests related to scripts and tooling for GitHub Desktop |
+| [:mag_right:][infrastructure] | `infrastructure` | Issues and pull requests related to scripts and tooling for Git Desktop |
 | [:mag_right:][tech-debt]      | `tech-debt`      | Issues and pull requests related to addressing technical debt or improving the codebase |
 
 ## Issue-specific labels
@@ -99,7 +99,6 @@ experience with that setup - can easily find them in the issue tracker.
 | [:mag_right:][macOS]   | `macOS`    | Issues specific to Desktop usage on macOS |
 | [:mag_right:][windows] | `windows`  | Issues specific Desktop usage on Windows |
 
-
 ## Pull Request-specific labels
 
 These labels should only be assigned to pull requests, and are intended to help
@@ -111,14 +110,12 @@ time:
 | [:mag_right:][ready-for-review] | `ready-for-review` | Pull Requests that are ready to be reviewed by the maintainers |
 | [:mag_right:][time-sensitive]   | `time-sensitive`   | Pull Requests that require review in a more timely manner      |
 
-
 [bug]: https://github.com/desktop/desktop/labels/bug
 [codemirror]: https://github.com/desktop/desktop/labels/codemirror
 [docs]: https://github.com/desktop/desktop/labels/docs
 [electron]: https://github.com/desktop/desktop/labels/electron
 [enhancement]: https://github.com/desktop/desktop/labels/enhancement
-[epic:rebase]:https://github.com/desktop/desktop/labels/epic%3Arebase
-[epic:stashing]:https://github.com/desktop/desktop/labels/epic%3Astashing
+[epic:stashing]: https://github.com/desktop/desktop/labels/epic%3Astashing
 [good first issue]: https://github.com/desktop/desktop/labels/good%20first%20issue
 [help wanted]: https://github.com/desktop/desktop/labels/help%20wanted
 [infrastructure]: https://github.com/desktop/desktop/labels/infrastructure

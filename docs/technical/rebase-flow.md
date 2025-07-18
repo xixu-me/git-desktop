@@ -1,7 +1,7 @@
 # Rebase Flow
 
 This document outlines the technical details about the rebase flow as
-implemented in GitHub Desktop. It is intended to be a simple subset of what is
+implemented in Git Desktop. It is intended to be a simple subset of what is
 technically possible to do with the `git rebase` command line interface, and
 various decisions have been made along the way to support this flow.
 
@@ -11,11 +11,11 @@ When the user is choosing which branch to rebase the current branch on, the
 application is expected to test and identify whether there will be problems with
 the rebase:
 
- - In the "happy path" case, there will be no conflicts when rebasing this
+- In the "happy path" case, there will be no conflicts when rebasing this
  branch on top of the chosen branch, and the number of commits that will be
  rebased is shown
 
- - If conflicts are expected that the user is required to resolve to rebase the
+- If conflicts are expected that the user is required to resolve to rebase the
  current branch on top of the chosen branch, the application should provide a
  warning. Ideally the application would be able to identify the absolute number
  of conflicts, but because of the cascading nature of rebases (after the user
@@ -90,10 +90,10 @@ without confusing the user.
 Once the `git rebase <upstream> <branch>` has completed Desktop inspects the
 output returned by `git`. The rebase will end up in one of two states:
 
- - the commits from the target branch were applied cleanly, and the reference
+- the commits from the target branch were applied cleanly, and the reference
    associated with the target branch now points  to the rewritten history on top
    of the base branch.
- - the rebase could not complete because one of the commits had conflicts when
+- the rebase could not complete because one of the commits had conflicts when
    it was applied to the base branch, and the user needs to resolve these
    conflicts if the user wishes to resolve them
 
@@ -115,15 +115,15 @@ applied cleanly to the working directory
 The information about what changes are being rebased can be identified found
 from a few files:
 
- - `.git/rebase-merge/head-name` - the name of the target branch associated with
+- `.git/rebase-merge/head-name` - the name of the target branch associated with
     the current rebase - may be prefixed with `refs/heads/`
 
 **TODO**: can we confirm when this happens or doesn't happen?
 
- - `.git/rebase-merge/onto` - the commit ID of the base branch, which is used as
+- `.git/rebase-merge/onto` - the commit ID of the base branch, which is used as
     a starting point to apply the commits from the target branch
 
- - `.git/rebase-merge/orig-head` - the original commit ID of the target branch
+- `.git/rebase-merge/orig-head` - the original commit ID of the target branch
 
 This information is especially helpful if Desktop encounters a repository which
 had the rebase started outside Desktop but encountered conflicts - with this
@@ -141,12 +141,12 @@ in `.git/rebase-merge/` in numeric order of which they will be applied, e.g.
 
 **TODO**: can we confirm whether `9999` is the upper limit here for the rebase?
 
- - `.git/rebase-merge/msgnum` - this contains a number representing the current
+- `.git/rebase-merge/msgnum` - this contains a number representing the current
    patch being applied as part of the rebase.
- - `.git/rebase-merge/end` - this number contains the total number of patches
+- `.git/rebase-merge/end` - this number contains the total number of patches
    that will be applied as part of this rebase
- - `.git/rebase-merge/orig-head` - the original commit ID of the target branch
- - `.git/rebase-merge/onto` - the commit ID of the base branch, which is used as
+- `.git/rebase-merge/orig-head` - the original commit ID of the target branch
+- `.git/rebase-merge/onto` - the commit ID of the base branch, which is used as
     a starting point to apply the commits from the target branch
 
 The last two files, `orig-head` and `onto` can be used to generate a range of
@@ -191,14 +191,14 @@ eligible to be "force pushed" to the remote repository.
 This has potential downsides, so there are additional checks as part of this
 work:
 
- - only a branch that completed the rebase flow in Desktop will be eligible for
+- only a branch that completed the rebase flow in Desktop will be eligible for
  a "force push" operation - branches rebased outside Desktop will be ignored
- - other branches which are ahead and behind will need to have these commits
+- other branches which are ahead and behind will need to have these commits
  resolved before any commits can be pushed. Depending on your Git configuration,
  this could be a `pull with rebase` or a `pull with merge` commit
- - if the user has enabled "Show Confirmation Dialog before Force Pushing"
+- if the user has enabled "Show Confirmation Dialog before Force Pushing"
  (enabled by default), the user will see a prompt that explains the downstream
  impact of rewriting the branch for other contributors
- - when Desktop invokes `git push` it will also pass the `--force-with-lease`
+- when Desktop invokes `git push` it will also pass the `--force-with-lease`
  flag that guards against the tracking branch being updated without the user
  knowing, to avoid overwriting newer commits since the rebase was completed

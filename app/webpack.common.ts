@@ -1,5 +1,5 @@
-import * as path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import * as path from 'path'
 import webpack from 'webpack'
 import merge from 'webpack-merge'
 import { getReplacements } from './app-info'
@@ -97,7 +97,7 @@ export const crash = merge({}, commonConfig, {
   target: 'electron-renderer',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'GitHub Desktop',
+      title: 'Git Desktop',
       filename: 'crash.html',
       chunks: ['crash'],
     }),

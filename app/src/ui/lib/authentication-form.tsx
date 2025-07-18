@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Octicon } from '../octicons'
 import * as octicons from '../octicons/octicons.generated'
-import { Form } from './form'
 import { Button } from './button'
+import { Form } from './form'
 
 /** Text to let the user know their browser will send them back to GH Desktop */
 export const BrowserRedirectMessage =
-  "Your browser will redirect you back to GitHub Desktop once you've signed in. If your browser asks for your permission to launch GitHub Desktop please allow it to."
+  "Your browser will redirect you back to Git Desktop once you've signed in. If your browser asks for your permission to launch Git Desktop please allow it to."
 
 interface IAuthenticationFormProps {
   /**

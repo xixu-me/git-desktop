@@ -1,6 +1,6 @@
 ## Placeholders and Replacements in Source Code
 
-As GitHub Desktop uses Webpack to transpile, minify and merge our code
+As Git Desktop uses Webpack to transpile, minify and merge our code
 into unified scripts for each configuration we define, we use some tricks
 to manage complexity and enable some optimizations.
 

@@ -2,10 +2,10 @@
 
 You will need to install these tools on your machine:
 
- - Node.js
- - Yarn
- - Python 3
- - Electron dependencies
+- Node.js
+- Yarn
+- Python 3
+- Electron dependencies
 
 ## Node.js
 
@@ -16,12 +16,12 @@ Find your distribution on [this list](https://nodejs.org/en/download/package-man
 and follow the instructions to install the version you require.
 
 Ensure that you also choose the option for building native Node modules, as
-those are used in some dependencies used in GitHub Desktop.
+those are used in some dependencies used in Git Desktop.
 
 ## Yarn
 
 Follow [this guide](https://yarnpkg.com/en/docs/install) to install
-a system-level `yarn` for your distribution. GitHub Desktop uses a local version
+a system-level `yarn` for your distribution. Git Desktop uses a local version
 of `yarn`, but it needs a version on your `PATH` to bootstrap itself.
 
 This is important because `yarn` uses lock files to pin dependencies. If you
@@ -40,11 +40,11 @@ Python 3 series.
 ## Electron dependencies
 
 There are some additional dependencies which are required as part of building
-and running GitHub Desktop locally:
+and running Git Desktop locally:
 
- - `libsecret-1.so.0` for reading and writing credentials using [`keytar`](https://github.com/atom/node-keytar)
- - `libXss.so.1` - the library for the X11 screen saver extension
- - `libgconf-2-4.so.4` - library for accessing GNOME configuration database
+- `libsecret-1.so.0` for reading and writing credentials using [`keytar`](https://github.com/atom/node-keytar)
+- `libXss.so.1` - the library for the X11 screen saver extension
+- `libgconf-2-4.so.4` - library for accessing GNOME configuration database
 
 Where to find these will vary based on your distribution, but below are some
 examples of distributions we've tested.
@@ -52,13 +52,13 @@ examples of distributions we've tested.
 ### Fedora 26 and later
 
 ```shellsession
-$ sudo dnf install -y libsecret-devel libXScrnSaver
+sudo dnf install -y libsecret-devel libXScrnSaver
 ```
 
 ### Ubuntu 14.04 and later
 
 ```shellsession
-$ sudo apt install libsecret-1-dev libgconf-2-4
+sudo apt install libsecret-1-dev libgconf-2-4
 ```
 
 ## Back to setup

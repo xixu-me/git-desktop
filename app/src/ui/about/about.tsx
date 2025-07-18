@@ -1,23 +1,23 @@
 import * as React from 'react'
 
-import { Row } from '../lib/row'
-import { Button } from '../lib/button'
-import {
-  Dialog,
-  DialogError,
-  DialogContent,
-  DefaultDialogFooter,
-} from '../dialog'
-import { LinkButton } from '../lib/link-button'
-import { IUpdateState, UpdateStatus } from '../lib/update-store'
-import { Loading } from '../lib/loading'
-import { RelativeTime } from '../relative-time'
 import { assertNever } from '../../lib/fatal-error'
-import { ReleaseNotesUri } from '../lib/releases'
-import { encodePathAsUrl } from '../../lib/path'
-import { isOSNoLongerSupportedByElectron } from '../../lib/get-os'
-import { AriaLiveContainer } from '../accessibility/aria-live-container'
 import { formatDate } from '../../lib/format-date'
+import { isOSNoLongerSupportedByElectron } from '../../lib/get-os'
+import { encodePathAsUrl } from '../../lib/path'
+import { AriaLiveContainer } from '../accessibility/aria-live-container'
+import {
+    DefaultDialogFooter,
+    Dialog,
+    DialogContent,
+    DialogError,
+} from '../dialog'
+import { Button } from '../lib/button'
+import { LinkButton } from '../lib/link-button'
+import { Loading } from '../lib/loading'
+import { ReleaseNotesUri } from '../lib/releases'
+import { Row } from '../lib/row'
+import { IUpdateState, UpdateStatus } from '../lib/update-store'
+import { RelativeTime } from '../relative-time'
 
 const logoPath = __DARWIN__
   ? 'static/logo-64x64@2x.png'
@@ -270,7 +270,7 @@ export class About extends React.Component<IAboutProps> {
           <Row className="logo">
             <img
               src={DesktopLogo}
-              alt="GitHub Desktop"
+              alt="Git Desktop"
               width="64"
               height="64"
             />
@@ -298,7 +298,7 @@ export class About extends React.Component<IAboutProps> {
             </p>
             <p className="terms-and-license">
               <LinkButton uri="https://gh.io/copilot-for-desktop-transparency">
-                Responsible use of Copilot in GitHub Desktop
+                Responsible use of Copilot in Git Desktop
               </LinkButton>
             </p>
           </div>

@@ -1,6 +1,6 @@
 # Linux Testing and You
 
-GitHub Desktop doesn't currently support Linux in an official capacity, but many in the community have already been experimenting and testing it on their preferred distributions.
+Git Desktop doesn't currently support Linux in an official capacity, but many in the community have already been experimenting and testing it on their preferred distributions.
 
 This document outlines the process to help provide a set of quality installers, based on community feedback and contributions.
 
@@ -35,9 +35,9 @@ If you are interested in testing installers locally, first ensure your [developm
 Once your environment is setup, you can create an installer locally by running:
 
 ```shellsession
-$ yarn
-$ yarn build:prod
-$ yarn run package
+yarn
+yarn build:prod
+yarn run package
 ```
 
 If you think you've found a solution, please submit a pull request to [`shiftkey/desktop`](https://github.com/shiftkey/desktop) explaining the change and what it fixes. If you're not quite sure, open an issue on the [`shiftkey/desktop`](https://github.com/shiftkey/desktop) fork explaining what you've found and where you think the problem lies. Maybe someone else has insight into the issue.

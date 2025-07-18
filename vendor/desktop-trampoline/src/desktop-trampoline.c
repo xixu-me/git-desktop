@@ -22,7 +22,7 @@ if (writeSocket(socket, dataString, strlen(dataString) + 1) != 0) { \
   return 1; \
 }
 
-// This is a list of valid environment variables that GitHub Desktop might
+// This is a list of valid environment variables that Git Desktop might
 // send or expect to receive.
 #define NUMBER_OF_VALID_ENV_VARS 1
 static const char *sValidEnvVars[NUMBER_OF_VALID_ENV_VARS] = {

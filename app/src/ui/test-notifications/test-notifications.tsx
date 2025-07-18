@@ -1,35 +1,35 @@
 import classNames from 'classnames'
+import {
+    getNotificationSettingsUrl,
+    getNotificationsPermission,
+    requestNotificationsPermission,
+    supportsNotificationsPermissionRequest,
+} from 'desktop-notifications'
 import React from 'react'
 import { getHTMLURL, IAPIComment } from '../../lib/api'
 import { assertNever } from '../../lib/fatal-error'
 import { NotificationsDebugStore } from '../../lib/stores/notifications-debug-store'
 import {
-  ValidNotificationPullRequestReview,
-  ValidNotificationPullRequestReviewState,
+    ValidNotificationPullRequestReview,
+    ValidNotificationPullRequestReviewState,
 } from '../../lib/valid-notification-pull-request-review'
 import { PullRequest } from '../../models/pull-request'
 import { RepositoryWithGitHubRepository } from '../../models/repository'
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  OkCancelButtonGroup,
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    OkCancelButtonGroup,
 } from '../dialog'
 import { Dispatcher } from '../dispatcher'
 import { Button } from '../lib/button'
+import { LinkButton } from '../lib/link-button'
 import { RowIndexPath } from '../lib/list/list-row-index-path'
 import { SectionList } from '../lib/list/section-list'
 import { Loading } from '../lib/loading'
 import { getPullRequestReviewStateIcon } from '../notifications/pull-request-review-helpers'
 import { Octicon } from '../octicons'
 import * as octicons from '../octicons/octicons.generated'
-import {
-  getNotificationSettingsUrl,
-  getNotificationsPermission,
-  requestNotificationsPermission,
-  supportsNotificationsPermissionRequest,
-} from 'desktop-notifications'
-import { LinkButton } from '../lib/link-button'
 
 enum TestNotificationType {
   PullRequestReview,
@@ -208,7 +208,7 @@ export class TestNotifications extends React.Component<
           <LinkButton onClick={this.onGrantNotificationPermission}>
             grant permission
           </LinkButton>{' '}
-          to display these notifications from GitHub Desktop.
+          to display these notifications from Git Desktop.
         </>
       )
     }
@@ -222,7 +222,7 @@ export class TestNotifications extends React.Component<
     if (warnNotificationsDenied) {
       return (
         <>
-          <span className="warning-icon">⚠️</span> GitHub Desktop has no
+          <span className="warning-icon">⚠️</span> Git Desktop has no
           permission to display notifications. Please, enable them in the{' '}
           <LinkButton uri={notificationSettingsURL}>
             Notifications Settings
@@ -238,7 +238,7 @@ export class TestNotifications extends React.Component<
 
     return (
       <>
-        Make sure notifications are {verb} for GitHub Desktop in the{' '}
+        Make sure notifications are {verb} for Git Desktop in the{' '}
         <LinkButton uri={notificationSettingsURL}>
           Notifications Settings
         </LinkButton>

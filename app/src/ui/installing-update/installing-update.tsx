@@ -1,15 +1,15 @@
 import * as React from 'react'
 
-import { Row } from '../lib/row'
-import {
-  Dialog,
-  DialogContent,
-  OkCancelButtonGroup,
-  DialogFooter,
-} from '../dialog'
-import { updateStore, IUpdateState, UpdateStatus } from '../lib/update-store'
 import { Disposable } from 'event-kit'
+import {
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    OkCancelButtonGroup,
+} from '../dialog'
 import { Dispatcher } from '../dispatcher'
+import { Row } from '../lib/row'
+import { IUpdateState, UpdateStatus, updateStore } from '../lib/update-store'
 
 interface IInstallingUpdateProps {
   /**
@@ -74,7 +74,7 @@ export class InstallingUpdate extends React.Component<IInstallingUpdateProps> {
       >
         <DialogContent>
           <Row className="updating-message">
-            Do not close GitHub Desktop while the update is in progress. Closing
+            Do not close Git Desktop while the update is in progress. Closing
             now may break your installation.
           </Row>
         </DialogContent>
