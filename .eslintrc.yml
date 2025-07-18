@@ -71,15 +71,7 @@ rules:
     - functions: false
       variables: false
       typedefs: false
-  '@typescript-eslint/member-ordering':
-    - error
-    - default:
-        - static-field
-        - static-method
-        - field
-        - abstract-method
-        - constructor
-        - method
+  '@typescript-eslint/member-ordering': off
   '@typescript-eslint/no-extraneous-class': error
   '@typescript-eslint/no-empty-interface': error
   # Would love to be able to turn this on eventually

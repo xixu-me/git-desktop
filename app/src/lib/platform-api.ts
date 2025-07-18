@@ -164,7 +164,46 @@ export abstract class BasePlatformAPIClient implements IPlatformAPIClient {
   public readonly endpoint: string
   public readonly token: string | null
 
-  constructor(
+  protected abstract getAuthorizationHeader(): string
+
+  // Abstract methods to be implemented by platform-specific clients
+  public abstract fetchRepository(
+    owner: string,
+    name: string
+  ): Promise<IGenericRepository>
+  public abstract fetchRepositories(options?: {
+    page?: number
+    perPage?: number
+  }): Promise<ReadonlyArray<IGenericRepository>>
+  public abstract fetchUser(login: string): Promise<IGenericUser>
+  public abstract fetchAuthenticatedUser(): Promise<IGenericUser>
+  public abstract fetchIssues(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericIssue>>
+  public abstract fetchIssue(
+    owner: string,
+    repo: string,
+    issueNumber: number
+  ): Promise<IGenericIssue>
+  public abstract fetchPullRequests(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericPullRequest>>
+  public abstract fetchPullRequest(
+    owner: string,
+    repo: string,
+    pullRequestNumber: number
+  ): Promise<IGenericPullRequest>
+  public abstract getOAuthAuthorizationUrl(
+    state: string,
+    scopes?: string[]
+  ): string
+  public abstract requestOAuthToken(code: string): Promise<string>
+
+  public constructor(
     platform: SupportedPlatform,
     endpoint: string,
     token: string | null = null
@@ -202,8 +241,6 @@ export abstract class BasePlatformAPIClient implements IPlatformAPIClient {
     return await parsedResponse<T>(response)
   }
 
-  protected abstract getAuthorizationHeader(): string
-
   public isAuthenticated(): boolean {
     return this.token !== null
   }
@@ -212,139 +249,18 @@ export abstract class BasePlatformAPIClient implements IPlatformAPIClient {
     const config = getPlatformConfig(this.platform)
     return (config as any)[`supports${feature}`] === true
   }
-
-  // Abstract methods to be implemented by platform-specific clients
-  public abstract fetchRepository(
-    owner: string,
-    name: string
-  ): Promise<IGenericRepository>
-  public abstract fetchRepositories(options?: {
-    page?: number
-    perPage?: number
-  }): Promise<ReadonlyArray<IGenericRepository>>
-  public abstract fetchUser(login: string): Promise<IGenericUser>
-  public abstract fetchAuthenticatedUser(): Promise<IGenericUser>
-  public abstract fetchIssues(
-    owner: string,
-    repo: string,
-    options?: { state?: 'open' | 'closed' | 'all' }
-  ): Promise<ReadonlyArray<IGenericIssue>>
-  public abstract fetchIssue(
-    owner: string,
-    repo: string,
-    number: number
-  ): Promise<IGenericIssue>
-  public abstract fetchPullRequests(
-    owner: string,
-    repo: string,
-    options?: { state?: 'open' | 'closed' | 'all' }
-  ): Promise<ReadonlyArray<IGenericPullRequest>>
-  public abstract fetchPullRequest(
-    owner: string,
-    repo: string,
-    number: number
-  ): Promise<IGenericPullRequest>
-  public abstract getOAuthAuthorizationUrl(
-    state: string,
-    scopes?: string[]
-  ): string
-  public abstract requestOAuthToken(code: string): Promise<string>
 }
 
 /**
  * GitHub API client implementation
  */
 export class GitHubAPIClient extends BasePlatformAPIClient {
-  constructor(endpoint: string, token: string | null = null) {
+  public constructor(endpoint: string, token: string | null = null) {
     super(SupportedPlatform.GitHub, endpoint, token)
   }
 
   protected getAuthorizationHeader(): string {
     return `token ${this.token}`
-  }
-
-  public async fetchRepository(
-    owner: string,
-    name: string
-  ): Promise<IGenericRepository> {
-    const repo = await this.makeRequest<any>('GET', `/repos/${owner}/${name}`)
-    return this.transformRepository(repo)
-  }
-
-  public async fetchRepositories(options?: {
-    page?: number
-    perPage?: number
-  }): Promise<ReadonlyArray<IGenericRepository>> {
-    const params = new URLSearchParams()
-    if (options?.page) params.set('page', options.page.toString())
-    if (options?.perPage) params.set('per_page', options.perPage.toString())
-
-    const repos = await this.makeRequest<any[]>('GET', `/user/repos?${params}`)
-    return repos.map(repo => this.transformRepository(repo))
-  }
-
-  public async fetchUser(login: string): Promise<IGenericUser> {
-    const user = await this.makeRequest<any>('GET', `/users/${login}`)
-    return this.transformUser(user)
-  }
-
-  public async fetchAuthenticatedUser(): Promise<IGenericUser> {
-    const user = await this.makeRequest<any>('GET', '/user')
-    return this.transformUser(user)
-  }
-
-  public async fetchIssues(
-    owner: string,
-    repo: string,
-    options?: { state?: 'open' | 'closed' | 'all' }
-  ): Promise<ReadonlyArray<IGenericIssue>> {
-    const params = new URLSearchParams()
-    if (options?.state) params.set('state', options.state)
-
-    const issues = await this.makeRequest<any[]>(
-      'GET',
-      `/repos/${owner}/${repo}/issues?${params}`
-    )
-    return issues.map(issue => this.transformIssue(issue))
-  }
-
-  public async fetchIssue(
-    owner: string,
-    repo: string,
-    number: number
-  ): Promise<IGenericIssue> {
-    const issue = await this.makeRequest<any>(
-      'GET',
-      `/repos/${owner}/${repo}/issues/${number}`
-    )
-    return this.transformIssue(issue)
-  }
-
-  public async fetchPullRequests(
-    owner: string,
-    repo: string,
-    options?: { state?: 'open' | 'closed' | 'all' }
-  ): Promise<ReadonlyArray<IGenericPullRequest>> {
-    const params = new URLSearchParams()
-    if (options?.state) params.set('state', options.state)
-
-    const prs = await this.makeRequest<any[]>(
-      'GET',
-      `/repos/${owner}/${repo}/pulls?${params}`
-    )
-    return prs.map(pr => this.transformPullRequest(pr))
-  }
-
-  public async fetchPullRequest(
-    owner: string,
-    repo: string,
-    number: number
-  ): Promise<IGenericPullRequest> {
-    const pr = await this.makeRequest<any>(
-      'GET',
-      `/repos/${owner}/${repo}/pulls/${number}`
-    )
-    return this.transformPullRequest(pr)
   }
 
   public getOAuthAuthorizationUrl(state: string, scopes?: string[]): string {
@@ -376,6 +292,98 @@ export class GitHubAPIClient extends BasePlatformAPIClient {
     )
 
     return response.access_token
+  }
+
+  public async fetchRepository(
+    owner: string,
+    name: string
+  ): Promise<IGenericRepository> {
+    const repo = await this.makeRequest<any>('GET', `/repos/${owner}/${name}`)
+    return this.transformRepository(repo)
+  }
+
+  public async fetchRepositories(options?: {
+    page?: number
+    perPage?: number
+  }): Promise<ReadonlyArray<IGenericRepository>> {
+    const params = new URLSearchParams()
+    if (options?.page) {
+      params.set('page', options.page.toString())
+    }
+    if (options?.perPage) {
+      params.set('per_page', options.perPage.toString())
+    }
+
+    const repos = await this.makeRequest<any[]>('GET', `/user/repos?${params}`)
+    return repos.map(repo => this.transformRepository(repo))
+  }
+
+  public async fetchUser(login: string): Promise<IGenericUser> {
+    const user = await this.makeRequest<any>('GET', `/users/${login}`)
+    return this.transformUser(user)
+  }
+
+  public async fetchAuthenticatedUser(): Promise<IGenericUser> {
+    const user = await this.makeRequest<any>('GET', '/user')
+    return this.transformUser(user)
+  }
+
+  public async fetchIssues(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericIssue>> {
+    const params = new URLSearchParams()
+    if (options?.state) {
+      params.set('state', options.state)
+    }
+
+    const issues = await this.makeRequest<any[]>(
+      'GET',
+      `/repos/${owner}/${repo}/issues?${params}`
+    )
+    return issues.map(issue => this.transformIssue(issue))
+  }
+
+  public async fetchIssue(
+    owner: string,
+    repo: string,
+    issueNumber: number
+  ): Promise<IGenericIssue> {
+    const issue = await this.makeRequest<any>(
+      'GET',
+      `/repos/${owner}/${repo}/issues/${issueNumber}`
+    )
+    return this.transformIssue(issue)
+  }
+
+  public async fetchPullRequests(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericPullRequest>> {
+    const params = new URLSearchParams()
+    if (options?.state) {
+      params.set('state', options.state)
+    }
+
+    const prs = await this.makeRequest<any[]>(
+      'GET',
+      `/repos/${owner}/${repo}/pulls?${params}`
+    )
+    return prs.map(pr => this.transformPullRequest(pr))
+  }
+
+  public async fetchPullRequest(
+    owner: string,
+    repo: string,
+    pullRequestNumber: number
+  ): Promise<IGenericPullRequest> {
+    const pr = await this.makeRequest<any>(
+      'GET',
+      `/repos/${owner}/${repo}/pulls/${pullRequestNumber}`
+    )
+    return this.transformPullRequest(pr)
   }
 
   private transformRepository(repo: any): IGenericRepository {
@@ -475,112 +483,12 @@ export class GitHubAPIClient extends BasePlatformAPIClient {
  * GitLab API client implementation
  */
 export class GitLabAPIClient extends BasePlatformAPIClient {
-  constructor(endpoint: string, token: string | null = null) {
+  public constructor(endpoint: string, token: string | null = null) {
     super(SupportedPlatform.GitLab, endpoint, token)
   }
 
   protected getAuthorizationHeader(): string {
     return `Bearer ${this.token}`
-  }
-
-  public async fetchRepository(
-    owner: string,
-    name: string
-  ): Promise<IGenericRepository> {
-    const encodedPath = encodeURIComponent(`${owner}/${name}`)
-    const project = await this.makeRequest<any>(
-      'GET',
-      `/projects/${encodedPath}`
-    )
-    return this.transformRepository(project)
-  }
-
-  public async fetchRepositories(options?: {
-    page?: number
-    perPage?: number
-  }): Promise<ReadonlyArray<IGenericRepository>> {
-    const params = new URLSearchParams()
-    if (options?.page) params.set('page', options.page.toString())
-    if (options?.perPage) params.set('per_page', options.perPage.toString())
-
-    const projects = await this.makeRequest<any[]>('GET', `/projects?${params}`)
-    return projects.map(project => this.transformRepository(project))
-  }
-
-  public async fetchUser(login: string): Promise<IGenericUser> {
-    const users = await this.makeRequest<any[]>(
-      'GET',
-      `/users?username=${login}`
-    )
-    if (users.length === 0) {
-      throw new Error(`User ${login} not found`)
-    }
-    return this.transformUser(users[0])
-  }
-
-  public async fetchAuthenticatedUser(): Promise<IGenericUser> {
-    const user = await this.makeRequest<any>('GET', '/user')
-    return this.transformUser(user)
-  }
-
-  public async fetchIssues(
-    owner: string,
-    repo: string,
-    options?: { state?: 'open' | 'closed' | 'all' }
-  ): Promise<ReadonlyArray<IGenericIssue>> {
-    const encodedPath = encodeURIComponent(`${owner}/${repo}`)
-    const params = new URLSearchParams()
-    if (options?.state && options.state !== 'all')
-      params.set('state', options.state)
-
-    const issues = await this.makeRequest<any[]>(
-      'GET',
-      `/projects/${encodedPath}/issues?${params}`
-    )
-    return issues.map(issue => this.transformIssue(issue))
-  }
-
-  public async fetchIssue(
-    owner: string,
-    repo: string,
-    number: number
-  ): Promise<IGenericIssue> {
-    const encodedPath = encodeURIComponent(`${owner}/${repo}`)
-    const issue = await this.makeRequest<any>(
-      'GET',
-      `/projects/${encodedPath}/issues/${number}`
-    )
-    return this.transformIssue(issue)
-  }
-
-  public async fetchPullRequests(
-    owner: string,
-    repo: string,
-    options?: { state?: 'open' | 'closed' | 'all' }
-  ): Promise<ReadonlyArray<IGenericPullRequest>> {
-    const encodedPath = encodeURIComponent(`${owner}/${repo}`)
-    const params = new URLSearchParams()
-    if (options?.state && options.state !== 'all')
-      params.set('state', options.state)
-
-    const mrs = await this.makeRequest<any[]>(
-      'GET',
-      `/projects/${encodedPath}/merge_requests?${params}`
-    )
-    return mrs.map(mr => this.transformPullRequest(mr))
-  }
-
-  public async fetchPullRequest(
-    owner: string,
-    repo: string,
-    number: number
-  ): Promise<IGenericPullRequest> {
-    const encodedPath = encodeURIComponent(`${owner}/${repo}`)
-    const mr = await this.makeRequest<any>(
-      'GET',
-      `/projects/${encodedPath}/merge_requests/${number}`
-    )
-    return this.transformPullRequest(mr)
   }
 
   public getOAuthAuthorizationUrl(state: string, scopes?: string[]): string {
@@ -610,6 +518,112 @@ export class GitLabAPIClient extends BasePlatformAPIClient {
     })
 
     return response.access_token
+  }
+
+  public async fetchRepository(
+    owner: string,
+    name: string
+  ): Promise<IGenericRepository> {
+    const encodedPath = encodeURIComponent(`${owner}/${name}`)
+    const project = await this.makeRequest<any>(
+      'GET',
+      `/projects/${encodedPath}`
+    )
+    return this.transformRepository(project)
+  }
+
+  public async fetchRepositories(options?: {
+    page?: number
+    perPage?: number
+  }): Promise<ReadonlyArray<IGenericRepository>> {
+    const params = new URLSearchParams()
+    if (options?.page) {
+      params.set('page', options.page.toString())
+    }
+    if (options?.perPage) {
+      params.set('per_page', options.perPage.toString())
+    }
+
+    const projects = await this.makeRequest<any[]>('GET', `/projects?${params}`)
+    return projects.map(project => this.transformRepository(project))
+  }
+
+  public async fetchUser(login: string): Promise<IGenericUser> {
+    const users = await this.makeRequest<any[]>(
+      'GET',
+      `/users?username=${login}`
+    )
+    if (users.length === 0) {
+      throw new Error(`User ${login} not found`)
+    }
+    return this.transformUser(users[0])
+  }
+
+  public async fetchAuthenticatedUser(): Promise<IGenericUser> {
+    const user = await this.makeRequest<any>('GET', '/user')
+    return this.transformUser(user)
+  }
+
+  public async fetchIssues(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericIssue>> {
+    const encodedPath = encodeURIComponent(`${owner}/${repo}`)
+    const params = new URLSearchParams()
+    if (options?.state && options.state !== 'all') {
+      params.set('state', options.state)
+    }
+
+    const issues = await this.makeRequest<any[]>(
+      'GET',
+      `/projects/${encodedPath}/issues?${params}`
+    )
+    return issues.map(issue => this.transformIssue(issue))
+  }
+
+  public async fetchIssue(
+    owner: string,
+    repo: string,
+    issueNumber: number
+  ): Promise<IGenericIssue> {
+    const encodedPath = encodeURIComponent(`${owner}/${repo}`)
+    const issue = await this.makeRequest<any>(
+      'GET',
+      `/projects/${encodedPath}/issues/${issueNumber}`
+    )
+    return this.transformIssue(issue)
+  }
+
+  public async fetchPullRequests(
+    owner: string,
+    repo: string,
+    options?: { state?: 'open' | 'closed' | 'all' }
+  ): Promise<ReadonlyArray<IGenericPullRequest>> {
+    const encodedPath = encodeURIComponent(`${owner}/${repo}`)
+    const params = new URLSearchParams()
+    if (options?.state && options.state !== 'all') {
+      params.set('state', options.state)
+    }
+
+    const mrs = await this.makeRequest<any[]>(
+      'GET',
+      `/projects/${encodedPath}/merge_requests?${params}`
+    )
+    return mrs.map(mr => this.transformPullRequest(mr))
+  }
+
+  public async fetchPullRequest(
+    owner: string,
+    repo: string,
+    pullRequestNumber: number
+  ): Promise<IGenericPullRequest> {
+    const encodedPath = encodeURIComponent(`${owner}/${repo}`)
+    const mr = await this.makeRequest<any>(
+      'GET',
+      `/projects/${encodedPath}/merge_requests/${pullRequestNumber}`
+    )
+    return this.transformPullRequest(mr)
   }
 
   private transformRepository(project: any): IGenericRepository {
