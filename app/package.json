@@ -2,17 +2,17 @@
   "name": "desktop",
   "productName": "Git Desktop",
   "bundleID": "com.github.GitHubClient",
-  "companyName": "GitHub, Inc.",
+  "companyName": "Xi Xu",
   "version": "3.5.2-beta2",
   "main": "./main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/desktop/desktop.git"
+    "url": "https://github.com/xixu-me/git-desktop.git"
   },
   "description": "Simple collaboration from your desktop",
   "author": {
-    "name": "GitHub, Inc.",
-    "email": "opensource+desktop@github.com",
+    "name": "Xi Xu",
+    "email": "i@xi-xu.me",
     "url": "https://desktop.github.com/"
   },
   "license": "MIT",
@@ -30,7 +30,7 @@
     "compare-versions": "^3.6.0",
     "deep-equal": "^1.0.1",
     "desktop-notifications": "file:../vendor/desktop-notifications",
-    "desktop-trampoline": "desktop/desktop-trampoline#v0.9.10",
+    "desktop-trampoline": "xixu-me/git-desktop-trampoline#v0.9.10",
     "dexie": "^3.2.3",
     "dompurify": "^3.2.4",
     "dugite": "3.0.0-rc12",

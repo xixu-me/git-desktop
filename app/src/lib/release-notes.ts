@@ -2,15 +2,15 @@ import { readFile } from 'fs/promises'
 import * as Path from 'path'
 import * as semver from 'semver'
 import {
-  ReleaseMetadata,
-  ReleaseNote,
-  ReleaseSummary,
+    ReleaseMetadata,
+    ReleaseNote,
+    ReleaseSummary,
 } from '../models/release-notes'
 import { getVersion } from '../ui/lib/app-proxy'
 import { formatDate } from './format-date'
+import { getUserAgent } from './http'
 import { offsetFromNow } from './offset-from'
 import { encodePathAsUrl } from './path'
-import { getUserAgent } from './http'
 
 // expects a release note entry to contain a header and then some text
 // example:
@@ -92,7 +92,7 @@ export async function getChangeLog(
   limit?: number
 ): Promise<ReadonlyArray<ReleaseMetadata>> {
   const changelogURL = new URL(
-    'https://central.github.com/deployments/desktop/desktop/changelog.json'
+    'https://central.github.com/deployments/xixu-me/git-desktop/changelog.json'
   )
 
   if (__RELEASE_CHANNEL__ === 'beta' || __RELEASE_CHANNEL__ === 'test') {

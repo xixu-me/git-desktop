@@ -1,5 +1,5 @@
-import { describe, it } from 'node:test'
 import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import { parseError } from '../../src/lib/squirrel-error-parser'
 
 describe('parseError', () => {
@@ -14,7 +14,7 @@ describe('parseError', () => {
   })
 
   it('parses a Squirrel network error', () => {
-    // see https://github.com/desktop/desktop/issues/2288 for context
+    // see https://github.com/xixu-me/git-desktop/issues/2288 for context
     const input = new Error(`Command failed: 4294967295
     System.AggregateException: One or more errors occurred. ---> System.Net.WebException: The remote name could not be resolved: 'central.github.com'
        at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)

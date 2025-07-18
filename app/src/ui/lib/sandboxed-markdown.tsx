@@ -1,17 +1,17 @@
-import * as React from 'react'
+import { readFile } from 'fs/promises'
+import debounce from 'lodash/debounce'
 import * as Path from 'path'
+import * as React from 'react'
+import { Emoji } from '../../lib/emoji'
+import {
+    MarkdownEmitter,
+    parseMarkdown,
+} from '../../lib/markdown-filters/markdown-filter'
 import { MarkdownContext } from '../../lib/markdown-filters/node-filter'
 import { GitHubRepository } from '../../models/github-repository'
-import { readFile } from 'fs/promises'
-import { Tooltip } from './tooltip'
-import { createObservableRef } from './observable-ref'
 import { getObjectId } from './object-id'
-import debounce from 'lodash/debounce'
-import {
-  MarkdownEmitter,
-  parseMarkdown,
-} from '../../lib/markdown-filters/markdown-filter'
-import { Emoji } from '../../lib/emoji'
+import { createObservableRef } from './observable-ref'
+import { Tooltip } from './tooltip'
 
 interface ISandboxedMarkdownProps {
   /** A string of unparsed markdown to display */
@@ -292,7 +292,7 @@ export class SandboxedMarkdown extends React.PureComponent<
     // Not sure why the content height != body height exactly. But we need to
     // set the height explicitly to prevent scrollbar/content cut off.
     // HACK: Add 1 to the new height to avoid UI glitches like the one shown
-    // in https://github.com/desktop/desktop/pull/18596
+    // in https://github.com/xixu-me/git-desktop/pull/18596
     const divHeight = this.contentDivRef.clientHeight
     this.frameContainingDivRef.style.height = `${divHeight + 1}px`
     this.props.onMarkdownParsed?.()
@@ -362,7 +362,7 @@ export class SandboxedMarkdown extends React.PureComponent<
 
     // HACK OR NOT? This prevents a crash since Electron 34 where the layout
     // changes during the ResizeObserver callback. See:
-    // https://github.com/desktop/desktop/issues/20760
+    // https://github.com/xixu-me/git-desktop/issues/20760
     requestAnimationFrame(() => {
       if (this.frameRef === null) {
         // If frame is destroyed before markdown parsing completes, frameref will be null.

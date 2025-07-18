@@ -41,7 +41,7 @@ need.
 ## Documentation
 
 See the documentation under the
-[`docs`](https://github.com/desktop/desktop-notifications/tree/master/docs)
+[`docs`](https://github.com/xixu-me/git-desktop-notifications/tree/master/docs)
 folder.
 
 ## Supported versions
@@ -57,7 +57,7 @@ supported currently.
 ## Contributing
 
 Read the
-[Setup](https://github.com/desktop/desktop-notifications/blob/master/docs/index.md#setup)
+[Setup](https://github.com/xixu-me/git-desktop-notifications/blob/master/docs/index.md#setup)
 section to ensure your development environment is setup for what you need.
 
 This project isn't about implementing a 1-1 replication of any other

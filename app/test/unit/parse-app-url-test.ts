@@ -1,9 +1,9 @@
-import { describe, it } from 'node:test'
 import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import {
-  parseAppURL,
-  IOpenRepositoryFromURLAction,
-  IOAuthAction,
+    IOAuthAction,
+    IOpenRepositoryFromURLAction,
+    parseAppURL,
 } from '../../src/lib/parse-app-url'
 
 describe('parseAppURL', () => {
@@ -26,12 +26,12 @@ describe('parseAppURL', () => {
   describe('openRepo via HTTPS', () => {
     it('returns right name', () => {
       const result = parseAppURL(
-        'github-mac://openRepo/https://github.com/desktop/desktop'
+        'github-mac://openRepo/https://github.com/xixu-me/git-desktop'
       )
       assert.equal(result.name, 'open-repository-from-url')
 
       const openRepo = result as IOpenRepositoryFromURLAction
-      assert.equal(openRepo.url, 'https://github.com/desktop/desktop')
+      assert.equal(openRepo.url, 'https://github.com/xixu-me/git-desktop')
     })
 
     it('returns unknown when no remote defined', () => {
@@ -41,12 +41,12 @@ describe('parseAppURL', () => {
 
     it('adds branch name if set', () => {
       const result = parseAppURL(
-        'github-mac://openRepo/https://github.com/desktop/desktop?branch=cancel-2fa-flow'
+        'github-mac://openRepo/https://github.com/xixu-me/git-desktop?branch=cancel-2fa-flow'
       )
       assert.equal(result.name, 'open-repository-from-url')
 
       const openRepo = result as IOpenRepositoryFromURLAction
-      assert.equal(openRepo.url, 'https://github.com/desktop/desktop')
+      assert.equal(openRepo.url, 'https://github.com/xixu-me/git-desktop')
       assert.equal(openRepo.branch, 'cancel-2fa-flow')
     })
 
@@ -96,12 +96,12 @@ describe('parseAppURL', () => {
   describe('openRepo via SSH', () => {
     it('returns right name', () => {
       const result = parseAppURL(
-        'github-mac://openRepo/git@github.com/desktop/desktop'
+        'github-mac://openRepo/git@github.com/xixu-me/git-desktop'
       )
       assert.equal(result.name, 'open-repository-from-url')
 
       const openRepo = result as IOpenRepositoryFromURLAction
-      assert.equal(openRepo.url, 'git@github.com/desktop/desktop')
+      assert.equal(openRepo.url, 'git@github.com/xixu-me/git-desktop')
     })
 
     it('returns unknown when no remote defined', () => {
@@ -111,12 +111,12 @@ describe('parseAppURL', () => {
 
     it('adds branch name if set', () => {
       const result = parseAppURL(
-        'github-mac://openRepo/git@github.com/desktop/desktop?branch=cancel-2fa-flow'
+        'github-mac://openRepo/git@github.com/xixu-me/git-desktop?branch=cancel-2fa-flow'
       )
       assert.equal(result.name, 'open-repository-from-url')
 
       const openRepo = result as IOpenRepositoryFromURLAction
-      assert.equal(openRepo.url, 'git@github.com/desktop/desktop')
+      assert.equal(openRepo.url, 'git@github.com/xixu-me/git-desktop')
       assert.equal(openRepo.branch, 'cancel-2fa-flow')
     })
 

@@ -1,11 +1,11 @@
+import { assertNever } from './fatal-error';
 import {
-  Tokenizer,
-  TokenType,
-  TokenResult,
-  PlainText,
-  HyperlinkMatch,
-} from './text-token-parser'
-import { assertNever } from './fatal-error'
+    HyperlinkMatch,
+    PlainText,
+    Tokenizer,
+    TokenResult,
+    TokenType,
+} from './text-token-parser';
 
 export const MaxSummaryLength = 72
 export const IdealSummaryLength = 50
@@ -14,8 +14,8 @@ export const IdealSummaryLength = 50
  * A method used to wrap long commit summaries and put any overflow
  * into the commit body while taking rich text into consideration.
  *
- * See https://github.com/desktop/desktop/issues/9185 for a description
- * of the problem and https://github.com/desktop/desktop/pull/2575 for
+ * See https://github.com/xixu-me/git-desktop/issues/9185 for a description
+ * of the problem and https://github.com/xixu-me/git-desktop/pull/2575 for
  * the initial naive implementation.
  *
  * Note that this method doesn't wrap multibyte chars like unicode emojis

@@ -63,7 +63,7 @@ export const IssueReference = new RegExp(
  *                  a. tidy-dev/foo#1 becomes linked as #1.
  *                  b. tidy-dev#1 becomes linked as #1,
  *                  c. foo#1 is not linked and is a non-match.
- *                  d. desktop/desktop#1 is linked and stays desktop/desktop#1
+ *                  d. xixu-me/git-desktop#1 is linked and stays xixu-me/git-desktop#1
  *
  *   - marker: Required #, gh-, /issues/, /pull/, or /discussions/
  *   - number: Required and must be digits followed by a word bounding

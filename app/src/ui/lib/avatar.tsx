@@ -1,20 +1,20 @@
+import noop from 'lodash/noop'
 import * as React from 'react'
+import { API, getDotComAPIEndpoint, getHTMLURL } from '../../lib/api'
+import { parseStealthEmail } from '../../lib/email'
+import {
+    isGHE,
+    isGHES,
+    supportsAvatarsAPI,
+} from '../../lib/endpoint-capabilities'
+import { forceUnwrap } from '../../lib/fatal-error'
+import { offsetFrom } from '../../lib/offset-from'
+import { Account } from '../../models/account'
 import { IAvatarUser } from '../../models/avatar'
 import { Octicon, OcticonSymbolVariant } from '../octicons'
-import { API, getDotComAPIEndpoint, getHTMLURL } from '../../lib/api'
-import { TooltippedContent } from './tooltipped-content'
-import { TooltipDirection } from './tooltip'
-import {
-  isGHE,
-  isGHES,
-  supportsAvatarsAPI,
-} from '../../lib/endpoint-capabilities'
-import { Account } from '../../models/account'
-import { parseStealthEmail } from '../../lib/email'
-import noop from 'lodash/noop'
-import { offsetFrom } from '../../lib/offset-from'
 import { ExpiringOperationCache } from './expiring-operation-cache'
-import { forceUnwrap } from '../../lib/fatal-error'
+import { TooltipDirection } from './tooltip'
+import { TooltippedContent } from './tooltipped-content'
 
 const avatarTokenCache = new ExpiringOperationCache<
   { endpoint: string; accounts: ReadonlyArray<Account> },
@@ -252,7 +252,7 @@ function getAvatarUrlCandidates(
   if (isGHES(ep) && !supportsAvatarsAPI(ep)) {
     // We're dealing with an old GitHub Enterprise instance so we're unable to
     // get to the avatar by requesting the avatarURL due to the private mode
-    // (see https://github.com/desktop/desktop/issues/821).
+    // (see https://github.com/xixu-me/git-desktop/issues/821).
     return []
   }
 

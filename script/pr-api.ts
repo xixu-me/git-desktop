@@ -29,7 +29,7 @@ export function createPR(
 ): IAPIPR | null {
   try {
     const response = execSync(
-      `gh pr new --repo desktop/desktop --title "${title}" --body "${body}" --head ${branch}`,
+      `gh pr new --repo xixu-me/git-desktop --title "${title}" --body "${body}" --head ${branch}`,
       {
         encoding: 'utf8',
       }

@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { Dialog, DialogFooter } from '../dialog'
-import { TabBar } from '../tab-bar'
-import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
-import { Commit } from '../../models/commit'
-import { CommitList } from './commit-list'
-import { LinkButton } from '../lib/link-button'
-import { Account } from '../../models/account'
 import { Emoji } from '../../lib/emoji'
+import { Account } from '../../models/account'
+import { Commit } from '../../models/commit'
+import { Dialog, DialogFooter } from '../dialog'
+import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
+import { LinkButton } from '../lib/link-button'
+import { TabBar } from '../tab-bar'
+import { CommitList } from './commit-list'
 
 export enum UnreachableCommitsTab {
   Unreachable,
@@ -147,7 +147,7 @@ export class UnreachableCommitsDialog extends React.Component<
           ? 'not'
           : ''}{' '}
         in the ancestry path of the most recent commit in your selection.{' '}
-        <LinkButton uri="https://github.com/desktop/desktop/blob/development/docs/learn-more/unreachable-commits.md">
+        <LinkButton uri="https://github.com/xixu-me/git-desktop/blob/development/docs/learn-more/unreachable-commits.md">
           Learn more about unreachable commits.
         </LinkButton>
       </div>

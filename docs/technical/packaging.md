@@ -94,7 +94,7 @@ Desktop uses `electron-winstaller` to generate two installers:
 - an installer based on [Windows Installer](https://docs.microsoft.com/en-us/windows/desktop/msi/windows-installer-portal)
    that supports being installed by administrators. Please note that this is a
    partial solution and this still leverages `%LOCALAPPDATA%` when each users
-   runs the app for the first time. See [#1086](https://github.com/desktop/desktop/issues/1086)
+   runs the app for the first time. See [#1086](https://github.com/xixu-me/git-desktop/issues/1086)
    for an ongoing discussion about alternatives.
 
 Other things to note about the Windows packaging process:

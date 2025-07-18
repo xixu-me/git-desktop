@@ -138,7 +138,7 @@ export async function withTrampolineEnv<T>(
         // which isn't able to handle the blank environment variables we
         // need when using GIT_CONFIG_*.
         //
-        // See https://github.com/desktop/desktop/issues/18945
+        // See https://github.com/xixu-me/git-desktop/issues/18945
         // See https://github.com/git/git/blob/ed155187b429a/config.c#L664
         GIT_CONFIG_PARAMETERS: `${gitEnvConfigPrefix}'credential.helper=' 'credential.helper=desktop'`,
 

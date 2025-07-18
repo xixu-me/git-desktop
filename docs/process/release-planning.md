@@ -12,12 +12,12 @@ We organize releases in two ways - marketing and milestones:
    high-level goals
   - **for example: 1.4, 1.5, etc.**
 - Milestones are used to track issues and pull requests associated with an
-   upcoming release, and can be [followed on GitHub](https://github.com/desktop/desktop/milestones)
+   upcoming release, and can be [followed on GitHub](https://github.com/xixu-me/git-desktop/milestones)
   - **for example: 1.4.1, 1.4.2, 1.5.0, etc.**
 
 We aim to ship updates to production approximately every two weeks, to ensure a
 continuous flow of improvements to our users. Track our progress in the
-[current milestones](https://github.com/desktop/desktop/milestones?direction=desc&sort=completeness&state=open).
+[current milestones](https://github.com/xixu-me/git-desktop/milestones?direction=desc&sort=completeness&state=open).
 
 ## Scheduling Pull Requests
 
@@ -30,9 +30,9 @@ Pull Requests associated with features for our marketing releases should have a
 milestone defined as soon as possible, to indicate the anticipated release and
 help track.
 
-Pull requests for new features should leverage [feature flags](https://github.com/desktop/desktop/blob/development/docs/technical/feature-flagging.md),
+Pull requests for new features should leverage [feature flags](https://github.com/xixu-me/git-desktop/blob/development/docs/technical/feature-flagging.md),
 so we can control when a feature is made available to users. If you are using
-the Git Desktop [beta channel](https://github.com/desktop/desktop#beta-channel)
+the Git Desktop [beta channel](https://github.com/xixu-me/git-desktop#beta-channel)
 you will be able to help test and provide feedback about upcoming features
 before they are made available to everyone.
 

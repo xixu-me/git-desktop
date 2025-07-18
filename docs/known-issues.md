@@ -28,13 +28,13 @@ Each known issue links off to an existing GitHub issue. If you have additional q
 
 ### My issue is not listed here?
 
-Please check the [open](https://github.com/desktop/desktop/labels/bug) and [closed](https://github.com/desktop/desktop/issues?q=is%3Aclosed+label%3Abug) bugs in the issue tracker for the details of your bug. If you can't find it, or if you're not sure, open a [new issue](https://github.com/desktop/desktop/issues/new?template=bug_report.md).
+Please check the [open](https://github.com/xixu-me/git-desktop/labels/bug) and [closed](https://github.com/xixu-me/git-desktop/issues?q=is%3Aclosed+label%3Abug) bugs in the issue tracker for the details of your bug. If you can't find it, or if you're not sure, open a [new issue](https://github.com/xixu-me/git-desktop/issues/new?template=bug_report.md).
 
 ## macOS
 
 ### 'The username or passphrase you entered is not correct' error after signing into account
 
-Related issue: [#3263](https://github.com/desktop/desktop/issues/3263)
+Related issue: [#3263](https://github.com/xixu-me/git-desktop/issues/3263)
 
 This seems to be caused by the Keychain being in an invalid state, affecting applications that try to use the keychain to store or retrieve credentials. This has been reported from macOS High Sierra 10.13 (17A365) to macOS Mojave 10.14.5 (18F132).
 
@@ -47,7 +47,7 @@ This seems to be caused by the Keychain being in an invalid state, affecting app
 
 ### Checking for updates triggers a 'Could not create temporary directory: Permission denied' message
 
-Related issue: [#4115](https://github.com/desktop/desktop/issues/4115)
+Related issue: [#4115](https://github.com/xixu-me/git-desktop/issues/4115)
 
 This issue seems to be caused by missing permissions for the `~/Library/Caches/com.github.GitHubClient.ShipIt` folder. This is a directory that Desktop uses to create and unpack temporary files as part of updating the application.
 
@@ -63,7 +63,7 @@ This issue seems to be caused by missing permissions for the `~/Library/Caches/c
 
 ### Git Desktop prompts admin password to install helper tool very frequently
 
-Related issue: [#13956](https://github.com/desktop/desktop/issues/13956)
+Related issue: [#13956](https://github.com/xixu-me/git-desktop/issues/13956)
 
 Users who use macOS' Migration Assistant to keep their stuff intact when moving to a new computer might run into this problem because the Migration Assistant changes the owner of the `/Applications/Git Desktop.app` folder to `root`.
 
@@ -80,7 +80,7 @@ chmod -R g+w /Applications/GitHub\ Desktop.app
 
 ### Window is hidden after detaching secondary monitor
 
-Related issue: [#2107](https://github.com/desktop/desktop/issues/2107)
+Related issue: [#2107](https://github.com/xixu-me/git-desktop/issues/2107)
 
 This is related to Desktop tracking the window position between launches, but not changes to your display configuration such as removing the secondary monitor where Desktop was positioned.
 
@@ -91,7 +91,7 @@ This is related to Desktop tracking the window position between launches, but no
 
 ### Certificate revocation check fails
 
-Related issue: [#3326](https://github.com/desktop/desktop/issues/3326)
+Related issue: [#3326](https://github.com/xixu-me/git-desktop/issues/3326)
 
 If you are using Desktop on a corporate network, you may encounter an error like this:
 
@@ -113,7 +113,7 @@ git config --global http.schannelCheckRevoke false
 
 ### Using a repository configured with Folder Redirection
 
-Related issue: [#2972](https://github.com/desktop/desktop/issues/2972)
+Related issue: [#2972](https://github.com/xixu-me/git-desktop/issues/2972)
 
 [Folder Redirection](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753996(v%3dws.11)) is a feature of Windows for administrators to ensure files and folders are managed on a network server, instead.
 
@@ -139,7 +139,7 @@ git clone failed: exit status 128
 
 ### Enable Mandatory ASLR triggers cygheap errors
 
-Related issue: [#3096](https://github.com/desktop/desktop/issues/3096)
+Related issue: [#3096](https://github.com/xixu-me/git-desktop/issues/3096)
 
 Windows 10 Fall Creators Edition (version 1709 or later) added enhancements to the Enhanced Mitigation Experience Toolkit, one being to enable Mandatory ASLR. This setting affects the embedded Git shipped in Desktop, and produces errors that look like this:
 
@@ -159,7 +159,7 @@ Enabling Mandatory ASLR affects the MSYS2 core library, which is relied upon by 
 
 ### I get a black screen when launching Desktop
 
-Related issue: [#3921](https://github.com/desktop/desktop/issues/3921)
+Related issue: [#3921](https://github.com/xixu-me/git-desktop/issues/3921)
 
 Electron enables hardware accelerated graphics by default, but some graphics cards have issues with hardware acceleration which means the application will launch successfully but it will be a black screen.
 
@@ -171,7 +171,7 @@ Electron enables hardware accelerated graphics by default, but some graphics car
 
 ### Failed to open CA file after an update
 
-Related issue: [#4832](https://github.com/desktop/desktop/issues/4832)
+Related issue: [#4832](https://github.com/xixu-me/git-desktop/issues/4832)
 
 A recent upgrade to Git for Windows changed how it uses `http.sslCAInfo`.
 
@@ -209,7 +209,7 @@ sslCAInfo = [some value here]
 
 ### Authentication errors due to modified registry entries
 
-Related issue: [#2623](https://github.com/desktop/desktop/issues/2623)
+Related issue: [#2623](https://github.com/xixu-me/git-desktop/issues/2623)
 
 If either the user or an application has modified the `Command Processor` registry entries it can cause Git Desktop to throw an `Authentication failed` error. To check if these registry entries have been modified open the Registry Editor (regedit.exe) and navigate to the following locations:
 
@@ -220,7 +220,7 @@ Check to see if there is an `Autorun` value in either of those location. If ther
 
 ### "Not enough resources" error when signing in
 
-Related issue: [#15217](https://github.com/desktop/desktop/issues/15217)
+Related issue: [#15217](https://github.com/xixu-me/git-desktop/issues/15217)
 
 If you see an error that says "Not enough resources are available to process this command" when signing in to Git Desktop, it's likely that you have too many credentials stored in Windows Credentials Manager.
 

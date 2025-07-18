@@ -274,7 +274,7 @@ export class NoRepositoriesView extends React.Component<
   // Note: this wrapper is necessary in order to ensure
   // `onClone` does not get passed a click event
   // and accidentally interpret that as a url
-  // See https://github.com/desktop/desktop/issues/8394
+  // See https://github.com/xixu-me/git-desktop/issues/8394
   private onShowClone = () => this.props.onClone()
 
   private renderButtonGroupButton(

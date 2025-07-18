@@ -33,4 +33,4 @@ to automatically fix them. If any issues remain, you'll have to fix them manuall
 
 ## Continuous Integration (CI)
 
-Each of our CI services also runs linting checks on [open pull requests](https://github.com/desktop/desktop/pulls) in the Git Desktop repository. Pull requests must pass CI to before we accept them, so don't forget to lint locally.
+Each of our CI services also runs linting checks on [open pull requests](https://github.com/xixu-me/git-desktop/pulls) in the Git Desktop repository. Pull requests must pass CI to before we accept them, so don't forget to lint locally.

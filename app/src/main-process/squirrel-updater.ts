@@ -112,7 +112,7 @@ function writeShellScriptCLITrampoline(binPath: string): Promise<void> {
   // The path we get from `resolveVersionedPath` is a Win32 relative
   // path (something like `..\app-2.5.0\resources\app\static\github.sh`).
   // We need to make sure it's a POSIX path in order for WSL to be able
-  // to resolve it. See https://github.com/desktop/desktop/issues/4998
+  // to resolve it. See https://github.com/xixu-me/git-desktop/issues/4998
   const versionedPath = resolveVersionedPath(
     binPath,
     'resources/app/static/github.sh'

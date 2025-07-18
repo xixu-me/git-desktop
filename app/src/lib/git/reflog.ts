@@ -1,5 +1,5 @@
-import { git } from './core'
 import { Repository } from '../../models/repository'
+import { git } from './core'
 
 /**
  * Get the `limit` most recently checked out branches.
@@ -104,7 +104,7 @@ export async function getBranchCheckouts(
   // edge case where orphaned branch is created but Git raises error when
   // reading the reflog on this new branch as it has no commits
   //
-  // see https://github.com/desktop/desktop/issues/7983 for more information
+  // see https://github.com/xixu-me/git-desktop/issues/7983 for more information
   if (result.exitCode === 128 && noCommitsOnBranchRe.test(result.stderr)) {
     return checkouts
   }

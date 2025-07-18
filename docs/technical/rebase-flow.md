@@ -32,7 +32,7 @@ this, we need to:
  3. test this patch and see if it applies cleanly to the base branch
 
 Steps 2 and 3 are not currently implemented, but are being tracked in
-[#6960](https://github.com/desktop/desktop/issues/6960).
+[#6960](https://github.com/xixu-me/git-desktop/issues/6960).
 
 The next section walks through these steps in more detail, referencing the
 underlying Git implementation.
@@ -54,7 +54,7 @@ setup:
 
 ### Detecting Conflicts
 
-**TODO:** As part of detecting conflicts in [#6960](https://github.com/desktop/desktop/issues/6960)
+**TODO:** As part of detecting conflicts in [#6960](https://github.com/xixu-me/git-desktop/issues/6960)
 there will be some words here eventually to help explain how the solution works.
 
 ## Warning about remote commits

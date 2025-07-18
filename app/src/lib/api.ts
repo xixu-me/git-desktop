@@ -1,30 +1,30 @@
 import * as URL from 'url'
 import { Account } from '../models/account'
 
+import { BypassReasonType } from '../ui/secret-scanning/bypass-push-protection-dialog'
+import { CopilotError } from './copilot-error'
 import {
-  request,
-  parsedResponse,
-  HTTPMethod,
-  APIError,
-  urlWithQueryString,
-  getUserAgent,
-} from './http'
-import { uuid } from './uuid'
-import { GitProtocol } from './remote-parsing'
-import {
-  getEndpointVersion,
-  isDotCom,
-  isGHE,
-  isGHES,
-  updateEndpointVersion,
+    getEndpointVersion,
+    isDotCom,
+    isGHE,
+    isGHES,
+    updateEndpointVersion,
 } from './endpoint-capabilities'
 import {
-  clearCertificateErrorSuppressionFor,
-  suppressCertificateErrorFor,
-} from './suppress-certificate-error'
+    APIError,
+    getUserAgent,
+    HTTPMethod,
+    parsedResponse,
+    request,
+    urlWithQueryString,
+} from './http'
 import { HttpStatusCode } from './http-status-code'
-import { CopilotError } from './copilot-error'
-import { BypassReasonType } from '../ui/secret-scanning/bypass-push-protection-dialog'
+import { GitProtocol } from './remote-parsing'
+import {
+    clearCertificateErrorSuppressionFor,
+    suppressCertificateErrorFor,
+} from './suppress-certificate-error'
+import { uuid } from './uuid'
 
 const envEndpoint = process.env['DESKTOP_GITHUB_DOTCOM_API_ENDPOINT']
 const envHTMLURL = process.env['DESKTOP_GITHUB_DOTCOM_HTML_URL']
@@ -2257,7 +2257,7 @@ export async function fetchUser(
 /**
  * Map a repository's URL to the endpoint associated with it. For example:
  *
- * https://github.com/desktop/desktop -> https://api.github.com
+ * https://github.com/xixu-me/git-desktop -> https://api.github.com
  * http://github.mycompany.com/my-team/my-project -> http://github.mycompany.com/api
  */
 export function getEndpointForRepository(url: string): string {

@@ -1,12 +1,12 @@
-import { git } from './core'
 import { GitError } from 'dugite'
-import { Repository } from '../../models/repository'
 import {
-  Branch,
-  BranchType,
-  IBranchTip,
-  ITrackingBranch,
+    Branch,
+    BranchType,
+    IBranchTip,
+    ITrackingBranch,
 } from '../../models/branch'
+import { Repository } from '../../models/repository'
+import { git } from './core'
 import { createForEachRefParser } from './git-delimiter-parser'
 
 /** Get all the branches. */
@@ -27,7 +27,7 @@ export async function getBranches(
   }
 
   // TODO: use expectedErrors here to handle a specific error
-  // see https://github.com/desktop/desktop/pull/5299#discussion_r206603442 for
+  // see https://github.com/xixu-me/git-desktop/pull/5299#discussion_r206603442 for
   // discussion about what needs to change
   const result = await git(
     ['for-each-ref', ...formatArgs, ...prefixes],

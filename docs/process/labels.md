@@ -110,31 +110,31 @@ time:
 | [:mag_right:][ready-for-review] | `ready-for-review` | Pull Requests that are ready to be reviewed by the maintainers |
 | [:mag_right:][time-sensitive]   | `time-sensitive`   | Pull Requests that require review in a more timely manner      |
 
-[bug]: https://github.com/desktop/desktop/labels/bug
-[codemirror]: https://github.com/desktop/desktop/labels/codemirror
-[docs]: https://github.com/desktop/desktop/labels/docs
-[electron]: https://github.com/desktop/desktop/labels/electron
-[enhancement]: https://github.com/desktop/desktop/labels/enhancement
-[epic:stashing]: https://github.com/desktop/desktop/labels/epic%3Astashing
-[good first issue]: https://github.com/desktop/desktop/labels/good%20first%20issue
-[help wanted]: https://github.com/desktop/desktop/labels/help%20wanted
-[infrastructure]: https://github.com/desktop/desktop/labels/infrastructure
-[integrations]: https://github.com/desktop/desktop/labels/integrations
-[investigation-needed]: https://github.com/desktop/desktop/labels/investigation-needed
-[linux]: https://github.com/desktop/desktop/labels/linux
-[macOS]: https://github.com/desktop/desktop/labels/macOS
-[meta]: https://github.com/desktop/desktop/labels/meta
-[more-information-needed]: https://github.com/desktop/desktop/labels/more-information-needed
-[needs-design-input]: https://github.com/desktop/desktop/labels/needs-design-input
-[performance]: https://github.com/desktop/desktop/labels/performance
-[priority-1]: https://github.com/desktop/desktop/labels/priority-1
-[priority-2]: https://github.com/desktop/desktop/labels/priority-2
-[priority-3]: https://github.com/desktop/desktop/labels/priority-3
-[ready-for-review]: https://github.com/desktop/desktop/labels/ready-for-review
-[support]: https://github.com/desktop/desktop/labels/support
-[tech-debt]: https://github.com/desktop/desktop/labels/tech-debt
-[themes]: https://github.com/desktop/desktop/labels/themes
-[time-sensitive]: https://github.com/desktop/desktop/labels/time-sensitive
-[user-research]: https://github.com/desktop/desktop/labels/user-research
-[website]: https://github.com/desktop/desktop/labels/website
-[windows]: https://github.com/desktop/desktop/labels/windows
+[bug]: https://github.com/xixu-me/git-desktop/labels/bug
+[codemirror]: https://github.com/xixu-me/git-desktop/labels/codemirror
+[docs]: https://github.com/xixu-me/git-desktop/labels/docs
+[electron]: https://github.com/xixu-me/git-desktop/labels/electron
+[enhancement]: https://github.com/xixu-me/git-desktop/labels/enhancement
+[epic:stashing]: https://github.com/xixu-me/git-desktop/labels/epic%3Astashing
+[good first issue]: https://github.com/xixu-me/git-desktop/labels/good%20first%20issue
+[help wanted]: https://github.com/xixu-me/git-desktop/labels/help%20wanted
+[infrastructure]: https://github.com/xixu-me/git-desktop/labels/infrastructure
+[integrations]: https://github.com/xixu-me/git-desktop/labels/integrations
+[investigation-needed]: https://github.com/xixu-me/git-desktop/labels/investigation-needed
+[linux]: https://github.com/xixu-me/git-desktop/labels/linux
+[macOS]: https://github.com/xixu-me/git-desktop/labels/macOS
+[meta]: https://github.com/xixu-me/git-desktop/labels/meta
+[more-information-needed]: https://github.com/xixu-me/git-desktop/labels/more-information-needed
+[needs-design-input]: https://github.com/xixu-me/git-desktop/labels/needs-design-input
+[performance]: https://github.com/xixu-me/git-desktop/labels/performance
+[priority-1]: https://github.com/xixu-me/git-desktop/labels/priority-1
+[priority-2]: https://github.com/xixu-me/git-desktop/labels/priority-2
+[priority-3]: https://github.com/xixu-me/git-desktop/labels/priority-3
+[ready-for-review]: https://github.com/xixu-me/git-desktop/labels/ready-for-review
+[support]: https://github.com/xixu-me/git-desktop/labels/support
+[tech-debt]: https://github.com/xixu-me/git-desktop/labels/tech-debt
+[themes]: https://github.com/xixu-me/git-desktop/labels/themes
+[time-sensitive]: https://github.com/xixu-me/git-desktop/labels/time-sensitive
+[user-research]: https://github.com/xixu-me/git-desktop/labels/user-research
+[website]: https://github.com/xixu-me/git-desktop/labels/website
+[windows]: https://github.com/xixu-me/git-desktop/labels/windows

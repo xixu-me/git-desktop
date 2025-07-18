@@ -515,7 +515,7 @@ export function getDescriptionForError(
       return 'There are unresolved conflicts in the working directory.'
     case DugiteError.ConfigLockFileAlreadyExists:
       // Added in dugite 1.88.0 (https://github.com/desktop/dugite/pull/386)
-      // in support of https://github.com/desktop/desktop/issues/8675 but we're
+      // in support of https://github.com/xixu-me/git-desktop/issues/8675 but we're
       // not using it yet. Returning a null message here means the stderr will
       // be used as the error message (or stdout if stderr is empty), i.e. the
       // same behavior as before the ConfigLockFileAlreadyExists was added

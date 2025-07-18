@@ -1,5 +1,5 @@
-import * as Path from 'path'
 import * as Fs from 'fs'
+import * as Path from 'path'
 
 import { getProductName, getVersion } from '../app/package-info'
 
@@ -140,7 +140,7 @@ export function getUpdatesURL() {
   // compatibility reasons) in case anything goes wrong until we have everything
   // sorted out.
   const architecturePath = getDistArchitecture() === 'arm64' ? 'arm64/' : ''
-  return `https://central.github.com/api/deployments/desktop/desktop/${architecturePath}latest?version=${version}&env=${getChannel()}`
+  return `https://central.github.com/api/deployments/xixu-me/git-desktop/${architecturePath}latest?version=${version}&env=${getChannel()}`
 }
 
 export function shouldMakeDelta() {

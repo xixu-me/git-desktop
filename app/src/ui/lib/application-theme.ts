@@ -1,11 +1,11 @@
 import {
-  isMacOSMojaveOrLater,
-  isWindows10And1809Preview17666OrLater,
+    isMacOSMojaveOrLater,
+    isWindows10And1809Preview17666OrLater,
 } from '../../lib/get-os'
 import { getBoolean } from '../../lib/local-storage'
 import {
-  setNativeThemeSource,
-  shouldUseDarkColors,
+    setNativeThemeSource,
+    shouldUseDarkColors,
 } from '../main-process-proxy'
 import { ThemeSource } from './theme-source'
 
@@ -118,7 +118,7 @@ export function supportsSystemThemeChanges(): boolean {
   } else if (__WIN32__) {
     // Its technically possible this would still work on prior versions of Windows 10 but 1809
     // was released October 2nd, 2018 and the feature can just be "attained" by upgrading
-    // See https://github.com/desktop/desktop/issues/9015 for more
+    // See https://github.com/xixu-me/git-desktop/issues/9015 for more
     return isWindows10And1809Preview17666OrLater()
   } else {
     // enabling this for Linux users as an experiment to see if distributions

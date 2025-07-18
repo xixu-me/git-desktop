@@ -1,6 +1,6 @@
 import { BrowserWindow } from 'electron'
-import { Emitter, Disposable } from 'event-kit'
-import { ICrashDetails, ErrorType } from '../crash/shared'
+import { Disposable, Emitter } from 'event-kit'
+import { ErrorType, ICrashDetails } from '../crash/shared'
 import { registerWindowStateChangedEvents } from '../lib/window-state'
 import * as ipcMain from './ipc-main'
 import * as ipcWebContents from './ipc-webcontents'
@@ -64,7 +64,7 @@ export class CrashWindow {
     // We only listen for the first of the loading events to avoid a bug in
     // Electron/Chromium where they can sometimes fire more than once. See
     // See
-    // https://github.com/desktop/desktop/pull/513#issuecomment-253028277. This
+    // https://github.com/xixu-me/git-desktop/pull/513#issuecomment-253028277. This
     // shouldn't really matter as in production builds loading _should_ only
     // happen once.
     this.window.webContents.once('did-start-loading', () => {

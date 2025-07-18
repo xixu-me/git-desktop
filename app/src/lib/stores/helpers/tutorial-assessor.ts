@@ -1,7 +1,7 @@
-import { IRepositoryState } from '../../app-state'
-import { TutorialStep } from '../../../models/tutorial-step'
 import { TipState } from '../../../models/tip'
-import { setBoolean, getBoolean } from '../../local-storage'
+import { TutorialStep } from '../../../models/tutorial-step'
+import { IRepositoryState } from '../../app-state'
+import { getBoolean, setBoolean } from '../../local-storage'
 
 const skipInstallEditorKey = 'tutorial-install-editor-skipped'
 const pullRequestStepCompleteKey = 'tutorial-pull-request-step-complete'
@@ -44,7 +44,7 @@ export class OnboardingTutorialAssessor {
     if (!isTutorialRepo) {
       // If a new repo has been added, we can unpause the tutorial repo
       // as we will no longer present the no-repos blank slate view resume button
-      // Fixes https://github.com/desktop/desktop/issues/8341
+      // Fixes https://github.com/xixu-me/git-desktop/issues/8341
       if (this.tutorialPaused) {
         this.resumeTutorial()
       }

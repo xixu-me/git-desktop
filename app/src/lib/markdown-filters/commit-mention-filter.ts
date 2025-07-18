@@ -22,10 +22,10 @@ import { resolveOwnerRepo } from './resolve-owner-repo'
  *     7 characters, if >= 30 characters, unlike dotcom that obtains the git
  *     short sha for shas in the markdown context.
  *
- * Example: A text node of "Check out desktop/desktop@123456781012134543265 for
+ * Example: A text node of "Check out xixu-me/git-desktop@123456781012134543265 for
  * an idea of how to do it..." Becomes three nodes:
  * 1) "Check out "
- * 2) <link src="github.com/desktop/desktop/commit/123456781012134543265">desktop/desktop@<tt>1234567<tt></link>
+ * 2) <link src="github.com/xixu-me/git-desktop/commit/123456781012134543265">xixu-me/git-desktop@<tt>1234567<tt></link>
  * 3) " for an idea of how to do it..."
  */
 export class CommitMentionFilter implements INodeFilter {

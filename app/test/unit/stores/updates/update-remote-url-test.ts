@@ -1,15 +1,15 @@
-import { describe, it, TestContext } from 'node:test'
 import assert from 'node:assert'
-import { GitStore, RepositoriesStore } from '../../../../src/lib/stores'
-import { TestRepositoriesDatabase } from '../../../helpers/databases'
+import { describe, it, TestContext } from 'node:test'
 import {
-  IAPIFullRepository,
-  getDotComAPIEndpoint,
+    getDotComAPIEndpoint,
+    IAPIFullRepository,
 } from '../../../../src/lib/api'
-import { updateRemoteUrl } from '../../../../src/lib/stores/updates/update-remote-url'
-import { shell } from '../../../helpers/test-app-shell'
-import { setupFixtureRepository } from '../../../helpers/repositories'
 import { addRemote } from '../../../../src/lib/git'
+import { GitStore, RepositoriesStore } from '../../../../src/lib/stores'
+import { updateRemoteUrl } from '../../../../src/lib/stores/updates/update-remote-url'
+import { TestRepositoriesDatabase } from '../../../helpers/databases'
+import { setupFixtureRepository } from '../../../helpers/repositories'
+import { shell } from '../../../helpers/test-app-shell'
 import { TestStatsStore } from '../../../helpers/test-stats-store'
 
 describe('Update remote url', () => {
@@ -88,7 +88,7 @@ describe('Update remote url', () => {
   })
 
   it("doesn't update repository's remote url if protocols don't match", async t => {
-    const originalUrl = 'git@github.com:desktop/desktop.git'
+    const originalUrl = 'git@github.com:xixu-me/git-desktop.git'
     const sshApiRepository = {
       ...apiRepository,
       clone_url: originalUrl,

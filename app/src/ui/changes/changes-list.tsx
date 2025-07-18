@@ -1,64 +1,63 @@
-import * as React from 'react'
 import * as Path from 'path'
+import * as React from 'react'
 
-import { Dispatcher } from '../dispatcher'
-import { IMenuItem } from '../../lib/menu-item'
+import classNames from 'classnames'
+import { clipboard } from 'electron'
+import { EOL } from 'os'
+import { basename } from 'path'
 import { revealInFileManager } from '../../lib/app-shell'
 import {
-  WorkingDirectoryStatus,
-  WorkingDirectoryFileChange,
-  AppFileStatusKind,
-} from '../../models/status'
-import { DiffSelectionType } from '../../models/diff'
-import { CommitIdentity } from '../../models/commit-identity'
-import { ICommitMessage } from '../../models/commit-message'
-import {
-  isRepositoryWithGitHubRepository,
-  Repository,
-} from '../../models/repository'
+    ConflictState,
+    Foldout,
+    RebaseConflictState,
+} from '../../lib/app-state'
+import { arrayEquals } from '../../lib/equality'
+import { enableFilteredChangesList } from '../../lib/feature-flag'
+import { IMenuItem, showContextualMenu } from '../../lib/menu-item'
+import { hasConflictedFiles } from '../../lib/status'
 import { Account } from '../../models/account'
 import { Author, UnknownAuthor } from '../../models/author'
-import { List, ClickSource } from '../lib/list'
+import { IAheadBehind } from '../../models/branch'
+import { Commit, ICommitContext } from '../../models/commit'
+import { CommitIdentity } from '../../models/commit-identity'
+import { ICommitMessage } from '../../models/commit-message'
+import { DiffSelectionType } from '../../models/diff'
+import { hasWritePermission } from '../../models/github-repository'
+import { Popup } from '../../models/popup'
+import { RepoRulesInfo } from '../../models/repo-rules'
+import {
+    isRepositoryWithGitHubRepository,
+    Repository,
+} from '../../models/repository'
+import { IStashEntry } from '../../models/stash-entry'
+import {
+    AppFileStatusKind,
+    WorkingDirectoryFileChange,
+    WorkingDirectoryStatus,
+} from '../../models/status'
+import { IAutocompletionProvider } from '../autocompletion'
+import { Dispatcher } from '../dispatcher'
 import { Checkbox, CheckboxValue } from '../lib/checkbox'
 import {
-  isSafeFileExtension,
-  DefaultEditorLabel,
-  CopyFilePathLabel,
-  RevealInFileManagerLabel,
-  OpenWithDefaultProgramLabel,
-  CopyRelativeFilePathLabel,
-  CopySelectedPathsLabel,
-  CopySelectedRelativePathsLabel,
+    CopyFilePathLabel,
+    CopyRelativeFilePathLabel,
+    CopySelectedPathsLabel,
+    CopySelectedRelativePathsLabel,
+    DefaultEditorLabel,
+    isSafeFileExtension,
+    OpenWithDefaultProgramLabel,
+    RevealInFileManagerLabel,
 } from '../lib/context-menu'
-import { CommitMessage } from './commit-message'
-import { ChangedFile } from './changed-file'
-import { IAutocompletionProvider } from '../autocompletion'
-import { showContextualMenu } from '../../lib/menu-item'
-import { arrayEquals } from '../../lib/equality'
-import { clipboard } from 'electron'
-import { basename } from 'path'
-import { Commit, ICommitContext } from '../../models/commit'
-import {
-  RebaseConflictState,
-  ConflictState,
-  Foldout,
-} from '../../lib/app-state'
-import { ContinueRebase } from './continue-rebase'
-import { Octicon, OcticonSymbolVariant } from '../octicons'
-import * as octicons from '../octicons/octicons.generated'
-import { IStashEntry } from '../../models/stash-entry'
-import classNames from 'classnames'
-import { hasWritePermission } from '../../models/github-repository'
-import { hasConflictedFiles } from '../../lib/status'
+import { ClickSource, List } from '../lib/list'
 import { createObservableRef } from '../lib/observable-ref'
 import { TooltipDirection } from '../lib/tooltip'
-import { Popup } from '../../models/popup'
-import { EOL } from 'os'
 import { TooltippedContent } from '../lib/tooltipped-content'
-import { RepoRulesInfo } from '../../models/repo-rules'
-import { IAheadBehind } from '../../models/branch'
+import { Octicon, OcticonSymbolVariant } from '../octicons'
+import * as octicons from '../octicons/octicons.generated'
 import { StashDiffViewerId } from '../stashing'
-import { enableFilteredChangesList } from '../../lib/feature-flag'
+import { ChangedFile } from './changed-file'
+import { CommitMessage } from './commit-message'
+import { ContinueRebase } from './continue-rebase'
 
 const RowHeight = 29
 const StashIcon: OcticonSymbolVariant = {
@@ -809,7 +808,7 @@ export class ChangesList extends React.Component<
     // When a single file is selected, we use a default commit summary
     // based on the file name and change status.
     // However, for onboarding tutorial repositories, we don't want to do this.
-    // See https://github.com/desktop/desktop/issues/8354
+    // See https://github.com/xixu-me/git-desktop/issues/8354
     const prepopulateCommitSummary =
       filesSelected.length === 1 && !repository.isTutorialRepository
 

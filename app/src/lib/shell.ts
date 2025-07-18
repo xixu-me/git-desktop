@@ -21,7 +21,7 @@ export function shellNeedsPatching(process: NodeJS.Process): boolean {
   // We don't want to run this in the main process until the following issues
   // are closed (and possibly not after they're closed either)
   //
-  // See https://github.com/desktop/desktop/issues/13974
+  // See https://github.com/xixu-me/git-desktop/issues/13974
   // See https://github.com/electron/electron/issues/32718
   if (process.type === 'browser' && isMacOSCatalinaOrEarlier()) {
     return false

@@ -4,11 +4,11 @@ This documented is intended to contain a high level architectural overview of th
 
 Some of the contents in this document is duplicated from the following pull requests which implemented the feature.
 
-- [#9127 - Parse Proxy Auto-Configuration strings](https://github.com/desktop/desktop/pull/9127)
-- [#9139 - Determine remote endpoint for Git network operations](https://github.com/desktop/desktop/pull/9139)
+- [#9127 - Parse Proxy Auto-Configuration strings](https://github.com/xixu-me/git-desktop/pull/9127)
+- [#9139 - Determine remote endpoint for Git network operations](https://github.com/xixu-me/git-desktop/pull/9139)
 
-- [#9154 - Automatically set Git proxy environment variables from system configuration](https://github.com/desktop/desktop/pull/9154)
-- [#9188 - Support disabling certificate revocation checks on Windows](https://github.com/desktop/desktop/pull/9188)
+- [#9154 - Automatically set Git proxy environment variables from system configuration](https://github.com/xixu-me/git-desktop/pull/9154)
+- [#9188 - Support disabling certificate revocation checks on Windows](https://github.com/xixu-me/git-desktop/pull/9188)
 
 ## High level overview
 
@@ -34,23 +34,23 @@ Now that we've ironed out the differences let's talk about how we can tell Git t
 
 We could use the configuration variable by using the `git -c http.proxy=foo` approach but that would override any `http.proxy` setting the user might have configured in their global (and/or repo level) git config. More importantly though the `-c` approach wouldn't be inherited by subcommands executed by Git such as Git LFS.
 
-Further more by relying on the environment variables we're able to avoid calling `git config` to read the value of the `http.proxy` variable [like we do for `http.protocol`](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/core.ts#L418-L431).
+Further more by relying on the environment variables we're able to avoid calling `git config` to read the value of the `http.proxy` variable [like we do for `http.protocol`](https://github.com/xixu-me/git-desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/core.ts#L418-L431).
 
 ### Bringing it all together
 
 Now that we understand the components involved we can talk about the big picture. When Git Desktop is about to perform a Git network operation such as `push`, `pull`, `fetch`, etc we follow this rough flow.
 
-1. [Determine remote endpoint for the Git network operations](https://github.com/desktop/desktop/pull/9139)
-2. [Determine if the user has set any environment variables](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/environment.ts#L94-L128) such as `http_proxy`, `all_proxy` etc that we would override if we attempted to automatically configure the proxy. If such a variable is set we bail.
-3. [Ask Electron to resolve the proxy](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/resolve-git-proxy.ts#L12-L23)
-4. [Parse the PAC-string](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/parse-pac-string.ts#L60-L90) that we get back from electron
-5. [Set the appropriate proxy environment variables](https://github.com/desktop/desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/environment.ts#L130-L135)
+1. [Determine remote endpoint for the Git network operations](https://github.com/xixu-me/git-desktop/pull/9139)
+2. [Determine if the user has set any environment variables](https://github.com/xixu-me/git-desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/environment.ts#L94-L128) such as `http_proxy`, `all_proxy` etc that we would override if we attempted to automatically configure the proxy. If such a variable is set we bail.
+3. [Ask Electron to resolve the proxy](https://github.com/xixu-me/git-desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/resolve-git-proxy.ts#L12-L23)
+4. [Parse the PAC-string](https://github.com/xixu-me/git-desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/parse-pac-string.ts#L60-L90) that we get back from electron
+5. [Set the appropriate proxy environment variables](https://github.com/xixu-me/git-desktop/blob/65f17f1e0482b95a4dfe2b1f9a9f9643a0103aa8/app/src/lib/git/environment.ts#L130-L135)
 
 #### Determining the remote endpoint
 
 In order to resolve the proxy to use for Git network operations we're going to have to have an understanding of what the remote endpoint is gonna be for any given network operation.
 
-Corporate proxies are often set up so that a script determines which proxy to use based on the url that the client wants to access (for https urls the script usually only gets the protocol and domain). See [#9127](https://github.com/desktop/desktop/pull/9127) for details on that.
+Corporate proxies are often set up so that a script determines which proxy to use based on the url that the client wants to access (for https urls the script usually only gets the protocol and domain). See [#9127](https://github.com/xixu-me/git-desktop/pull/9127) for details on that.
 
 Unfortunately for us there's not a 1:1 correlation between git command and url. Take the simplest case of `git clone URL` for example. While the initial request will be to `URL` it's possible that the repository could contain submodules pointing to other hosts. It's also possible that the repository is set up to use LFS in which case there may be subsequent requests to a dedicated LFS server.
 
@@ -66,9 +66,9 @@ These proxies issue fake ssl certificates when clients make request to https sit
 
 When these snooping proxy servers issue their fake certificate they rarely include any certificate revocation list details. In other words they're not telling the clients who they should contact to see if a particular certificate has been revoked. This is called Certificate Revocation List Distribution Points or CRL DP. The lack of distribution points in a certificate is normally ignored by http(s) clients and that's the case for Git on macOS and linux. On Windows however there's two SSL backends to choose from; `openssl` and `schannel`. OpenSSL is a cross-platform SSL/TLS implementation whereas `schannel` uses the built-in SSL/TLS subsystem in Windows.
 
-Unfortunately the `schannel` backend in cURL throws an error when failing to check for certificate revocation. We've seen this error [so many times](https://github.com/desktop/desktop/issues/3326) that it's made our "known issues" document. To combat this a new configuration option (`http.schannelCheckRevoke`) was added to Git which lets users disable certificate revocation checks entirely. This certainly isn't ideal and we'd like to see a solution to allow best effort certificate revocation checks which always attempts to check for revocation but doesn't throw an error if it fails to do so (see the Future improvements section below).
+Unfortunately the `schannel` backend in cURL throws an error when failing to check for certificate revocation. We've seen this error [so many times](https://github.com/xixu-me/git-desktop/issues/3326) that it's made our "known issues" document. To combat this a new configuration option (`http.schannelCheckRevoke`) was added to Git which lets users disable certificate revocation checks entirely. This certainly isn't ideal and we'd like to see a solution to allow best effort certificate revocation checks which always attempts to check for revocation but doesn't throw an error if it fails to do so (see the Future improvements section below).
 
-For now though this is our only workaround and as such [#9188](https://github.com/desktop/desktop/pull/9188) was introduced which detects this specific error and allow the user to disable revocation checks. **Note: the toggle to turn this setting on or off in the options dialog is hidden unless this condition has been encountered before**
+For now though this is our only workaround and as such [#9188](https://github.com/xixu-me/git-desktop/pull/9188) was introduced which detects this specific error and allow the user to disable revocation checks. **Note: the toggle to turn this setting on or off in the options dialog is hidden unless this condition has been encountered before**
 
 ## Risks/concerns/tradeoffs
 
@@ -117,7 +117,7 @@ Object.keys(process.env).filter(k => /proxy/i.test(k))
 Further more I'd expect a copy of the user's `~/.gitconfig` file to yield interesting results when troubleshooting knowing that the mere presence of an `http.proxy` config variable **even if it's empty** will override our support. For example:
 
 ```
-> https_proxy=http://proxy.local:8888 git -c http.proxy= ls-remote https://github.com/desktop/desktop
+> https_proxy=http://proxy.local:8888 git -c http.proxy= ls-remote https://github.com/xixu-me/git-desktop
 ```
 
 That network request will **not** use a proxy server. So if you're troubleshooting a case where a user expects Git Desktop to automatically resolve the proxy server but doesn't you should look to see if they've got a blank `http.proxy` configuration variable set and perhaps suggest they remove that using something like `git config --global --unset http.proxy` (if it's configured globally)

@@ -6,8 +6,8 @@ import { licenseOverrides } from './license-overrides'
 import _legalEagle from 'legal-eagle'
 const legalEagle = promisify(_legalEagle)
 
-import { getVersion } from '../../app/package-info'
 import { readFile, writeFile } from 'fs/promises'
+import { getVersion } from '../../app/package-info'
 
 const assertValidLicensesIn = async (dir: string) => {
   const summary = await legalEagle({
@@ -69,9 +69,9 @@ export async function updateLicenseDump(
   const appVersion = getVersion()
 
   summary[`desktop@${appVersion}`] = {
-    repository: 'https://github.com/desktop/desktop',
+    repository: 'https://github.com/xixu-me/git-desktop',
     license: 'MIT',
-    source: `https://github.com/desktop/desktop/blob/release-${appVersion}/LICENSE`,
+    source: `https://github.com/xixu-me/git-desktop/blob/release-${appVersion}/LICENSE`,
     sourceText: licenseText,
   }
 

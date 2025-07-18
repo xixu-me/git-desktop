@@ -6,14 +6,14 @@ detached from the application (visually) and anchored at the top of the screen.
 On Windows, things aren't quite as simple.
 
 Since we wanted a "frameless" design on Windows we explored putting the
-application menu behind a hamburger icon in [#689](https://github.com/desktop/desktop/pull/689)
-which worked decently until the advent of the separate title bar in [#775](https://github.com/desktop/desktop/pull/775) which was introduced so that
+application menu behind a hamburger icon in [#689](https://github.com/xixu-me/git-desktop/pull/689)
+which worked decently until the advent of the separate title bar in [#775](https://github.com/xixu-me/git-desktop/pull/775) which was introduced so that
 there would be draggable areas of the window even when running on small resolutions.
 
 Ultimately we decided that the familiar UX of a menu bar was superior to anything
 we had tried up until that point.
 
-The first iteration of this menu bar was implemented in [#991](https://github.com/desktop/desktop/pull/991) and this document serves to
+The first iteration of this menu bar was implemented in [#991](https://github.com/xixu-me/git-desktop/pull/991) and this document serves to
 document what a Windows menu bar is supposed to do such that we can detect
 regressions going forward.
 

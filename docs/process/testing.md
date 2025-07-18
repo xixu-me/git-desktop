@@ -1,9 +1,9 @@
 ### Download Desktop
 
 - [ ] [User can download latest (Mac & Windows) Desktop](https://desktop.github.com/)
-  - [ ] [Mac](https://central.github.com/deployments/desktop/desktop/latest/darwin)
+  - [ ] [Mac](https://central.github.com/deployments/xixu-me/git-desktop/latest/darwin)
     - [ ] Homebrew package manager: `brew cask install github-desktop`
-  - [ ] [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32)
+  - [ ] [Windows](https://central.github.com/deployments/xixu-me/git-desktop/latest/win32)
     - [ ] Chocolatey package manager: `choco install github-desktop`
     - [ ] 64-bit and up
   - [ ] Data is retained if you download and open a fresh copy
@@ -19,9 +19,9 @@
   - [ ] `Sign in` successful if valid username/email and password
     - [ ] If 2FA activated, user sent auth code to enter (test SMS and authenticator app)
       - [ ] User can reissue auth code with `Resend SMS` link
- 	- [ ] Sign in successful with active 2FA code, user goes to Configure Git page
- 	  - [ ] User sees Repository landing page if sign-in successful
- 	  - [ ] Error message if code is wrong or inactive
+    - [ ] Sign in successful with active 2FA code, user goes to Configure Git page
+      - [ ] User sees Repository landing page if sign-in successful
+      - [ ] Error message if code is wrong or inactive
     - [ ] Error message if incorrect username/email or password
   - [ ] Forgot link (`/password_reset`)
   - [ ] `Cancel` returns to initial Welcome Flow page
@@ -41,7 +41,7 @@
   - [ ] If recognized, your avatar is present in example commit; gravatars not recognized
     - [ ] `Continue` allowed if fields populated or blank
   - [ ] Valid login credentials from github.com or Enterprise carried through
- 	  - [ ] User sees Repository landing page if sign-in successful
+    - [ ] User sees Repository landing page if sign-in successful
 - [ ] Usage Data
   - [ ] Checked by default; user can uncheck. (Should not be checked by default if user on free plan only.)
     - [ ] Clicking `Finish`, results in user being signed-in successfully
@@ -57,7 +57,7 @@
       - [ ] User can revert to Onboarding if all repositories are removed
     - [ ] Tutorial can only be started if there is no local or remote `desktop-tutorial` repository, else error surfaced
       - [ ] Repository is created as first step, with green checkmarks for each completed step.
- 	  - [ ] User can click `Exit Tutorial` anytime to return to Onboarding page
+      - [ ] User can click `Exit Tutorial` anytime to return to Onboarding page
 
 ### Repositories landing page; default no repositories
 
@@ -73,7 +73,7 @@
   - [ ] Enter valid URL or `username/repo/gist`, else error message
     - [ ] If authentication error for Github.com, modal with username/password surfaced; `Cancel` or `Save and Retry` buttons
       - [ ] If successful, repo is cloned
- 	- [ ] Modal surfaces again if unsuccessful
+    - [ ] Modal surfaces again if unsuccessful
     - [ ] If authentication error for Enterprise, user redirected to Preferences
   - [ ] Valid path can be entered or selected
     - [ ] Local path is prepopulated; if not unique then error surfaced
@@ -105,9 +105,9 @@
   - [ ] Modal fields are Name, Description (optional), `Keep this code private` checkbox, Organization list (alpha order, tab-specific, if orgs exist), `Cancel` button, `Publish Repository` button
     - [ ] Clicking `Publish Repository` button pushes repo to GitHub.com or Enterprise; `Cancel` button closes modal
       - [ ] Repository is present on GitHub.com or Enterprise if published
- 	- [ ] 'Visibility can't be private error' shown, if user's plan is not sufficient
- 	- [ ] A `.gitattributes` file is added to the repository as part of the initial commit
- 	- [ ] If repo is forked and upstream remote does not match, then modal is surfaced with Ignore/Update button
+    - [ ] 'Visibility can't be private error' shown, if user's plan is not sufficient
+    - [ ] A `.gitattributes` file is added to the repository as part of the initial commit
+    - [ ] If repo is forked and upstream remote does not match, then modal is surfaced with Ignore/Update button
 
 ### Application
 
@@ -228,8 +228,8 @@
     - [ ] `Cancel` button closes modal
   - [ ] Ignored Files
     - [ ] `.gitignore` file contents are shown and can be edited
- 	- [ ] `Saved` button saves last entry; changes create a new commit
- 	- [ ] `Cancel` button closes modal
+    - [ ] `Saved` button saves last entry; changes create a new commit
+    - [ ] `Cancel` button closes modal
 
 ### Branch top-level menu
 
@@ -259,8 +259,8 @@
     - [ ] If merged, success banner is shown temporarily; user can `X` to remove
     - [ ] If conflicts, conflict modal shows quantity of files, ability to open in [editor], open in command line, `Abort` button, while `Commit merge` button is deactivated until files are resolved; Changes tab shows all files
       - [ ] If conflict resolved, files marked green, and user can click `Commit merge` button
- 	    - [ ] If merged, success banner is shown temporarily; user can `X` to remove
- 	    - [ ] Binary files must be resolved in command line before committing merge
+        - [ ] If merged, success banner is shown temporarily; user can `X` to remove
+        - [ ] Binary files must be resolved in command line before committing merge
       - [ ] Aborting partially resolved commit surfaces "Are you sure?" dialogue; `Cancel` or `Abort merge` buttons
 - [ ] Rebase Current Branch...
   - [ ] User can filter to find existing branches
@@ -270,7 +270,7 @@
     - [ ] If rebase, success banner is shown temporarily; user can `X` to remove
     - [ ] If conflicts, conflict modal shows quantity of files, ability to open in [editor], open in command line, `Abort` button, while `Continue rebase` button is deactivated until files are resolved
       - [ ] If conflicts resolved, files marked green, and user can click `Continue rebase` button
- 	    - [ ] If rebased, success banner is shown temporarily; user can `X` to remove
+        - [ ] If rebased, success banner is shown temporarily; user can `X` to remove
       - [ ] Aborting partially resolved rebase surfaces "Are you sure?" dialogue; `Cancel` or `Abort merge` buttons
 - [ ] Compare on GitHub (Mac: `⇧⌘C`; Windows: `Ctrl+Shift+C`) (if repository already published on `github.com`)
 - [ ] Create Pull Request (Mac: `⌘R`; Windows: `Ctrl+R`) opens Pull Request on `github.com`
@@ -330,11 +330,11 @@
     - [ ] User can select one or more lines to commit; diff is scrollable
     - [ ] Right-clicking opens context menu
       - [ ] User can discard the file (or all files); pending confirmation dialogue
- 	  - [ ] `Do not show this message again`overrides the preference setting if true  
+      - [ ] `Do not show this message again`overrides the preference setting if true  
       - [ ] User can ignore single/all files, show in Finder/Explorer, reveal in external editor, or open in default program
- 	  - [ ] A specific file can only be ignored once
- 	  - [ ] All ignored files found in Repository Settings > Ignored Files tab
- 	- [ ] User can open in finder, preferred editor, or OS default program  
+      - [ ] A specific file can only be ignored once
+      - [ ] All ignored files found in Repository Settings > Ignored Files tab
+    - [ ] User can open in finder, preferred editor, or OS default program  
 - [ ] Panes can be resized horizontally, and contents resize to take the full width
   - [ ] Quitting Desktop and relaunching remembers pane sizes
 - [ ] Uncommitted files are optionally stashed if user attempts to switch branches; depends on Preferences.
@@ -361,7 +361,7 @@
       - [ ] Merge conflict results in dialog shown directing user to commit view
   - [ ] Merge prompt shown above filter if comparing two branches and commits are behind default branch
     - [ ] `View commits` shows commits in Changes list, `Merge... opens Merge in Current Branch modal`, or `X` to close
- 
+
 ### Diffs section (History tab)  
 
 - [ ] All commits have avatar, selectable SHA, # of files changed, commit message, commit description (optional)

@@ -1,17 +1,17 @@
-import * as React from 'react'
 import classnames from 'classnames'
+import * as React from 'react'
 
 import {
-  List,
-  SelectionSource as ListSelectionSource,
-  findNextSelectableRow,
-  ClickSource,
-  SelectionDirection,
+    ClickSource,
+    List,
+    SelectionSource as ListSelectionSource,
+    SelectionDirection,
+    findNextSelectableRow,
 } from '../lib/list'
-import { TextBox } from '../lib/text-box'
 import { Row } from '../lib/row'
+import { TextBox } from '../lib/text-box'
 
-import { match, IMatch, IMatches } from '../../lib/fuzzy-find'
+import { IMatch, IMatches, match } from '../../lib/fuzzy-find'
 import { AriaLiveContainer } from '../accessibility/aria-live-container'
 
 /** An item in the filter list. */
@@ -146,7 +146,7 @@ interface IFilterListProps<T extends IFilterListItem, GroupIdentifier> {
   /**
    * A reference to a TextBox that will be used to control this component.
    *
-   * See https://github.com/desktop/desktop/issues/4317 for refactoring work to
+   * See https://github.com/xixu-me/git-desktop/issues/4317 for refactoring work to
    * make this more composable which should make this unnecessary.
    */
   readonly filterTextBox?: TextBox

@@ -29,7 +29,7 @@ export class TermsAndConditions extends React.Component<
           <p>
             These GitHub Open Source Applications Terms and Conditions
             ("Application Terms") are a legal agreement between you (either as
-            an individual or on behalf of an entity) and GitHub, Inc. regarding
+            an individual or on behalf of an entity) and Xi Xu regarding
             your use of GitHub's applications, such as Git Desktop™ and
             associated documentation ("Software"). These Application Terms apply
             to the executable code version of the Software. Source code for the

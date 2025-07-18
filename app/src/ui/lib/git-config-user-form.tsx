@@ -1,15 +1,15 @@
-import * as React from 'react'
-import { TextBox } from './text-box'
-import { Row } from './row'
-import {
-  Account,
-  isDotComAccount,
-  isEnterpriseAccount,
-} from '../../models/account'
-import { Select } from './select'
-import { GitEmailNotFoundWarning } from './git-email-not-found-warning'
-import { getStealthEmailForAccount } from '../../lib/email'
 import memoizeOne from 'memoize-one'
+import * as React from 'react'
+import { getStealthEmailForAccount } from '../../lib/email'
+import {
+    Account,
+    isDotComAccount,
+    isEnterpriseAccount,
+} from '../../models/account'
+import { GitEmailNotFoundWarning } from './git-email-not-found-warning'
+import { Row } from './row'
+import { Select } from './select'
+import { TextBox } from './text-box'
 
 const OtherEmailSelectValue = 'Other'
 
@@ -73,7 +73,7 @@ export class GitConfigUserForm extends React.Component<
           .map(x => x.email)
 
         // For GitHub.com we always include the stealth email, see
-        // https://github.com/desktop/desktop/pull/19968
+        // https://github.com/xixu-me/git-desktop/pull/19968
         const emails = isDotComAccount(account)
           ? [...verifiedEmails, getStealthEmailForAccount(account)]
           : verifiedEmails

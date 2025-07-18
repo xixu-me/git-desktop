@@ -1,19 +1,19 @@
 import { GitError as DugiteError } from 'dugite'
-import { coerceToString, git, GitError } from './core'
+import { Branch } from '../../models/branch'
 import { Repository } from '../../models/repository'
 import {
-  IStashEntry,
-  StashedChangesLoadStates,
-  StashedFileChanges,
+    IStashEntry,
+    StashedChangesLoadStates,
+    StashedFileChanges,
 } from '../../models/stash-entry'
 import {
-  WorkingDirectoryFileChange,
-  CommittedFileChange,
+    CommittedFileChange,
+    WorkingDirectoryFileChange,
 } from '../../models/status'
+import { coerceToString, git, GitError } from './core'
+import { createLogParser } from './git-delimiter-parser'
 import { parseRawLogWithNumstat } from './log'
 import { stageFiles } from './update-index'
-import { Branch } from '../../models/branch'
-import { createLogParser } from './git-delimiter-parser'
 
 export const DesktopStashEntryMarker = '!!GitHub_Desktop'
 
@@ -145,7 +145,7 @@ export async function createDesktopStashEntry(
   untrackedFilesToStage: ReadonlyArray<WorkingDirectoryFileChange>
 ): Promise<boolean> {
   // We must ensure that no untracked files are present before stashing
-  // See https://github.com/desktop/desktop/pull/8085
+  // See https://github.com/xixu-me/git-desktop/pull/8085
   // First ensure that all changes in file are selected
   // (in case the user has not explicitly checked the checkboxes for the untracked files)
   const fullySelectedUntrackedFiles = untrackedFilesToStage.map(x =>

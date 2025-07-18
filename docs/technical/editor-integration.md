@@ -20,7 +20,7 @@ please fork and contribute a pull request for the team to review.
 ## Windows
 
 The source for the editor integration on Windows is found in
-[`app/src/lib/editors/win32.ts`](https://github.com/desktop/desktop/blob/development/app/src/lib/editors/win32.ts).
+[`app/src/lib/editors/win32.ts`](https://github.com/xixu-me/git-desktop/blob/development/app/src/lib/editors/win32.ts).
 
 These editors are currently supported:
 
@@ -245,7 +245,7 @@ scripts.
 ## macOS
 
 The source for the editor integration on macOS is found in
-[`app/src/lib/editors/darwin.ts`](https://github.com/desktop/desktop/blob/development/app/src/lib/editors/darwin.ts).
+[`app/src/lib/editors/darwin.ts`](https://github.com/xixu-me/git-desktop/blob/development/app/src/lib/editors/darwin.ts).
 
 These editors are currently supported:
 
@@ -343,7 +343,7 @@ exception.
 ## Linux
 
 The source for the editor integration on Linux is found in
-[`app/src/lib/editors/linux.ts`](https://github.com/desktop/desktop/blob/development/app/src/lib/editors/linux.ts).
+[`app/src/lib/editors/linux.ts`](https://github.com/xixu-me/git-desktop/blob/development/app/src/lib/editors/linux.ts).
 
 These editors are currently supported:
 

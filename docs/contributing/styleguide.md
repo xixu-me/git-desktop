@@ -3,9 +3,10 @@
 Most of our preferred style when writing typescript is configured in our [`.eslintrc.yml`](../../.eslintrc.yml) files.
 
 ## Do
- - Use camelCase for methods
- - Use PascalCase for class names
- - [ESLint](https://eslint.org/docs/user-guide/integrations) in your editor
+
+- Use camelCase for methods
+- Use PascalCase for class names
+- [ESLint](https://eslint.org/docs/user-guide/integrations) in your editor
 
 # Documenting your code
 
@@ -39,16 +40,16 @@ and leave a blank line before you go into detail, similar to a git commit messag
 
 ## Visibility of AppStore Methods
 
-The [`Dispatcher`](https://github.com/desktop/desktop/blob/development/app/src/lib/dispatcher/dispatcher.ts)
+The [`Dispatcher`](https://github.com/xixu-me/git-desktop/blob/development/app/src/lib/dispatcher/dispatcher.ts)
 is the entry point for most interactions with the application which update state,
-and for most usages this work is then delegated to the [`AppStore`](https://github.com/desktop/desktop/blob/development/app/src/lib/stores/app-store.ts).
+and for most usages this work is then delegated to the [`AppStore`](https://github.com/xixu-me/git-desktop/blob/development/app/src/lib/stores/app-store.ts).
 Due to this coupling, we need to discourage callers directly manipulating
 specific methods in the `AppStore` unless there's a compelling reason.
 
 We do this by making the methods look unappealing:
 
- - underscore prefix on method name
- - comment indicating that you should be looking elsewhere
+- underscore prefix on method name
+- comment indicating that you should be looking elsewhere
 
 ```ts
 /** This shouldn't be called directly. See `Dispatcher`. */

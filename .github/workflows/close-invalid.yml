@@ -18,7 +18,7 @@ permissions:
 jobs:
   close-on-adding-invalid-label:
     if:
-      github.repository == 'desktop/desktop' && github.event.label.name ==
+      github.repository == 'xixu-me/git-desktop' && github.event.label.name ==
       'invalid'
     runs-on: ubuntu-latest
 

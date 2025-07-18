@@ -1,10 +1,10 @@
-import { describe, it } from 'node:test'
 import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import {
-  RepositoriesDatabase,
-  IDatabaseGitHubRepository,
-  IDatabaseOwner,
-  getOwnerKey,
+    IDatabaseGitHubRepository,
+    IDatabaseOwner,
+    RepositoriesDatabase,
+    getOwnerKey,
 } from '../../src/lib/databases'
 
 describe('RepositoriesDatabase', () => {
@@ -18,8 +18,8 @@ describe('RepositoriesDatabase', () => {
       ownerID: 1,
       name: 'desktop',
       private: false,
-      htmlURL: 'http://github.com/desktop/desktop',
-      cloneURL: 'http://github.com/desktop/desktop.git',
+      htmlURL: 'http://github.com/xixu-me/git-desktop',
+      cloneURL: 'http://github.com/xixu-me/git-desktop.git',
       parentID: null,
       lastPruneDate: null,
       permissions: 'write',
@@ -66,8 +66,8 @@ describe('RepositoriesDatabase', () => {
       ownerID: ownerA,
       name: 'desktop',
       private: false,
-      htmlURL: 'http://github.com/desktop/desktop',
-      cloneURL: 'http://github.com/desktop/desktop.git',
+      htmlURL: 'http://github.com/xixu-me/git-desktop',
+      cloneURL: 'http://github.com/xixu-me/git-desktop.git',
       parentID: null,
       lastPruneDate: null,
       permissions: 'write',

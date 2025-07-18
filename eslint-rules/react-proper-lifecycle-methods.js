@@ -44,7 +44,7 @@ function getPropsType(node) {
   if (propsParam.type === 'TSTypeLiteral' && propsParam.members.length === 0) {
     // TODO:
     // if types are inlined, this needs to do that traversal so we can perform equivalence
-    // skipping this for now as I'm not aware of usages of this in desktop/desktop
+    // skipping this for now as I'm not aware of usages of this in xixu-me/git-desktop
     return '{}'
   }
 
@@ -168,7 +168,7 @@ function getParameterType(node) {
     ) {
       // TODO:
       // if types are inlined, this needs to do that traversal so we can perform equivalence
-      // skipping this for now as I'm not aware of usages of this in desktop/desktop
+      // skipping this for now as I'm not aware of usages of this in xixu-me/git-desktop
       return '{}'
     }
   }

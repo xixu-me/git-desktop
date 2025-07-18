@@ -1,11 +1,11 @@
-import * as React from 'react'
 import classNames from 'classnames'
-import { DialogHeader } from './header'
-import { createUniqueId, releaseUniqueId } from '../lib/id-pool'
-import { getTitleBarHeight } from '../window/title-bar'
-import { isTopMostDialog } from './is-top-most'
+import * as React from 'react'
 import { isMacOSSonomaOrLater, isMacOSVentura } from '../../lib/get-os'
+import { createUniqueId, releaseUniqueId } from '../lib/id-pool'
 import { sendDialogDidOpen } from '../main-process-proxy'
+import { getTitleBarHeight } from '../window/title-bar'
+import { DialogHeader } from './header'
+import { isTopMostDialog } from './is-top-most'
 
 /**
  * Class name used for elements that should be focused initially when a dialog
@@ -596,11 +596,11 @@ export class Dialog extends React.Component<DialogProps, IDialogState> {
   private onWindowFocus = () => {
     // On Windows and Linux, a click which focuses the window will also get
     // passed down into the DOM. But we don't want to dismiss the dialog based
-    // on that click. See https://github.com/desktop/desktop/issues/2486.
+    // on that click. See https://github.com/xixu-me/git-desktop/issues/2486.
     // macOS normally automatically disables "click-through" behavior but
     // we've intentionally turned that off so we need to apply the same
     // behavior regardless of platform.
-    // See https://github.com/desktop/desktop/pull/3843.
+    // See https://github.com/xixu-me/git-desktop/pull/3843.
     this.clearClickDismissalTimer()
 
     this.disableClickDismissal = true

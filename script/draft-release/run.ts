@@ -1,21 +1,21 @@
-import { sort as semverSort, SemVer } from 'semver'
+import { SemVer, sort as semverSort } from 'semver'
 
 import { getLogLines } from '../changelog/git'
 import {
-  convertToChangelogFormat,
-  getChangelogEntriesSince,
+    convertToChangelogFormat,
+    getChangelogEntriesSince,
 } from '../changelog/parser'
 
+import { execSync } from 'child_process'
 import { Channel } from './channel'
 import { getNextVersionNumber } from './version'
-import { execSync } from 'child_process'
 
 import { writeFileSync } from 'fs'
+import { readFile } from 'fs/promises'
 import { join } from 'path'
 import { format } from 'prettier'
 import { assertNever, forceUnwrap } from '../../app/src/lib/fatal-error'
 import { sh } from '../sh'
-import { readFile } from 'fs/promises'
 
 const changelogPath = join(__dirname, '..', '..', 'changelog.json')
 
@@ -82,7 +82,7 @@ function parseChannel(arg: string): Channel {
  */
 function printInstructions(nextVersion: string, entries: Array<string>) {
   const baseSteps = [
-    'Revise the release notes according to https://github.com/desktop/desktop/blob/development/docs/process/writing-release-notes.md',
+    'Revise the release notes according to https://github.com/xixu-me/git-desktop/blob/development/docs/process/writing-release-notes.md',
     'Lint them with: yarn draft-release:format',
     'Commit these changes (on a "release" branch) and push them to GitHub',
     'See the deploy repo for details on performing the release: https://github.com/desktop/deploy',

@@ -1,8 +1,8 @@
 import Dexie, { Transaction } from 'dexie'
-import { BaseDatabase } from './base-database'
 import { WorkflowPreferences } from '../../models/workflow-preferences'
-import { assertNonNullable } from '../fatal-error'
 import { GitHubAccountType } from '../api'
+import { assertNonNullable } from '../fatal-error'
+import { BaseDatabase } from './base-database'
 
 export interface IDatabaseOwner {
   readonly id?: number
@@ -181,7 +181,7 @@ async function ensureNoUndefinedParentID(tx: Transaction) {
  * case-sensitive) will contain two rows for the same user (only differing in
  * case). This could happen if the Desktop installation as been constantly
  * transitioned since before we started storing logins in lower case
- * (https://github.com/desktop/desktop/pull/1242). This scenario ought to be
+ * (https://github.com/xixu-me/git-desktop/pull/1242). This scenario ought to be
  * incredibly unlikely.
  */
 async function createOwnerKey(tx: Transaction) {

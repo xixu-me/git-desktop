@@ -1,6 +1,6 @@
 # Syntax Highlighted Diffs
 
-We introduced syntax highlighted diffs in [#3101](https://github.com/desktop/desktop/pull/3101).
+We introduced syntax highlighted diffs in [#3101](https://github.com/xixu-me/git-desktop/pull/3101).
 
 <img width="578" alt="A screenshot of Git Desktop showing a diff with syntax highlighting" src="https://user-images.githubusercontent.com/634063/31934229-d2ffdac8-b8ab-11e7-84e7-1bb2c0e1a0ec.png">
 
@@ -12,7 +12,7 @@ JavaScript, JSON, TypeScript, Coffeescript, HTML, Asp, JavaServer Pages, CSS, SC
 
 This list was never meant to be exhaustive, we expect to add more languages going forward but this seemed like a good first step.
 
-Note, however that this list is likely to grow stale so I'd recommend checking [the code](https://github.com/desktop/desktop/blob/development/app/src/highlighter/index.ts) directly.
+Note, however that this list is likely to grow stale so I'd recommend checking [the code](https://github.com/xixu-me/git-desktop/blob/development/app/src/highlighter/index.ts) directly.
 
 ### I want to add my favorite language
 

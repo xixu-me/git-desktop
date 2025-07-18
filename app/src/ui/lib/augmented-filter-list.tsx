@@ -1,28 +1,28 @@
-import * as React from 'react'
 import classnames from 'classnames'
+import * as React from 'react'
 
-import { SectionList, ClickSource } from '../lib/list/section-list'
+import { ClickSource, SectionList } from '../lib/list/section-list'
 import {
-  findNextSelectableRow,
-  SelectionDirection,
+    findNextSelectableRow,
+    SelectionDirection,
 } from '../lib/list/section-list-selection'
-import { TextBox } from '../lib/text-box'
 import { Row } from '../lib/row'
+import { TextBox } from '../lib/text-box'
 
-import { match, IMatch, IMatches } from '../../lib/fuzzy-find'
-import { AriaLiveContainer } from '../accessibility/aria-live-container'
-import {
-  InvalidRowIndexPath,
-  RowIndexPath,
-  rowIndexPathEquals,
-} from './list/list-row-index-path'
-import {
-  IFilterListGroup,
-  IFilterListItem,
-  SelectionSource,
-} from './filter-list'
-import * as octicons from '../octicons/octicons.generated'
 import xor from 'lodash/xor'
+import { IMatch, IMatches, match } from '../../lib/fuzzy-find'
+import { AriaLiveContainer } from '../accessibility/aria-live-container'
+import * as octicons from '../octicons/octicons.generated'
+import {
+    IFilterListGroup,
+    IFilterListItem,
+    SelectionSource,
+} from './filter-list'
+import {
+    InvalidRowIndexPath,
+    RowIndexPath,
+    rowIndexPathEquals,
+} from './list/list-row-index-path'
 
 interface IFlattenedGroup {
   readonly kind: 'group'
@@ -157,7 +157,7 @@ interface IAugmentedSectionFilterListProps<T extends IFilterListItem> {
   /**
    * A reference to a TextBox that will be used to control this component.
    *
-   * See https://github.com/desktop/desktop/issues/4317 for refactoring work to
+   * See https://github.com/xixu-me/git-desktop/issues/4317 for refactoring work to
    * make this more composable which should make this unnecessary.
    */
   readonly filterTextBox?: TextBox

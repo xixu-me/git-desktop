@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-import { TextBox } from '../lib/text-box'
-import { Row } from '../lib/row'
 import { Dialog, DialogContent, DialogFooter } from '../dialog'
 import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
-import { Ref } from '../lib/ref'
 import { LinkButton } from '../lib/link-button'
 import { PasswordTextBox } from '../lib/password-text-box'
+import { Ref } from '../lib/ref'
+import { Row } from '../lib/row'
+import { TextBox } from '../lib/text-box'
 
 interface IGenericGitAuthenticationProps {
   /** The remote url with which the user tried to authenticate. */
@@ -91,7 +91,7 @@ export class GenericGitAuthentication extends React.Component<
               Depending on your repository's hosting service, you might need to
               use a Personal Access Token (PAT) as your password. Learn more
               about creating a PAT in our{' '}
-              <LinkButton uri="https://github.com/desktop/desktop/tree/development/docs/integrations">
+              <LinkButton uri="https://github.com/xixu-me/git-desktop/tree/development/docs/integrations">
                 integration docs
               </LinkButton>
               .

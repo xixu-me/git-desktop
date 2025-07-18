@@ -1,50 +1,50 @@
 import { Disposable, DisposableLike } from 'event-kit'
 
 import {
-  IAPIOrganization,
-  IAPIPullRequest,
-  IAPIFullRepository,
-  IAPICheckSuite,
-  IAPIRepoRuleset,
-  getDotComAPIEndpoint,
-  IAPICreatePushProtectionBypassResponse,
+    IAPICheckSuite,
+    IAPICreatePushProtectionBypassResponse,
+    IAPIFullRepository,
+    IAPIOrganization,
+    IAPIPullRequest,
+    IAPIRepoRuleset,
+    getDotComAPIEndpoint,
 } from '../../lib/api'
 import { shell } from '../../lib/app-shell'
 import {
-  CompareAction,
-  Foldout,
-  FoldoutType,
-  ICompareFormUpdate,
-  RepositorySectionTab,
-  RebaseConflictState,
-  isRebaseConflictState,
-  isCherryPickConflictState,
-  CherryPickConflictState,
-  MultiCommitOperationConflictState,
-  IMultiCommitOperationState,
+    CherryPickConflictState,
+    CompareAction,
+    Foldout,
+    FoldoutType,
+    ICompareFormUpdate,
+    IMultiCommitOperationState,
+    MultiCommitOperationConflictState,
+    RebaseConflictState,
+    RepositorySectionTab,
+    isCherryPickConflictState,
+    isRebaseConflictState,
 } from '../../lib/app-state'
 import { assertNever, fatalError } from '../../lib/fatal-error'
 import {
-  setGenericPassword,
-  setGenericUsername,
+    setGenericPassword,
+    setGenericUsername,
 } from '../../lib/generic-git-auth'
 import {
-  RebaseResult,
-  PushOptions,
-  getCommitsBetweenCommits,
-  getBranches,
-  getRebaseSnapshot,
-  getRepositoryType,
+    PushOptions,
+    RebaseResult,
+    getBranches,
+    getCommitsBetweenCommits,
+    getRebaseSnapshot,
+    getRepositoryType,
 } from '../../lib/git'
 import { isGitOnPath } from '../../lib/is-git-on-path'
 import {
-  IOpenRepositoryFromURLAction,
-  IUnknownAction,
-  URLActionType,
+    IOpenRepositoryFromURLAction,
+    IUnknownAction,
+    URLActionType,
 } from '../../lib/parse-app-url'
 import {
-  matchExistingRepository,
-  urlsMatch,
+    matchExistingRepository,
+    urlsMatch,
 } from '../../lib/repository-matching'
 import { Shell } from '../../lib/shells'
 import { ILaunchStats, StatsStore } from '../../lib/stats'
@@ -55,76 +55,76 @@ import { getTipSha } from '../../lib/tip'
 import { Account } from '../../models/account'
 import { AppMenu, ExecutableMenuItem } from '../../models/app-menu'
 import { Author, UnknownAuthor } from '../../models/author'
+import { Banner, BannerType } from '../../models/banner'
 import { Branch, IAheadBehind } from '../../models/branch'
 import { BranchesTab } from '../../models/branches-tab'
 import { CloneRepositoryTab } from '../../models/clone-repository-tab'
 import { CloningRepository } from '../../models/cloning-repository'
-import { Commit, ICommitContext, CommitOneLine } from '../../models/commit'
+import { Commit, CommitOneLine, ICommitContext } from '../../models/commit'
 import { ICommitMessage } from '../../models/commit-message'
-import { DiffSelection, ImageDiffType, ITextDiff } from '../../models/diff'
+import { DiffSelection, ITextDiff, ImageDiffType } from '../../models/diff'
 import { FetchType } from '../../models/fetch'
 import { GitHubRepository } from '../../models/github-repository'
 import { ManualConflictResolution } from '../../models/manual-conflict-resolution'
 import { Popup, PopupType } from '../../models/popup'
 import {
-  PullRequest,
-  PullRequestSuggestedNextAction,
+    PullRequest,
+    PullRequestSuggestedNextAction,
 } from '../../models/pull-request'
 import {
-  Repository,
-  RepositoryWithGitHubRepository,
-  isRepositoryWithGitHubRepository,
-  getGitHubHtmlUrl,
-  isRepositoryWithForkedGitHubRepository,
-  getNonForkGitHubRepository,
+    Repository,
+    RepositoryWithGitHubRepository,
+    getGitHubHtmlUrl,
+    getNonForkGitHubRepository,
+    isRepositoryWithForkedGitHubRepository,
+    isRepositoryWithGitHubRepository,
 } from '../../models/repository'
 import { RetryAction, RetryActionType } from '../../models/retry-actions'
 import {
-  CommittedFileChange,
-  WorkingDirectoryFileChange,
-  WorkingDirectoryStatus,
+    CommittedFileChange,
+    WorkingDirectoryFileChange,
+    WorkingDirectoryStatus,
 } from '../../models/status'
-import { TipState, IValidBranch } from '../../models/tip'
-import { Banner, BannerType } from '../../models/banner'
+import { IValidBranch, TipState } from '../../models/tip'
 
+import { isAbsolute } from 'path'
+import { ICombinedRefCheck, IRefCheck } from '../../lib/ci-checks/ci-checks'
+import { CLIAction } from '../../lib/cli-action'
+import { ICustomIntegration } from '../../lib/custom-integration'
+import { dragAndDropManager } from '../../lib/drag-and-drop-manager'
+import { CherryPickResult } from '../../lib/git/cherry-pick'
+import { sendNonFatalException } from '../../lib/helpers/non-fatal-exception'
+import { getMultiCommitOperationChooseBranchStep } from '../../lib/multi-commit-operation'
+import { resolveWithin } from '../../lib/path'
+import { sleep } from '../../lib/promise'
+import {
+    CommitStatusStore,
+    StatusCallBack,
+} from '../../lib/stores/commit-status-store'
+import { SignInResult } from '../../lib/stores/sign-in-store'
+import { ValidNotificationPullRequestReviewState } from '../../lib/valid-notification-pull-request-review'
+import { DragElement, DragType } from '../../models/drag-drop'
+import { ILastThankYou } from '../../models/last-thank-you'
+import { MergeTreeResult } from '../../models/merge'
+import {
+    CreateBranchStep,
+    MultiCommitOperationDetail,
+    MultiCommitOperationKind,
+    MultiCommitOperationStep,
+    MultiCommitOperationStepKind,
+} from '../../models/multi-commit-operation'
+import { IStashEntry } from '../../models/stash-entry'
+import { UncommittedChangesStrategy } from '../../models/uncommitted-changes-strategy'
+import { WorkflowPreferences } from '../../models/workflow-preferences'
+import { UnreachableCommitsTab } from '../history/unreachable-commits-dialog'
 import { ApplicationTheme } from '../lib/application-theme'
 import { installCLI } from '../lib/install-cli'
 import {
-  executeMenuItem,
-  moveToApplicationsFolder,
-  isWindowFocused,
-  showOpenDialog,
+    executeMenuItem,
+    isWindowFocused,
+    moveToApplicationsFolder,
+    showOpenDialog,
 } from '../main-process-proxy'
-import {
-  CommitStatusStore,
-  StatusCallBack,
-} from '../../lib/stores/commit-status-store'
-import { MergeTreeResult } from '../../models/merge'
-import { UncommittedChangesStrategy } from '../../models/uncommitted-changes-strategy'
-import { IStashEntry } from '../../models/stash-entry'
-import { WorkflowPreferences } from '../../models/workflow-preferences'
-import { resolveWithin } from '../../lib/path'
-import { CherryPickResult } from '../../lib/git/cherry-pick'
-import { sleep } from '../../lib/promise'
-import { DragElement, DragType } from '../../models/drag-drop'
-import { ILastThankYou } from '../../models/last-thank-you'
-import { dragAndDropManager } from '../../lib/drag-and-drop-manager'
-import {
-  CreateBranchStep,
-  MultiCommitOperationDetail,
-  MultiCommitOperationKind,
-  MultiCommitOperationStep,
-  MultiCommitOperationStepKind,
-} from '../../models/multi-commit-operation'
-import { getMultiCommitOperationChooseBranchStep } from '../../lib/multi-commit-operation'
-import { ICombinedRefCheck, IRefCheck } from '../../lib/ci-checks/ci-checks'
-import { ValidNotificationPullRequestReviewState } from '../../lib/valid-notification-pull-request-review'
-import { UnreachableCommitsTab } from '../history/unreachable-commits-dialog'
-import { sendNonFatalException } from '../../lib/helpers/non-fatal-exception'
-import { SignInResult } from '../../lib/stores/sign-in-store'
-import { ICustomIntegration } from '../../lib/custom-integration'
-import { isAbsolute } from 'path'
-import { CLIAction } from '../../lib/cli-action'
 import { BypassReasonType } from '../secret-scanning/bypass-push-protection-dialog'
 
 /**
@@ -2718,7 +2718,7 @@ export class Dispatcher {
   /** Open the issue creation page for a GitHub repository in a browser */
   public async openIssueCreationPage(repository: Repository): Promise<boolean> {
     // Default to creating issue on parent repo
-    // See https://github.com/desktop/desktop/issues/9232 for rationale
+    // See https://github.com/xixu-me/git-desktop/issues/9232 for rationale
     const url = getGitHubHtmlUrl(repository)
     if (url !== null) {
       this.statsStore.increment('issueCreationWebpageOpenedCount')

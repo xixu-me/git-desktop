@@ -27,7 +27,7 @@ export function isBranchPushable(pushControl: IAPIPushControl) {
     required_approving_review_count,
   } = pushControl
 
-  // See https://github.com/desktop/desktop/issues/9054#issuecomment-582768322
+  // See https://github.com/xixu-me/git-desktop/issues/9054#issuecomment-582768322
   // We'll guard against this being undefined until we can determine the
   // root cause and fix that.
   const requiredStatusCheckCount = Array.isArray(required_status_checks)

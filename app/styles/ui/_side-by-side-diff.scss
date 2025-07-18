@@ -21,7 +21,7 @@
     user-select: none;
   }
 
-  // See https://github.com/desktop/desktop/pull/15128#issuecomment-1232689068
+  // See https://github.com/xixu-me/git-desktop/pull/15128#issuecomment-1232689068
   &:not(:focus-within) .content,
   &.selecting-before .after,
   &.selecting-after .before {

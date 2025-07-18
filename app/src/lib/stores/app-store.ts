@@ -4287,7 +4287,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
     const match = await this.matchGitHubRepository(repository)
 
     // TODO: We currently never clear GitHub repository associations (see
-    // https://github.com/desktop/desktop/issues/1144). So we can bail early at
+    // https://github.com/xixu-me/git-desktop/issues/1144). So we can bail early at
     // this point.
     if (!match) {
       return repository

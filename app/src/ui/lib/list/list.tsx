@@ -1,29 +1,29 @@
+import classNames from 'classnames'
+import memoizeOne from 'memoize-one'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Grid, AutoSizer } from 'react-virtualized'
-import { shallowEquals, arrayEquals } from '../../../lib/equality'
-import { FocusContainer } from '../../lib/focus-container'
-import { ListRow } from './list-row'
-import {
-  findNextSelectableRow,
-  SelectionSource,
-  SelectionDirection,
-  IMouseClickSource,
-  IKeyboardSource,
-  ISelectAllSource,
-  findLastSelectableRow,
-} from './selection'
-import { createUniqueId, releaseUniqueId } from '../../lib/id-pool'
-import { range } from '../../../lib/range'
-import {
-  InsertionFeedbackType,
-  ListItemInsertionOverlay,
-} from './list-item-insertion-overlay'
-import { DragData, DragType } from '../../../models/drag-drop'
-import memoizeOne from 'memoize-one'
-import { RowIndexPath } from './list-row-index-path'
+import { AutoSizer, Grid } from 'react-virtualized'
+import { arrayEquals, shallowEquals } from '../../../lib/equality'
 import { sendNonFatalException } from '../../../lib/helpers/non-fatal-exception'
-import classNames from 'classnames'
+import { range } from '../../../lib/range'
+import { DragData, DragType } from '../../../models/drag-drop'
+import { FocusContainer } from '../../lib/focus-container'
+import { createUniqueId, releaseUniqueId } from '../../lib/id-pool'
+import {
+    InsertionFeedbackType,
+    ListItemInsertionOverlay,
+} from './list-item-insertion-overlay'
+import { ListRow } from './list-row'
+import { RowIndexPath } from './list-row-index-path'
+import {
+    findLastSelectableRow,
+    findNextSelectableRow,
+    IKeyboardSource,
+    IMouseClickSource,
+    ISelectAllSource,
+    SelectionDirection,
+    SelectionSource,
+} from './selection'
 
 /**
  * Describe the first argument given to the cellRenderer,
@@ -545,7 +545,7 @@ export class List extends React.Component<IListProps, IListState> {
     const source: SelectionSource = { kind: 'keyboard', event }
 
     // Home is Cmd+ArrowUp on macOS, end is Cmd+ArrowDown, see
-    // https://github.com/desktop/desktop/pull/8644#issuecomment-645965884
+    // https://github.com/xixu-me/git-desktop/pull/8644#issuecomment-645965884
     const isHomeKey = __DARWIN__
       ? event.metaKey && event.key === 'ArrowUp'
       : event.key === 'Home'

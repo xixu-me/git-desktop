@@ -17,7 +17,7 @@ node -v
 
 If you see an error about being unable to find `node`, that probably means you don't have any Node tools installed. You can download Node from the [Node.js website](https://nodejs.org/), install the package, and restart your shell.
 
-You can verify that your installed version matches the one currently used by Git Desktop by looking at [our .node-version file](https://github.com/desktop/desktop/blob/development/.node-version). Usually the same major version is enough but if you're running into problems building Desktop please try installing that exact version.
+You can verify that your installed version matches the one currently used by Git Desktop by looking at [our .node-version file](https://github.com/xixu-me/git-desktop/blob/development/.node-version). Usually the same major version is enough but if you're running into problems building Desktop please try installing that exact version.
 
 ### I need to use different versions of Node.js in different projects
 
@@ -107,4 +107,4 @@ If you already have them, it'll say so!
 
 ## Back to setup
 
-Once you've installed the necessary dependencies, head back to the [setup page](https://github.com/desktop/desktop/blob/development/docs/contributing/setup.md) to finish getting set up.
+Once you've installed the necessary dependencies, head back to the [setup page](https://github.com/xixu-me/git-desktop/blob/development/docs/contributing/setup.md) to finish getting set up.

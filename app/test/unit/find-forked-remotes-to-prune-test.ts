@@ -1,5 +1,5 @@
-import { describe, it } from 'node:test'
 import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import { findForkedRemotesToPrune } from '../../src/lib/stores/helpers/find-forked-remotes-to-prune'
 import { Branch, BranchType } from '../../src/models/branch'
 import { CommitIdentity } from '../../src/models/commit-identity'
@@ -59,7 +59,7 @@ describe('findForkedRemotesToPrune', () => {
   const remotes = [
     {
       name: OriginRemote,
-      url: 'https://github.com/desktop/desktop.git',
+      url: 'https://github.com/xixu-me/git-desktop.git',
     },
     {
       name: NonGitHubDesktopRemote,

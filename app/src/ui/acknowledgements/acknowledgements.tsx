@@ -7,7 +7,7 @@ import { LinkButton } from '../lib/link-button'
 import { Loading } from '../lib/loading'
 
 const WebsiteURL = 'https://desktop.github.com'
-const RepositoryURL = 'https://github.com/desktop/desktop'
+const RepositoryURL = 'https://github.com/xixu-me/git-desktop'
 
 interface IAcknowledgementsProps {
   /** The function to call when the dialog should be dismissed. */

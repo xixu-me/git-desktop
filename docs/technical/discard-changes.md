@@ -8,7 +8,7 @@ a repository, and has evolved over time to support different workflows.
 As the implementation details of this may change over time, this section will
 instead describe the high-level flow of the implementation.
 
-You can view a reference of this function [here](https://github.com/desktop/desktop/blob/2b111155914cb44824b39ee197deed23bb825a1a/app/src/lib/stores/git-store.ts#L1066).
+You can view a reference of this function [here](https://github.com/xixu-me/git-desktop/blob/2b111155914cb44824b39ee197deed23bb825a1a/app/src/lib/stores/git-store.ts#L1066).
 
 The `Discard Changes` flow is composed of multiple steps.
 

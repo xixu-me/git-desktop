@@ -30,7 +30,7 @@ Feel free to submit other questions or suggestions to [`shiftkey/desktop`](https
 
 ## Contributing Fixes
 
-If you are interested in testing installers locally, first ensure your [development environment is setup](https://github.com/desktop/desktop/blob/development/docs/contributing/setup.md) to build and test Desktop.
+If you are interested in testing installers locally, first ensure your [development environment is setup](https://github.com/xixu-me/git-desktop/blob/development/docs/contributing/setup.md) to build and test Desktop.
 
 Once your environment is setup, you can create an installer locally by running:
 

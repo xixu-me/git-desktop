@@ -9,18 +9,18 @@ import { INodeFilter } from './node-filter'
  * reference.
  *
  * Types of commit mention links:
- * - Plain Single Commit: https://github.com/desktop/desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9
- * - Compare a range of Commits: https://github.com/desktop/desktop/compare/6fd794543...6fd794543
- * - Pull Request Commit: https://github.com/desktop/desktop/pull/14239/commits/6fd794543af171c35cc9c325f570f9553128ffc9
+ * - Plain Single Commit: https://github.com/xixu-me/git-desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9
+ * - Compare a range of Commits: https://github.com/xixu-me/git-desktop/compare/6fd794543...6fd794543
+ * - Pull Request Commit: https://github.com/xixu-me/git-desktop/pull/14239/commits/6fd794543af171c35cc9c325f570f9553128ffc9
  *
  * Example:
- * <a href="https://github.com/desktop/desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9">https://github.com/desktop/desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9</a>
+ * <a href="https://github.com/xixu-me/git-desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9">https://github.com/xixu-me/git-desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9</a>
  *
  * Becomes
- * <a href="https://github.com/desktop/desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9">6fd7945</a>
+ * <a href="https://github.com/xixu-me/git-desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9">6fd7945</a>
  *
  * or this, if not owned by current repository,
- * <a href="https://github.com/desktop/desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9">desktop/desktop@6fd7945</a>
+ * <a href="https://github.com/xixu-me/git-desktop/commit/6fd794543af171c35cc9c325f570f9553128ffc9">xixu-me/git-desktop@6fd7945</a>
  *
  *
  * The intention behind this node filter is for use after the markdown parser
@@ -30,7 +30,7 @@ import { INodeFilter } from './node-filter'
  * followed by further filepaths and query params. Pull request commits links
  * cannot. Additionally, plain link paths have some that may not follow that
  * indicate reserved actions paths -- see method isReservedCommitActionPath. Thus,
- * https://github.com/desktop/desktop/commit/6fd7945/test/test/test will become
+ * https://github.com/xixu-me/git-desktop/commit/6fd7945/test/test/test will become
  * 6fd7945/test/test/test.
  *
  */
@@ -42,21 +42,21 @@ export class CommitMentionLinkFilter implements INodeFilter {
   /**
    * A regexp that searches for a url path pattern for a commit
    *
-   * Example: /desktop/desktop/commit/6fd7945
+   * Example: /xixu-me/git-desktop/commit/6fd7945
    */
   private readonly commitPath = /^commit\/(?<pathFragment>.+)$/
 
   /**
    * A regexp that searches for a url path pattern for a compare
    *
-   * Example: /desktop/desktop/commit/6fd7945...6fd7945
+   * Example: /xixu-me/git-desktop/commit/6fd7945...6fd7945
    */
   private readonly comparePath = /^compare\/(?<range>.+)$/
 
   /**
    * A regexp that searches for a url path pattern for a compare
    *
-   * Example: /desktop/desktop/commit/6fd7945...6fd7945
+   * Example: /xixu-me/git-desktop/commit/6fd7945...6fd7945
    */
   private readonly pullCommitPath =
     /^pull\/(\d+)\/commits\/(?<sha>[0-9a-f]{7,40})$/
@@ -92,11 +92,11 @@ export class CommitMentionLinkFilter implements INodeFilter {
    * their href matches their inner text.
    *
    * Looking for something like:
-   * <a href="https://github.com/desktop/desktop/commit/6fd7945">https://github.com/desktop/desktop/commit/6fd7945</a>
+   * <a href="https://github.com/xixu-me/git-desktop/commit/6fd7945">https://github.com/xixu-me/git-desktop/commit/6fd7945</a>
    * Where the href could be like:
-   *  - Plain Single Commit: https://github.com/desktop/desktop/commit/6fd7945
-   *  - Compare a range of Commits: https://github.com/desktop/desktop/compare/6fd7945...6fd7945
-   *  - Pull Request Commit: https://github.com/desktop/desktop/pull/14239/commits/6fd7945
+   *  - Plain Single Commit: https://github.com/xixu-me/git-desktop/commit/6fd7945
+   *  - Compare a range of Commits: https://github.com/xixu-me/git-desktop/compare/6fd7945...6fd7945
+   *  - Pull Request Commit: https://github.com/xixu-me/git-desktop/pull/14239/commits/6fd7945
    */
   public createFilterTreeWalker(doc: Document): TreeWalker {
     return doc.createTreeWalker(doc, NodeFilter.SHOW_ELEMENT, {

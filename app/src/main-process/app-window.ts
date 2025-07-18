@@ -1,34 +1,34 @@
 import {
-  Menu,
-  app,
-  dialog,
-  BrowserWindow,
-  autoUpdater,
-  nativeTheme,
+    BrowserWindow,
+    Menu,
+    app,
+    autoUpdater,
+    dialog,
+    nativeTheme,
 } from 'electron'
-import { shell } from '../lib/app-shell'
-import { Emitter, Disposable } from 'event-kit'
-import { encodePathAsUrl } from '../lib/path'
-import {
-  getWindowState,
-  registerWindowStateChangedEvents,
-} from '../lib/window-state'
-import { MenuEvent } from './menu'
-import { URLActionType } from '../lib/parse-app-url'
-import { ILaunchStats } from '../lib/stats'
-import { menuFromElectronMenu } from '../models/app-menu'
-import { now } from './now'
-import * as path from 'path'
 import windowStateKeeper from 'electron-window-state'
+import { Disposable, Emitter } from 'event-kit'
+import * as path from 'path'
+import { shell } from '../lib/app-shell'
+import { CLIAction } from '../lib/cli-action'
+import { getUpdaterGUID } from '../lib/get-updater-guid'
+import { URLActionType } from '../lib/parse-app-url'
+import { encodePathAsUrl } from '../lib/path'
+import { ILaunchStats } from '../lib/stats'
+import {
+    getWindowState,
+    registerWindowStateChangedEvents,
+} from '../lib/window-state'
+import { menuFromElectronMenu } from '../models/app-menu'
 import * as ipcMain from './ipc-main'
 import * as ipcWebContents from './ipc-webcontents'
+import { MenuEvent } from './menu'
 import {
-  installNotificationCallback,
-  terminateDesktopNotifications,
+    installNotificationCallback,
+    terminateDesktopNotifications,
 } from './notifications'
+import { now } from './now'
 import { addTrustedIPCSender } from './trusted-ipc-sender'
-import { getUpdaterGUID } from '../lib/get-updater-guid'
-import { CLIAction } from '../lib/cli-action'
 
 export class AppWindow {
   private window: Electron.BrowserWindow
@@ -41,7 +41,7 @@ export class AppWindow {
   private minWidth = 960
   private minHeight = 660
 
-  // See https://github.com/desktop/desktop/pull/11162
+  // See https://github.com/xixu-me/git-desktop/pull/11162
   private shouldMaximizeOnShow = false
 
   public constructor() {
@@ -138,7 +138,7 @@ export class AppWindow {
       // renderer.
       if (__DARWIN__ && !quitting) {
         e.preventDefault()
-        // https://github.com/desktop/desktop/issues/12838
+        // https://github.com/xixu-me/git-desktop/issues/12838
         if (this.window.isFullScreen()) {
           this.window.setFullScreen(false)
           this.window.once('leave-full-screen', () => this.window.hide())
@@ -158,7 +158,7 @@ export class AppWindow {
     // We only listen for the first of the loading events to avoid a bug in
     // Electron/Chromium where they can sometimes fire more than once. See
     // See
-    // https://github.com/desktop/desktop/pull/513#issuecomment-253028277. This
+    // https://github.com/xixu-me/git-desktop/pull/513#issuecomment-253028277. This
     // shouldn't really matter as in production builds loading _should_ only
     // happen once.
     this.window.webContents.once('did-start-loading', () => {
@@ -270,7 +270,7 @@ export class AppWindow {
     this.window.show()
     if (this.shouldMaximizeOnShow) {
       // Only maximize the window the first time it's shown, not every time.
-      // Otherwise, it causes the problem described in desktop/desktop#11590
+      // Otherwise, it causes the problem described in xixu-me/git-desktop#11590
       this.shouldMaximizeOnShow = false
       this.window.maximize()
     }

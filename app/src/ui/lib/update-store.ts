@@ -1,29 +1,29 @@
 const lastSuccessfulCheckKey = 'last-successful-update-check'
 
-import { Emitter, Disposable } from 'event-kit'
+import { Disposable, Emitter } from 'event-kit'
 
-import {
-  checkForUpdates,
-  isRunningUnderARM64Translation,
-  onAutoUpdaterCheckingForUpdate,
-  onAutoUpdaterError,
-  onAutoUpdaterUpdateAvailable,
-  onAutoUpdaterUpdateDownloaded,
-  onAutoUpdaterUpdateNotAvailable,
-  quitAndInstallUpdate,
-  sendWillQuitSync,
-} from '../main-process-proxy'
 import { ErrorWithMetadata } from '../../lib/error-with-metadata'
 import { parseError } from '../../lib/squirrel-error-parser'
+import {
+    checkForUpdates,
+    isRunningUnderARM64Translation,
+    onAutoUpdaterCheckingForUpdate,
+    onAutoUpdaterError,
+    onAutoUpdaterUpdateAvailable,
+    onAutoUpdaterUpdateDownloaded,
+    onAutoUpdaterUpdateNotAvailable,
+    quitAndInstallUpdate,
+    sendWillQuitSync,
+} from '../main-process-proxy'
 
-import { ReleaseSummary } from '../../models/release-notes'
-import { generateReleaseSummary } from '../../lib/release-notes'
-import { setNumber, getNumber } from '../../lib/local-storage'
-import { enableUpdateFromEmulatedX64ToARM64 } from '../../lib/feature-flag'
-import { offsetFromNow } from '../../lib/offset-from'
 import { gte, SemVer } from 'semver'
-import { getVersion } from './app-proxy'
+import { enableUpdateFromEmulatedX64ToARM64 } from '../../lib/feature-flag'
 import { getUserAgent } from '../../lib/http'
+import { getNumber, setNumber } from '../../lib/local-storage'
+import { offsetFromNow } from '../../lib/offset-from'
+import { generateReleaseSummary } from '../../lib/release-notes'
+import { ReleaseSummary } from '../../models/release-notes'
+import { getVersion } from './app-proxy'
 
 /** The last version a showcase was seen. */
 export const lastShowCaseVersionSeen = 'version-of-last-showcase'
@@ -151,7 +151,7 @@ class UpdateStore {
    */
   private supportsImmediateUpdateFromEmulatedX64ToARM64(): boolean {
     // Because of how Squirrel.Windows works, this is only available for macOS.
-    // See: https://github.com/desktop/desktop/pull/14998
+    // See: https://github.com/xixu-me/git-desktop/pull/14998
     return __DARWIN__
   }
 
@@ -247,7 +247,7 @@ class UpdateStore {
     ) {
       url.pathname = url.pathname.replace(
         /\/desktop\/desktop\/(x64\/)?latest/,
-        '/desktop/desktop/arm64/latest'
+        '/xixu-me/git-desktop/arm64/latest'
       )
 
       // If we want the app to force an auto-update from x64 to arm64 right

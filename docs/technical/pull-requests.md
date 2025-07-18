@@ -1,6 +1,6 @@
 # Checking out pull requests from a forked repository
 
-PR [#3602](https://github.com/desktop/desktop/pull/3602) introduced the ability to checkout a branch from a forked repository. In order to accomplish this, we needed a way to manage remotes on your behalf. This document is intended to detail the process we developed to make checking out PRs as frictionless as possible.
+PR [#3602](https://github.com/xixu-me/git-desktop/pull/3602) introduced the ability to checkout a branch from a forked repository. In order to accomplish this, we needed a way to manage remotes on your behalf. This document is intended to detail the process we developed to make checking out PRs as frictionless as possible.
 
 ## Removing Remotes
 
@@ -9,7 +9,7 @@ One of the goals of our design was to ensure that we don’t cause your remotes 
 * Start with our prefix
 * The PR associated with the remote is closed
 
-The implementation of the function that does this work can be found [here](https://github.com/desktop/desktop/blob/34a05b155ff69bb19cc4da5b2caa89856e3e63fb/app/src/lib/stores/pull-request-store.ts#L91-L110).
+The implementation of the function that does this work can be found [here](https://github.com/xixu-me/git-desktop/blob/34a05b155ff69bb19cc4da5b2caa89856e3e63fb/app/src/lib/stores/pull-request-store.ts#L91-L110).
 
 ```ts
 forkedRemotesToDelete(
@@ -42,7 +42,7 @@ One of the main problems we needed to solve was determining which remotes are no
 export const ForkedRemotePrefix = 'github-desktop-'
 ```
 
-[Code](https://github.com/desktop/desktop/blob/34a05b155ff69bb19cc4da5b2caa89856e3e63fb/app/src/lib/stores/pull-request-store.ts#L26)
+[Code](https://github.com/xixu-me/git-desktop/blob/34a05b155ff69bb19cc4da5b2caa89856e3e63fb/app/src/lib/stores/pull-request-store.ts#L26)
 
 ## What does this mean for me?
 

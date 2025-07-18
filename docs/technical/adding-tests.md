@@ -8,19 +8,19 @@ contribute tests to go with changes to the codebase.
 The tests we have in the repository are found under `app/test` and are organized
 into these subdirectories:
 
- - `unit` - unit tests for small parts of the codebase. This currently makes up
+- `unit` - unit tests for small parts of the codebase. This currently makes up
    the majority of our tests.
-   - the subdirectories defined here are intended to match the layout of the
+  - the subdirectories defined here are intended to match the layout of the
      `app/src/` directory, but this has not been rigorously defined and will be
-     affected by our plans in [#5645](https://github.com/desktop/desktop/pull/5645)
+     affected by our plans in [#5645](https://github.com/xixu-me/git-desktop/pull/5645)
      to evolve the source layout
- - `integration` - these tests are for end-to-end testing and involve launching
+- `integration` - these tests are for end-to-end testing and involve launching
     and driving the app using UI automation
 
 Other important folders:
 
- - `fixtures` - this folder contains Git repositories which can be used in tests
- - `helpers` - modules containing logic to help setup, manage and teardown tests
+- `fixtures` - this folder contains Git repositories which can be used in tests
+- `helpers` - modules containing logic to help setup, manage and teardown tests
 
 ## Adding Unit Tests
 
@@ -55,16 +55,16 @@ tests to exercise your work.
 
 ### Adding tests to a test module
 
-Feel free to borrow ideas from our [current test suite](https://github.com/desktop/desktop/tree/development/app/test/unit),
+Feel free to borrow ideas from our [current test suite](https://github.com/xixu-me/git-desktop/tree/development/app/test/unit),
 but here are some guidelines to help you figure out what to test.
 
- - focus on a specific module or function when writing unit tests - complex unit
+- focus on a specific module or function when writing unit tests - complex unit
    tests are a sign that the code isn't organized in an ideal way for testing,
    or that the test is doing too much
- - write tests to cover the scenarios you think we should care about in the
+- write tests to cover the scenarios you think we should care about in the
    long-term (these are great to help us not accidentally regress your work)
- - keep tests simple and easy to read - code comments shouldn't be necessary
- - if you're not confident in writing tests, the [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert)
+- keep tests simple and easy to read - code comments shouldn't be necessary
+- if you're not confident in writing tests, the [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert)
    pattern is a nice way to get started
 
 As you're writing your tests, don't forget to `yarn test:unit` to verify that
@@ -80,15 +80,15 @@ outside of `AppStore`.
 
 This has some important benefits:
 
- - by extracting it from `AppStore`, we can write a pure function that avoids
+- by extracting it from `AppStore`, we can write a pure function that avoids
    any implicit state and clearly declares what it needs as parameters
- - by following a pattern of writing functions that take the current state and
+- by following a pattern of writing functions that take the current state and
    generate new state, we keep each function focused on a particular task
- - because the function only depends on the arguments it receives, this becomes
+- because the function only depends on the arguments it receives, this becomes
    much easier to test
 
 An example of this is `updateChangedFiles` in
-[`app/src/lib/stores/updates/changes-state.ts`](https://github.com/desktop/desktop/blob/15294ad41016e2fe393ffe942d48ca36cec144e5/app/src/lib/stores/updates/changes-state.ts#L22)
+[`app/src/lib/stores/updates/changes-state.ts`](https://github.com/xixu-me/git-desktop/blob/15294ad41016e2fe393ffe942d48ca36cec144e5/app/src/lib/stores/updates/changes-state.ts#L22)
 which updates the repository state to ensure selection state is remembered
 correctly.
 

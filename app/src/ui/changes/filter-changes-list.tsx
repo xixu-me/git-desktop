@@ -1,78 +1,75 @@
-import * as React from 'react'
 import * as Path from 'path'
+import * as React from 'react'
 
-import { Dispatcher } from '../dispatcher'
-import { IMenuItem } from '../../lib/menu-item'
+import classNames from 'classnames'
+import { clipboard } from 'electron'
+import memoizeOne from 'memoize-one'
+import { EOL } from 'os'
+import { basename } from 'path'
 import { revealInFileManager } from '../../lib/app-shell'
+import {
+    ConflictState,
+    Foldout, IFileListFilterState, RebaseConflictState
+} from '../../lib/app-state'
+import { arrayEquals } from '../../lib/equality'
+import { IMatches } from '../../lib/fuzzy-find'
+import { IMenuItem, showContextualMenu } from '../../lib/menu-item'
 import { encodePathAsUrl } from '../../lib/path'
-import {
-  WorkingDirectoryStatus,
-  WorkingDirectoryFileChange,
-  AppFileStatusKind,
-} from '../../models/status'
-import { DiffSelectionType } from '../../models/diff'
-import { CommitIdentity } from '../../models/commit-identity'
-import { ICommitMessage } from '../../models/commit-message'
-import {
-  isRepositoryWithGitHubRepository,
-  Repository,
-} from '../../models/repository'
+import { hasConflictedFiles } from '../../lib/status'
 import { Account } from '../../models/account'
 import { Author, UnknownAuthor } from '../../models/author'
-import { Checkbox, CheckboxValue } from '../lib/checkbox'
-import { IFileListFilterState } from '../../lib/app-state'
-import {
-  isSafeFileExtension,
-  DefaultEditorLabel,
-  CopyFilePathLabel,
-  RevealInFileManagerLabel,
-  OpenWithDefaultProgramLabel,
-  CopyRelativeFilePathLabel,
-  CopySelectedPathsLabel,
-  CopySelectedRelativePathsLabel,
-} from '../lib/context-menu'
-import { CommitMessage } from './commit-message'
-import { ChangedFile } from './changed-file'
-import { IAutocompletionProvider } from '../autocompletion'
-import { showContextualMenu } from '../../lib/menu-item'
-import { arrayEquals } from '../../lib/equality'
-import { clipboard } from 'electron'
-import { basename } from 'path'
+import { IAheadBehind } from '../../models/branch'
 import { Commit, ICommitContext } from '../../models/commit'
+import { CommitIdentity } from '../../models/commit-identity'
+import { ICommitMessage } from '../../models/commit-message'
+import { DiffSelectionType } from '../../models/diff'
+import { hasWritePermission } from '../../models/github-repository'
+import { Popup, PopupType } from '../../models/popup'
+import { RepoRulesInfo } from '../../models/repo-rules'
 import {
-  RebaseConflictState,
-  ConflictState,
-  Foldout,
-} from '../../lib/app-state'
-import { ContinueRebase } from './continue-rebase'
+    isRepositoryWithGitHubRepository,
+    Repository,
+} from '../../models/repository'
+import { IStashEntry } from '../../models/stash-entry'
+import {
+    AppFileStatusKind,
+    WorkingDirectoryFileChange,
+    WorkingDirectoryStatus,
+} from '../../models/status'
+import { IAutocompletionProvider } from '../autocompletion'
+import { Dispatcher } from '../dispatcher'
+import { AugmentedSectionFilterList } from '../lib/augmented-filter-list'
+import { Button } from '../lib/button'
+import { Checkbox, CheckboxValue } from '../lib/checkbox'
+import {
+    CopyFilePathLabel,
+    CopyRelativeFilePathLabel,
+    CopySelectedPathsLabel,
+    CopySelectedRelativePathsLabel,
+    DefaultEditorLabel,
+    isSafeFileExtension,
+    OpenWithDefaultProgramLabel,
+    RevealInFileManagerLabel,
+} from '../lib/context-menu'
+import { IFilterListGroup, IFilterListItem } from '../lib/filter-list'
+import { LinkButton } from '../lib/link-button'
+import { ClickSource } from '../lib/list'
+import { createObservableRef } from '../lib/observable-ref'
+import { plural } from '../lib/plural'
+import { TextBox } from '../lib/text-box'
 import { Octicon, OcticonSymbolVariant } from '../octicons'
 import * as octicons from '../octicons/octicons.generated'
-import { IStashEntry } from '../../models/stash-entry'
-import classNames from 'classnames'
-import { hasWritePermission } from '../../models/github-repository'
-import { hasConflictedFiles } from '../../lib/status'
-import { createObservableRef } from '../lib/observable-ref'
-import { Popup, PopupType } from '../../models/popup'
-import { EOL } from 'os'
-import { RepoRulesInfo } from '../../models/repo-rules'
-import { IAheadBehind } from '../../models/branch'
 import { StashDiffViewerId } from '../stashing'
-import { AugmentedSectionFilterList } from '../lib/augmented-filter-list'
-import { IFilterListGroup, IFilterListItem } from '../lib/filter-list'
-import { ClickSource } from '../lib/list'
-import memoizeOne from 'memoize-one'
-import { IMatches } from '../../lib/fuzzy-find'
-import { TextBox } from '../lib/text-box'
-import { Button } from '../lib/button'
-import { LinkButton } from '../lib/link-button'
-import { plural } from '../lib/plural'
-import {
-  isCommittingFileHiddenByFilter,
-  getNoResultsMessage,
-  hasActiveFilters,
-  applyFilters,
-} from './filter-changes-logic'
+import { ChangedFile } from './changed-file'
 import { ChangesListFilterOptions } from './changes-list-filter-options'
+import { CommitMessage } from './commit-message'
+import { ContinueRebase } from './continue-rebase'
+import {
+    applyFilters,
+    getNoResultsMessage,
+    hasActiveFilters,
+    isCommittingFileHiddenByFilter,
+} from './filter-changes-logic'
 
 export interface IChangesListItem extends IFilterListItem {
   readonly id: string
@@ -901,7 +898,7 @@ export class FilterChangesList extends React.Component<
     // When a single file is selected, we use a default commit summary
     // based on the file name and change status.
     // However, for onboarding tutorial repositories, we don't want to do this.
-    // See https://github.com/desktop/desktop/issues/8354
+    // See https://github.com/xixu-me/git-desktop/issues/8354
     const prepopulateCommitSummary =
       filesSelected.length === 1 && !repository.isTutorialRepository
 

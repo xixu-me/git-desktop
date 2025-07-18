@@ -1,20 +1,20 @@
-import { describe, it } from 'node:test'
+import { exec } from 'dugite'
 import assert from 'node:assert'
+import { describe, it } from 'node:test'
+import { setConfigValue } from '../../../src/lib/git'
+import {
+    addRemote,
+    getRemotes,
+    removeRemote,
+    setRemoteURL,
+} from '../../../src/lib/git/remote'
+import { findDefaultRemote } from '../../../src/lib/stores/helpers/find-default-remote'
 import { Repository } from '../../../src/models/repository'
 import {
-  getRemotes,
-  addRemote,
-  removeRemote,
-  setRemoteURL,
-} from '../../../src/lib/git/remote'
-import {
-  setupFixtureRepository,
-  setupEmptyRepository,
-  setupEmptyDirectory,
+    setupEmptyDirectory,
+    setupEmptyRepository,
+    setupFixtureRepository,
 } from '../../helpers/repositories'
-import { findDefaultRemote } from '../../../src/lib/stores/helpers/find-default-remote'
-import { exec } from 'dugite'
-import { setConfigValue } from '../../../src/lib/git'
 
 describe('git/remote', () => {
   describe('getRemotes', () => {
@@ -151,7 +151,7 @@ describe('git/remote', () => {
       await addRemote(
         repository,
         'origin',
-        'https://github.com/desktop/desktop'
+        'https://github.com/xixu-me/git-desktop'
       )
 
       const remotes = await getRemotes(repository)
@@ -172,7 +172,7 @@ describe('git/remote', () => {
   describe('setRemoteURL', () => {
     const remoteName = 'origin'
     const remoteUrl = 'https://fakeweb.com/owner/name'
-    const newUrl = 'https://github.com/desktop/desktop'
+    const newUrl = 'https://github.com/xixu-me/git-desktop'
 
     it('can set the url for an existing remote', async t => {
       const repository = await setupEmptyRepository(t)

@@ -1,10 +1,10 @@
-import * as React from 'react'
 import * as Path from 'path'
+import * as React from 'react'
 import { clamp } from '../../lib/clamp'
-import { Tooltip } from './tooltip'
-import { createObservableRef } from './observable-ref'
 import { IMatches } from '../../lib/fuzzy-find'
 import { HighlightText } from './highlight-text'
+import { createObservableRef } from './observable-ref'
+import { Tooltip } from './tooltip'
 
 interface IPathTextProps {
   /**
@@ -278,7 +278,7 @@ export class PathText extends React.PureComponent<
 
   // In case this component is contained within a <dialog>, make sure to resize
   // it after the dialog element is shown in order to apply correct layout.
-  // https://github.com/desktop/desktop/issues/6666
+  // https://github.com/xixu-me/git-desktop/issues/6666
   private onDialogShow = (event: Event) => {
     const dialogElement = event.target
     if (

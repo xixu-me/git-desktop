@@ -33,8 +33,8 @@ cadence).
 We're using GitHub's review tools to co-ordinate feedback, and we like to be
 methodical with our reviews, so you'll probably end up with one of two results:
 
- - **Approved**: nothing else to do; the contribution is great! :gem:
- - **Request Changes**: there are things to address; reviewer provides details :memo:
+- **Approved**: nothing else to do; the contribution is great! :gem:
+- **Request Changes**: there are things to address; reviewer provides details :memo:
 
 Reviews can take a few iterations, especially for large contributions. Don't
 be disheartened if you feel it takes time - we just want to ensure each
@@ -72,11 +72,11 @@ own PRs unless there are exceptional reasons.
 
 Examples of exceptional situations:
 
-- [#2733](https://github.com/desktop/desktop/pull/2733) was pinning a dependency
+- [#2733](https://github.com/xixu-me/git-desktop/pull/2733) was pinning a dependency
   that affected our continuous integration tests by installing the incorrect
   version
 
-- [#4319](https://github.com/desktop/desktop/pull/4319) was a minor packaging
+- [#4319](https://github.com/xixu-me/git-desktop/pull/4319) was a minor packaging
   change introduced unexpectedly on `development` but would affect everyone when they
   updated their local repositories.
 
@@ -87,8 +87,8 @@ These should be called out by the merging person with an explanation for why the
 A reviewer will return to an **open and reviewed** pull request if, after 14
 days:
 
- - no response has been received from the contributor, or
- - no new commits have been made to the pull request
+- no response has been received from the contributor, or
+- no new commits have been made to the pull request
 
 This is done to ensure we keep the number of reviews under control.
 

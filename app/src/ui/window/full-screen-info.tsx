@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { WindowState } from '../../lib/window-state'
 import { KeyboardShortcut } from '../keyboard-shortcut/keyboard-shortcut'
 
@@ -37,7 +37,7 @@ export class FullScreenInfo extends React.Component<
   ): Partial<IFullScreenInfoState> | null {
     // We don't care about transitions to 'hidden', we only
     // care about when we transition from a 'real' window state
-    // to 'full-screen'. See https://github.com/desktop/desktop/issues/7916
+    // to 'full-screen'. See https://github.com/xixu-me/git-desktop/issues/7916
     if (props.windowState === 'hidden') {
       return null
     }

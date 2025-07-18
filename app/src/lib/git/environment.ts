@@ -1,11 +1,11 @@
-import { envForAuthentication } from './authentication'
-import { resolveGitProxy } from '../resolve-git-proxy'
-import { getHTMLURL } from '../api'
-import {
-  Repository,
-  isRepositoryWithGitHubRepository,
-} from '../../models/repository'
 import { IRemote } from '../../models/remote'
+import {
+    Repository,
+    isRepositoryWithGitHubRepository,
+} from '../../models/repository'
+import { getHTMLURL } from '../api'
+import { resolveGitProxy } from '../resolve-git-proxy'
+import { envForAuthentication } from './authentication'
 
 /**
  * For many remote operations it's well known what the primary remote
@@ -69,7 +69,7 @@ export function getFallbackUrlForProxyResolve(
  * @param remoteUrl The primary remote URL for this operation. Note that Git
  *                  might connect to other remotes in order to fulfill the
  *                  operation. As an example, a clone of
- *                  https://github.com/desktop/desktop could contain a submodule
+ *                  https://github.com/xixu-me/git-desktop could contain a submodule
  *                  pointing to another host entirely. Used to resolve which
  *                  proxy (if any) should be used for the operation.
  */

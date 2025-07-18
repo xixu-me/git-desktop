@@ -1,6 +1,6 @@
-import { git } from './core'
 import { Repository } from '../../models/repository'
 import { assertNever } from '../fatal-error'
+import { git } from './core'
 
 /** The reset modes which are supported. */
 export const enum GitResetMode {
@@ -82,7 +82,7 @@ export async function resetPaths(
     //
     // This hasn't made it to Git core, so we fallback to the default behaviour
     // as macOS and Linux don't have this same shell limitation. See
-    // https://github.com/desktop/desktop/issues/2833#issuecomment-331352952
+    // https://github.com/xixu-me/git-desktop/issues/2833#issuecomment-331352952
     // for more context.
     const args = [...baseArgs, '--stdin', '-z', '--']
     await git(args, repository.path, 'resetPaths', {

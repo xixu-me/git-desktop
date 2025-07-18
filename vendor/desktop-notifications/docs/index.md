@@ -37,9 +37,9 @@ terminateNotifications()
 ## Setup
 
 ```shellsession
-$ git clone https://github.com/desktop/desktop-notifications
-$ cd desktop-notifications
-$ yarn
+git clone https://github.com/xixu-me/git-desktop-notifications
+cd desktop-notifications
+yarn
 ```
 
 As this project builds a native module, you'll need these dependencies along

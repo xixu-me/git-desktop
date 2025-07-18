@@ -1,37 +1,37 @@
+import memoizeOne from 'memoize-one'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Grid, AutoSizer, Index } from 'react-virtualized'
+import { AutoSizer, Grid, Index } from 'react-virtualized'
 import { shallowEquals, structuralEquals } from '../../../lib/equality'
+import { sendNonFatalException } from '../../../lib/helpers/non-fatal-exception'
+import { range } from '../../../lib/range'
+import { DragData, DragType } from '../../../models/drag-drop'
 import { FocusContainer } from '../../lib/focus-container'
-import { ListRow } from './list-row'
-import {
-  findNextSelectableRow,
-  SelectionSource,
-  SelectionDirection,
-  IMouseClickSource,
-  IKeyboardSource,
-  ISelectAllSource,
-  findLastSelectableRow,
-} from './section-list-selection'
 import { createUniqueId, releaseUniqueId } from '../../lib/id-pool'
 import {
-  InsertionFeedbackType,
-  ListItemInsertionOverlay,
+    InsertionFeedbackType,
+    ListItemInsertionOverlay,
 } from './list-item-insertion-overlay'
-import { DragData, DragType } from '../../../models/drag-drop'
-import memoizeOne from 'memoize-one'
+import { ListRow } from './list-row'
 import {
-  getTotalRowCount,
-  globalIndexToRowIndexPath,
-  InvalidRowIndexPath,
-  isValidRow,
-  RowIndexPath,
-  rowIndexPathEquals,
-  rowIndexPathToGlobalIndex,
-  rowListIncludesIndexPath,
+    getTotalRowCount,
+    globalIndexToRowIndexPath,
+    InvalidRowIndexPath,
+    isValidRow,
+    RowIndexPath,
+    rowIndexPathEquals,
+    rowIndexPathToGlobalIndex,
+    rowListIncludesIndexPath,
 } from './list-row-index-path'
-import { range } from '../../../lib/range'
-import { sendNonFatalException } from '../../../lib/helpers/non-fatal-exception'
+import {
+    findLastSelectableRow,
+    findNextSelectableRow,
+    IKeyboardSource,
+    IMouseClickSource,
+    ISelectAllSource,
+    SelectionDirection,
+    SelectionSource,
+} from './section-list-selection'
 
 /**
  * Describe the first argument given to the cellRenderer,
@@ -565,7 +565,7 @@ export class SectionList extends React.Component<
     const source: SelectionSource = { kind: 'keyboard', event }
 
     // Home is Cmd+ArrowUp on macOS, end is Cmd+ArrowDown, see
-    // https://github.com/desktop/desktop/pull/8644#issuecomment-645965884
+    // https://github.com/xixu-me/git-desktop/pull/8644#issuecomment-645965884
     const isHomeKey = __DARWIN__
       ? event.metaKey && event.key === 'ArrowUp'
       : event.key === 'Home'
