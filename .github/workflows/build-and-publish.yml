@@ -1,0 +1,385 @@
+name: Build and Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build and publish (e.g., 1.0.0, 1.0.0-beta1, 1.0.0-test1)'
+        required: true
+        type: string
+      channel:
+        description: 'Release channel'
+        required: true
+        type: choice
+        options:
+          - production
+          - beta
+          - test
+      upload_artifacts:
+        description: 'Upload build artifacts'
+        required: true
+        type: boolean
+        default: true
+      create_release:
+        description: 'Create GitHub release'
+        required: true
+        type: boolean
+        default: false
+      prerelease:
+        description: 'Mark as prerelease'
+        required: true
+        type: boolean
+        default: false
+
+env:
+  NODE_VERSION: 22.14.0
+
+jobs:
+  validate:
+    name: Validate Version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.validate.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate version format
+        id: validate
+        run: |
+          # Check if version matches semver format
+          if ! echo "${{ inputs.version }}" | grep -E '^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+[0-9]*)?$'; then
+            echo "Error: Version '${{ inputs.version }}' is not a valid semver format"
+            exit 1
+          fi
+          
+          # Validate channel and version compatibility
+          case "${{ inputs.channel }}" in
+            production)
+              if echo "${{ inputs.version }}" | grep -E '-(beta|test)'; then
+                echo "Error: Production channel cannot use beta or test version"
+                exit 1
+              fi
+              ;;
+            beta)
+              if ! echo "${{ inputs.version }}" | grep -E '-beta[0-9]*$'; then
+                echo "Error: Beta channel requires version with -beta suffix"
+                exit 1
+              fi
+              ;;
+            test)
+              if ! echo "${{ inputs.version }}" | grep -E '-test[0-9]*$'; then
+                echo "Error: Test channel requires version with -test suffix"
+                exit 1
+              fi
+              ;;
+          esac
+          
+          echo "version=${{ inputs.version }}" >> $GITHUB_OUTPUT
+
+  update-version:
+    name: Update Version
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+          
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        
+      - name: Update version in package.json files
+        run: |
+          # Update root package.json version if needed
+          if [ -f "package.json" ]; then
+            sed -i 's/"version": "[^"]*"/"version": "${{ needs.validate.outputs.version }}"/' package.json
+          fi
+          
+          # Update app/package.json version
+          sed -i 's/"version": "[^"]*"/"version": "${{ needs.validate.outputs.version }}"/' app/package.json
+          
+      - name: Update changelog
+        run: |
+          # Add entry to changelog.json if it doesn't exist
+          node -e "
+            const fs = require('fs');
+            const changelog = JSON.parse(fs.readFileSync('changelog.json', 'utf8'));
+            const version = '${{ needs.validate.outputs.version }}';
+            
+            if (!changelog.releases[version]) {
+              changelog.releases[version] = ['[Release] Version ${{ needs.validate.outputs.version }}'];
+              
+              // Sort releases by version (latest first)
+              const sortedReleases = {};
+              Object.keys(changelog.releases)
+                .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))
+                .forEach(key => {
+                  sortedReleases[key] = changelog.releases[key];
+                });
+              
+              changelog.releases = sortedReleases;
+              fs.writeFileSync('changelog.json', JSON.stringify(changelog, null, 2) + '\n');
+            }
+          "
+          
+      - name: Commit version changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package.json app/package.json changelog.json
+          git commit -m "Bump version to ${{ needs.validate.outputs.version }}" || echo "No changes to commit"
+          git push
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: [validate, update-version]
+    env:
+      RELEASE_CHANNEL: ${{ inputs.channel }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          submodules: recursive
+          
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+          
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        
+      - name: Validate Electron version
+        run: yarn validate-electron-version
+        
+      - name: Run linting
+        run: yarn lint
+        
+      - name: Validate changelog
+        run: yarn validate-changelog
+        
+      - name: Ensure clean working directory
+        run: git diff --name-status --exit-code
+
+  build:
+    name: Build ${{ matrix.friendlyName }} ${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
+    needs: [validate, update-version, lint]
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13-xlarge, windows-2022]
+        arch: [x64, arm64]
+        include:
+          - os: macos-13-xlarge
+            friendlyName: macOS
+          - os: windows-2022
+            friendlyName: Windows
+    timeout-minutes: 60
+    env:
+      RELEASE_CHANNEL: ${{ inputs.channel }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          submodules: recursive
+          
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+          
+      - name: Install and build dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          npm_config_arch: ${{ matrix.arch }}
+          TARGET_ARCH: ${{ matrix.arch }}
+          
+      - name: Run desktop-trampoline tests
+        run: |
+          cd vendor/desktop-trampoline
+          yarn install
+          yarn test
+          
+      - name: Build production app
+        run: yarn build:prod
+        env:
+          DESKTOP_OAUTH_CLIENT_ID: ${{ secrets.DESKTOP_OAUTH_CLIENT_ID }}
+          DESKTOP_OAUTH_CLIENT_SECRET: ${{ secrets.DESKTOP_OAUTH_CLIENT_SECRET }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APPLICATION_CERT: ${{ secrets.APPLE_APPLICATION_CERT }}
+          KEY_PASSWORD: ${{ secrets.APPLE_APPLICATION_CERT_PASSWORD }}
+          npm_config_arch: ${{ matrix.arch }}
+          TARGET_ARCH: ${{ matrix.arch }}
+          
+      - name: Prepare testing environment
+        run: yarn test:setup
+        env:
+          npm_config_arch: ${{ matrix.arch }}
+          
+      - name: Run unit tests
+        if: |
+          (runner.os == 'Windows' && matrix.arch == 'x64') || (runner.os == 'macOS' && matrix.arch == 'arm64')
+        run: yarn test:unit
+        
+      - name: Run script tests
+        run: yarn test:script
+        
+      - name: Install Azure Code Signing Client
+        if: ${{ runner.os == 'Windows' }}
+        run: |
+          $acsZip = Join-Path $env:RUNNER_TEMP "acs.zip"
+          $acsDir = Join-Path $env:RUNNER_TEMP "acs"
+          Invoke-WebRequest -Uri https://www.nuget.org/api/v2/package/Microsoft.Trusted.Signing.Client/1.0.52 -OutFile $acsZip -Verbose
+          Expand-Archive $acsZip -Destination $acsDir -Force -Verbose
+          # Replace ancient signtool in electron-winstaller with one that supports ACS
+          Copy-Item -Path "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\*" -Include signtool.exe,signtool.exe.manifest,Microsoft.Windows.Build.Signing.mssign32.dll.manifest,mssign32.dll,Microsoft.Windows.Build.Signing.wintrust.dll.manifest,wintrust.dll,Microsoft.Windows.Build.Appx.AppxSip.dll.manifest,AppxSip.dll,Microsoft.Windows.Build.Appx.AppxPackaging.dll.manifest,AppxPackaging.dll,Microsoft.Windows.Build.Appx.OpcServices.dll.manifest,OpcServices.dll -Destination "node_modules\electron-winstaller\vendor" -Verbose
+          
+      - name: Package production app
+        run: yarn package
+        env:
+          npm_config_arch: ${{ matrix.arch }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_CODE_SIGNING_TENANT_ID }}
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CODE_SIGNING_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CODE_SIGNING_CLIENT_SECRET }}
+          
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: ${{ inputs.upload_artifacts }}
+        with:
+          name: ${{ matrix.friendlyName }}-${{ matrix.arch }}-${{ needs.validate.outputs.version }}
+          path: |
+            dist/Git Desktop-${{ matrix.arch }}.zip
+            dist/GitHubDesktop-*.nupkg
+            dist/GitHubDesktopSetup-${{ matrix.arch }}.exe
+            dist/GitHubDesktopSetup-${{ matrix.arch }}.msi
+            dist/bundle-size.json
+          retention-days: 30
+          if-no-files-found: warn
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [validate, update-version, build]
+    if: ${{ inputs.create_release }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist-artifacts
+          
+      - name: Prepare release assets
+        run: |
+          mkdir -p release-assets
+          
+          # Copy all artifacts to release-assets directory
+          find dist-artifacts -type f \( -name "*.zip" -o -name "*.exe" -o -name "*.msi" -o -name "*.nupkg" \) -exec cp {} release-assets/ \;
+          
+          # List files for debugging
+          ls -la release-assets/
+          
+      - name: Extract changelog for this version
+        id: changelog
+        run: |
+          # Extract changelog entry for this version
+          node -e "
+            const fs = require('fs');
+            const changelog = JSON.parse(fs.readFileSync('changelog.json', 'utf8'));
+            const version = '${{ needs.validate.outputs.version }}';
+            const entries = changelog.releases[version] || [];
+            const changelogText = entries.join('\n');
+            
+            // Write to file for GitHub Actions
+            fs.writeFileSync('current-changelog.txt', changelogText);
+            console.log('Changelog entries:', entries.length);
+          "
+          
+          # Set output
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          cat current-changelog.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+      - name: Create Git tag
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag -a "release-${{ needs.validate.outputs.version }}" -m "Release ${{ needs.validate.outputs.version }}"
+          git push origin "release-${{ needs.validate.outputs.version }}"
+          
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: release-${{ needs.validate.outputs.version }}
+          name: Git Desktop ${{ needs.validate.outputs.version }}
+          body: |
+            ## Git Desktop ${{ needs.validate.outputs.version }}
+            
+            **Release Channel:** ${{ inputs.channel }}
+            
+            ### Changes
+            ${{ steps.changelog.outputs.changelog }}
+            
+            ### Downloads
+            - **Windows x64:** `GitHubDesktopSetup-x64.exe`, `GitHubDesktopSetup-x64.msi`
+            - **Windows ARM64:** `GitHubDesktopSetup-arm64.exe`, `GitHubDesktopSetup-arm64.msi`
+            - **macOS x64:** `Git Desktop-x64.zip`
+            - **macOS ARM64:** `Git Desktop-arm64.zip`
+            
+            ### Installation
+            1. Download the appropriate installer for your platform
+            2. Run the installer and follow the setup instructions
+            3. Launch Git Desktop from your applications folder
+            
+            ### System Requirements
+            - **Windows:** Windows 10 version 1903 or later
+            - **macOS:** macOS 11.0 or later
+            
+            ---
+            
+            For support and documentation, visit [Git Desktop Documentation](https://docs.github.com/en/desktop).
+          files: release-assets/*
+          prerelease: ${{ inputs.prerelease }}
+          draft: false
+          generate_release_notes: true
+          
+  notify:
+    name: Notify Completion
+    runs-on: ubuntu-latest
+    needs: [validate, update-version, build, create-release]
+    if: always()
+    steps:
+      - name: Notify success
+        if: ${{ needs.build.result == 'success' }}
+        run: |
+          echo "✅ Build and publish completed successfully!"
+          echo "Version: ${{ needs.validate.outputs.version }}"
+          echo "Channel: ${{ inputs.channel }}"
+          echo "Artifacts uploaded: ${{ inputs.upload_artifacts }}"
+          echo "Release created: ${{ inputs.create_release }}"
+          
+      - name: Notify failure
+        if: ${{ needs.build.result == 'failure' || needs.validate.result == 'failure' || needs.update-version.result == 'failure' }}
+        run: |
+          echo "❌ Build and publish failed!"
+          echo "Please check the logs for details."
+          exit 1
