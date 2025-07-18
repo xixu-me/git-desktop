@@ -1,8 +1,8 @@
 import assert from 'node:assert'
 import { describe, it, TestContext } from 'node:test'
 import {
-    getDotComAPIEndpoint,
-    IAPIFullRepository,
+  getDotComAPIEndpoint,
+  IAPIFullRepository,
 } from '../../../../src/lib/api'
 import { addRemote } from '../../../../src/lib/git'
 import { GitStore, RepositoriesStore } from '../../../../src/lib/stores'

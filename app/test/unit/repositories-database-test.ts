@@ -1,10 +1,10 @@
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
 import {
-    IDatabaseGitHubRepository,
-    IDatabaseOwner,
-    RepositoriesDatabase,
-    getOwnerKey,
+  IDatabaseGitHubRepository,
+  IDatabaseOwner,
+  RepositoriesDatabase,
+  getOwnerKey,
 } from '../../src/lib/databases'
 
 describe('RepositoriesDatabase', () => {
